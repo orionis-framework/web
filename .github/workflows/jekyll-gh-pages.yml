@@ -1,5 +1,5 @@
 # Workflow for building and deploying an Astro site to GitHub Pages
-name: Deploy Astro Theme
+name: Deploy Orionis Docs to GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
