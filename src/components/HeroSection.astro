@@ -1,0 +1,174 @@
+---
+import Container from "./Container.astro";
+---
+
+<div class="relative" id="home">
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20"
+  >
+    <div
+      class="blur-[106px] h-56 bg-gradient-to-br from-[#134675] to-[#4CC9F0] dark:from-[#134675] dark:to-[#F4C430]"
+    >
+    </div>
+    <div
+      class="blur-[106px] h-32 bg-gradient-to-r from-[#F4C430] to-[#4CC9F0] dark:from-[#4CC9F0] dark:to-[#134675]"
+    >
+    </div>
+  </div>
+  <Container>
+    <div class="relative pt-36 ml-auto">
+      <div class="lg:w-2/3 text-center mx-auto">
+        <img
+          src="/images/logo/orionis-framework.svg"
+          alt="Orionis Framework Logo"
+          class="mx-auto mb-10 h-40 w-auto animate-[logoPulse_3s_ease-in-out_infinite]"
+          loading="lazy"
+          style="--tw-animate-logoPulse: logoPulse 3s ease-in-out infinite;"
+        />
+        <h1
+          class="text-[#134675] text-balance dark:text-white font-bold text-5xl md:text-6xl xl:text-7xl"
+        >
+          Orionis <span class="text-[#4CC9F0] dark:text-[#F4C430]">Framework</span>
+        </h1>
+        <p class="mt-8 text-[#134675] dark:text-gray-300">
+          Discover the asynchronous Python framework that is redefining modern development: maximum productivity, elegant code, and unbeatable performance thanks to its Rust-powered kernel. Orionis Framework, real speed without compromise.
+        </p>
+        <div class="mt-16 flex flex-wrap justify-center gap-y-4 gap-x-6">
+          <a
+            href="#"
+            class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-[#134675] before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 relative text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+            <span class="relative text-base font-semibold text-white">Get Started</span>
+          </a>
+          <a
+            href="https://github.com/orionis-framework"
+            class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:border before:border-transparent before:bg-[#4CC9F0]/10 before:bg-gradient-to-b before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-[#134675] dark:before:bg-[#134675] sm:w-max gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 relative text-[#4CC9F0] dark:text-[#F4C430]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.867 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.528 2.341 1.088 2.91.832.091-.646.349-1.088.635-1.339-2.221-.253-4.555-1.112-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.338 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.099 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .268.18.579.688.481C19.135 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+            </svg>
+            <span class="relative text-base font-semibold text-[#4CC9F0] dark:text-[#F4C430]">View on GitHub</span>
+          </a>
+        </div>
+        <div class="hidden py-10 mt-16 sm:flex justify-center gap-10 bg-gradient-to-r from-[#134675]/5 via-white/60 to-[#4CC9F0]/5 rounded-xl shadow-lg border border-gray-100 dark:border-[#134675]">
+          <div class="flex flex-col items-center text-center px-6">
+            <div class="flex items-center justify-center w-14 h-14 rounded-full bg-[#134675]/10 dark:bg-[#F4C430]/10 mb-4 shadow">
+              <span class="text-3xl">⚡</span>
+            </div>
+            <h6 class="text-lg font-bold text-[#134675] dark:text-[#F4C430] mb-2">Unmatched Performance</h6>
+            <p class="text-[#4CC9F0] dark:text-[#F4C430]/80 text-sm">Ultra-fast HTTP core in Rust</p>
+          </div>
+          <div class="flex flex-col items-center text-center px-6">
+            <div class="flex items-center justify-center w-14 h-14 rounded-full bg-[#4CC9F0]/10 dark:bg-[#134675]/10 mb-4 shadow">
+              <span class="text-3xl">🚀</span>
+            </div>
+            <h6 class="text-lg font-bold text-[#134675] dark:text-[#F4C430] mb-2">Maximum Productivity</h6>
+            <p class="text-[#4CC9F0] dark:text-[#F4C430]/80 text-sm">Efficient asynchronous development</p>
+          </div>
+          <div class="flex flex-col items-center text-center px-6">
+            <div class="flex items-center justify-center w-14 h-14 rounded-full bg-[#F4C430]/10 dark:bg-[#4CC9F0]/10 mb-4 shadow">
+              <span class="text-3xl">🔥</span>
+            </div>
+            <h6 class="text-lg font-bold text-[#134675] dark:text-[#F4C430] mb-2">Powerful Console</h6>
+            <p class="text-[#4CC9F0] dark:text-[#F4C430]/80 text-sm">Intuitive, elegant, and flexible CLI</p>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="mt-12 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6">
+        <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
+          <img
+            src="./images/clients/microsoft.svg"
+            class="h-12 w-auto mx-auto"
+            loading="lazy"
+            alt="client logo"
+            width=""
+            height=""
+          />
+        </div>
+        <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
+          <img
+            src="./images/clients/airbnb.svg"
+            class="h-12 w-auto mx-auto"
+            loading="lazy"
+            alt="client logo"
+            width=""
+            height=""
+          />
+        </div>
+        <div
+          class="p-4 flex grayscale transition duration-200 hover:grayscale-0"
+        >
+          <img
+            src="./images/clients/google.svg"
+            class="h-9 w-auto m-auto"
+            loading="lazy"
+            alt="client logo"
+            width=""
+            height=""
+          />
+        </div>
+        <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
+          <img
+            src="./images/clients/ge.svg"
+            class="h-12 w-auto mx-auto"
+            loading="lazy"
+            alt="client logo"
+            width=""
+            height=""
+          />
+        </div>
+        <div
+          class="p-4 flex grayscale transition duration-200 hover:grayscale-0"
+        >
+          <img
+            src="./images/clients/netflix.svg"
+            class="h-8 w-auto m-auto"
+            loading="lazy"
+            alt="client logo"
+            width=""
+            height=""
+          />
+        </div>
+        <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
+          <img
+            src="./images/clients/google-cloud.svg"
+            class="h-12 w-auto mx-auto"
+            loading="lazy"
+            alt="client logo"
+            width=""
+            height=""
+          />
+        </div>
+      </div> -->
+    </div>
+  </Container>
+</div>
+
+<style>
+  @keyframes logoPulse {
+    0% {
+      transform: scale(1) rotate(0deg);
+      filter: brightness(1);
+    }
+    20% {
+      transform: scale(1.08) rotate(-3deg);
+      filter: brightness(1.1);
+    }
+    50% {
+      transform: scale(1.12) rotate(3deg);
+      filter: brightness(1.15);
+    }
+    80% {
+      transform: scale(1.08) rotate(-3deg);
+      filter: brightness(1.1);
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+      filter: brightness(1);
+    }
+  }
+</style>

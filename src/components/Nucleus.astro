@@ -1,0 +1,76 @@
+---
+import Container from "./Container.astro";
+---
+
+<div id="nucleus">
+  <Container>
+
+    <!-- Main Icon: Modern Rocket/Launch (Alternative: Lightning Bolt) -->
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-8 h-8 text-yellow-400">
+      <path d="M13 2L3 14h7v8l8-12h-7V2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="currentColor"/>
+    </svg>
+
+    <div class="space-y-6 justify-between text-gray-600 md:flex flex-row-reverse md:gap-6 md:space-y-0 lg:gap-12 lg:items-center">
+      <div class="md:5/12 lg:w-1/2">
+        <img
+          src="./images/code/app.svg"
+          alt="Performance statistics"
+          loading="lazy"
+          width=""
+          height=""
+          class="w-full"
+        />
+        <br>
+        <img
+        src="./images/code/serve.svg"
+        alt="Performance statistics"
+        loading="lazy"
+        width=""
+        height=""
+        class="w-full"
+        />
+        <br>
+        <img
+          src="./images/code/schedule.svg"
+          alt="Performance statistics"
+          loading="lazy"
+          width=""
+          height=""
+          class="w-full"
+        />
+      </div>
+      <div class="md:7/12 lg:w-1/2">
+        <h2 class="text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
+          Orionis Framework<br>Unmatched performance and efficiency in Python.
+        </h2>
+        <p class="my-8 text-gray-600 dark:text-gray-300">
+          Orionis is built to run on <strong>Granian</strong>, the fastest HTTP server in the Python ecosystem, developed in Rust. Enjoy exceptional efficiency and speed for your applications, leveraging the best of both languages.
+          <br>
+          <span class="font-semibold">Supported interfaces:</span>
+        </p>
+        <div class="divide-y space-y-4 divide-gray-100 dark:divide-gray-800">
+          <div class="mt-8 flex gap-4 md:items-center">
+            <!-- ASGI Icon: Letter "A" for ASGI -->
+            <div class="w-12 h-12 flex items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900/20">
+              <span class="text-3xl font-bold text-indigo-500 dark:text-indigo-400">A</span>
+            </div>
+            <div class="w-5/6">
+              <h3 class="font-semibold text-lg text-gray-700 dark:text-indigo-300">ASGI</h3>
+              <p class="text-gray-500 dark:text-gray-400">Full compatibility with ASGI interfaces, allowing Orionis to integrate with the main frameworks and tools of the modern Python ecosystem.</p>
+            </div> 
+          </div> 
+          <div class="pt-4 flex gap-4 md:items-center">
+            <!-- RSGI Icon: Rust logo -->
+            <div class="w-12 h-12 flex items-center justify-center rounded-full bg-teal-100 dark:bg-teal-900/20">
+              <span class="text-3xl font-bold text-teal-600 dark:text-teal-400">R</span>
+            </div>
+            <div class="w-5/6">
+              <h3 class="font-semibold text-lg text-gray-700 dark:text-teal-300">RSGI</h3>
+              <p class="text-gray-500 dark:text-gray-400">Harness the power of Granian and Rust with the RSGI interface, achieving ultra-fast response times and maximum efficiency for your Orionis applications.</p>
+            </div> 
+          </div> 
+        </div>
+      </div>
+    </div>
+  </Container>
+</div>

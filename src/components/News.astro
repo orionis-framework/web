@@ -1,0 +1,35 @@
+---
+import Container from "./Container.astro"
+---
+
+<div class="relative py-16">
+  <div aria-hidden="true" class="absolute inset-0 h-max w-full m-auto grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20">
+    <div class="blur-[106px] h-56 bg-gradient-to-br from-[#134675] to-[#4CC9F0] dark:from-[#134675]"></div>
+    <div class="blur-[106px] h-32 bg-gradient-to-r from-[#4CC9F0] to-[#F4C430] dark:to-[#134675]"></div>
+  </div>
+  <Container>
+    <div class="relative">
+      <div class="mt-6 m-auto space-y-6 md:w-8/12 lg:w-7/12">
+        <h1 class="text-center text-4xl font-bold text-[#134675] dark:text-[#4CC9F0] md:text-5xl">Subscribe to Orionis Framework News</h1>
+        <p class="text-center text-xl text-[#000000] dark:text-[#FFFFFF]">
+          Get the latest updates, news, and resources about Orionis Framework delivered straight to your inbox.
+        </p>
+        <form class="flex flex-wrap justify-center gap-4 mt-6" method="post" action="#">
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="Your email address"
+            class="w-full sm:w-auto px-4 py-3 rounded-full border border-[#134675] dark:border-[#4CC9F0] focus:outline-none focus:ring-2 focus:ring-[#F4C430] bg-white dark:bg-[#134675] text-[#134675] dark:text-[#4CC9F0]"
+          />
+          <button
+            type="submit"
+            class="relative flex h-12 items-center justify-center px-8 rounded-full bg-[#F4C430] text-[#134675] font-semibold hover:scale-105 transition duration-300"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+  </Container>
+</div>

@@ -1,0 +1,92 @@
+---
+import Container from "./Container.astro";
+const links = [
+    {
+        to: "/#features",
+        label: "Features",
+    },
+    {
+        to: "/#nucleus",
+        label: "Core",
+    },
+    {
+        to: "/#stats",
+        label: "Statistics",
+    },
+];
+const githubUrl = "https://github.com/orionis-framework";
+const version = await fetch('https://pypi.org/pypi/orionis/json')
+    .then(res => res.json())
+    .then(data => data.info.version)
+    .catch(() => null);
+---
+
+<header>
+    <nav id="nav" class="absolute group z-10 w-full border-b border-black/5 dark:border-white/5 lg:border-transparent" style="background: inherit;">
+        <Container>
+            <div class="relative flex flex-wrap items-center justify-between gap-6 py-3 md:gap-0 md:py-4">
+                <div class="relative z-20 flex w-full justify-between md:px-0 lg:w-fit">
+                    <a href="/#home" aria-label="logo" class="flex items-center space-x-2">
+                        <img src="/images/logo/orionis-framework.svg" alt="Orionis Framework Logo" class="h-8 w-8" />
+                        <span class="text-2xl font-bold text-[#134675] dark:text-[#4CC9F0]">Orionis Framework</span>
+                        <span class="ml-2 rounded-full bg-[#F4C430] px-2 py-0.5 text-xs font-semibold text-[#134675] dark:text-[#134675] border border-[#134675]">{version}</span>
+                    </a>
+
+                    <div class="relative flex max-h-10 items-center lg:hidden">
+                        <button aria-label="hamburger" id="hamburger" class="relative -mr-6 p-6 active:scale-95 duration-300">
+                            <div aria-hidden="true" id="line" class="m-auto h-0.5 w-5 rounded bg-[#134675] transition duration-300 dark:bg-[#4CC9F0] origin-top group-data-[state=active]:rotate-45 group-data-[state=active]:translate-y-1.5"></div>
+                            <div aria-hidden="true" id="line2" class="m-auto mt-2 h-0.5 w-5 rounded bg-[#134675] transition duration-300 dark:bg-[#4CC9F0] origin-bottom group-data-[state=active]:-rotate-45 group-data-[state=active]:-translate-y-1"></div>
+                        </button>
+                    </div>
+                </div>
+                <div id="navLayer" aria-hidden="true" class="fixed inset-0 z-10 h-screen w-screen origin-bottom scale-y-0 bg-white/70 backdrop-blur-2xl transition duration-500 group-data-[state=active]:origin-top group-data-[state=active]:scale-y-100 dark:bg-gray-950/70 lg:hidden"></div>
+                <div id="navlinks" class="invisible absolute top-full left-0 z-20 w-full origin-top-right translate-y-1 scale-90 flex-col flex-wrap justify-end gap-6 rounded-3xl border border-gray-100 bg-white p-8 opacity-0 shadow-2xl shadow-gray-600/10 transition-all duration-300 dark:border-gray-700 dark:bg-gray-800 dark:shadow-none lg:visible lg:relative lg:flex lg:w-fit lg:translate-y-0 lg:scale-100 lg:flex-row lg:items-center lg:gap-0 lg:border-none lg:bg-transparent lg:p-0 lg:opacity-100 lg:shadow-none lg:dark:bg-transparent group-data-[state=active]:visible group-data-[state=active]:scale-100 group-data-[state=active]:opacity-100 lg:group-data-[state=active]:translate-y-0">
+                    <div class="w-full text-[#134675] dark:text-[#4CC9F0] lg:w-auto lg:pr-4 lg:pt-0">
+                        <div id="links-group" class="flex flex-col gap-6 tracking-wide lg:flex-row lg:gap-0 lg:text-sm">
+                            {
+                                links.map((link) => (
+                                    <a href={link.to} class="hover:text-[#4CC9F0] block transition dark:hover:text-[#F4C430] md:px-4">
+                                        <span>{link.label}</span>
+                                    </a>
+                                ))
+                            }
+                            <a href={githubUrl} target="_blank" aria-label="GitHub" class="flex items-center gap-2 font-semibold text-[#134675] transition hover:text-[#4CC9F0] dark:text-[#4CC9F0] dark:hover:text-[#F4C430] md:px-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.745.083-.729.083-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.997.108-.775.418-1.305.762-1.605-2.665-.305-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.301 1.23a11.52 11.52 0 0 1 3.003-.404c1.018.005 2.045.138 3.003.404 2.291-1.553 3.297-1.23 3.297-1.23.653 1.653.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.61-2.804 5.624-5.475 5.921.43.371.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                                </svg>
+                                <span class="sr-only">GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Container>
+    </nav>
+</header>
+
+<script>
+    let isToggled = false;
+    const navbar = document.querySelector("#nav") as HTMLElement;
+    const menuBtn = document.querySelector("#hamburger");
+    const links = [...navbar.querySelector("#links-group").children];
+
+    function toggleNavlinks() {
+        if (isToggled) {
+            navbar.dataset.state = "active";
+        } else {
+            navbar.dataset.state = "";
+        }
+    }
+
+    menuBtn.addEventListener("click", () => {
+        isToggled = !isToggled;
+        toggleNavlinks();
+    });
+
+    links.forEach((link) => {
+        link.addEventListener("click", () => {
+            isToggled = !isToggled;
+            toggleNavlinks();
+        });
+    });
+</script>

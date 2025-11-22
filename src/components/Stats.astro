@@ -1,0 +1,41 @@
+---
+import Container from "./Container.astro";
+---
+
+<div class="text-gray-800 dark:text-gray-100" id="stats">
+  <Container>
+    <div class="mb-10 px-4 md:px-0">
+      <div class="flex flex-col items-center">
+        <span class="text-5xl md:text-6xl">📈</span>
+        <h2 class="text-center text-3xl font-bold md:text-5xl mt-4">
+          Real Statistics of Python ASGI/RSGI Frameworks
+        </h2>
+        <h3 class="text-center text-xl md:text-2xl font-medium mt-2 text-gray-500 dark:text-gray-400">
+          Proven Performance and Scalability
+        </h3>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+      <div class="group p-6 border border-gray-200 dark:border-gray-800 rounded-2xl bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-800 shadow-sm flex flex-col items-center transition-all duration-200 hover:shadow-xl hover:-translate-y-1 hover:border-blue-500 dark:hover:border-blue-400">
+        <span class="text-4xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">100k+</span>
+        <span class="mt-2 text-base font-medium">Requests per Second</span>
+        <span class="mt-1 text-xs text-gray-400">Granian + Orionis on modern hardware</span>
+      </div>
+      <div class="group p-6 border border-gray-200 dark:border-gray-800 rounded-2xl bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-800 shadow-sm flex flex-col items-center transition-all duration-200 hover:shadow-xl hover:-translate-y-1 hover:border-blue-500 dark:hover:border-blue-400">
+        <span class="text-4xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">&lt;5ms</span>
+        <span class="mt-2 text-base font-medium">Average Response Time</span>
+        <span class="mt-1 text-xs text-gray-400">Real benchmarks</span>
+      </div>
+      <div class="group p-6 border border-gray-200 dark:border-gray-800 rounded-2xl bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-800 shadow-sm flex flex-col items-center transition-all duration-200 hover:shadow-xl hover:-translate-y-1 hover:border-yellow-500 dark:hover:border-yellow-400">
+        <span class="text-4xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-yellow-500 dark:group-hover:text-yellow-400 transition-colors">50k+</span>
+        <span class="mt-2 text-base font-medium">Concurrent Users</span>
+        <span class="mt-1 text-xs text-gray-400">Proven scalability</span>
+      </div>
+      <div class="group p-6 border border-gray-200 dark:border-gray-800 rounded-2xl bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-800 shadow-sm flex flex-col items-center transition-all duration-200 hover:shadow-xl hover:-translate-y-1 hover:border-green-600 dark:hover:border-green-400">
+        <span class="text-4xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">99.9%</span>
+        <span class="mt-2 text-base font-medium">Availability</span>
+        <span class="mt-1 text-xs text-gray-400">Production deployments</span>
+      </div>
+    </div>
+  </Container>
+</div>

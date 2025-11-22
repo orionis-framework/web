@@ -1,0 +1,43 @@
+---
+const githubStars = await fetch('https://api.github.com/repos/orionis-framework/framework')
+  .then(res => res.json())
+  .then(data => data.stargazers_count)
+  .catch(() => null);
+---
+
+<footer class="bg-white bg-opacity-90 text-[#134675] py-10">
+  <div class="max-w-4xl mx-auto flex flex-col items-center gap-6">
+    <div class="flex items-center gap-4 text-xl font-bold tracking-tight">
+      <span class="flex items-center gap-2">
+        <img src="/images/logo/orionis-framework.svg" alt="Orionis Framework Logo" class="w-7 h-7" />
+        Orionis Framework
+      </span>
+      <span class="hidden md:inline text-[#4CC9F0] font-normal">MIT License</span>
+    </div>
+    <div class="flex items-center gap-8">
+      <a href="https://github.com/orionis-framework/orionis-framework" target="_blank" rel="noopener" aria-label="Github" class="hover:text-[#134675] transition">
+        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/raul-mauricio-unate-castro/" target="_blank" rel="noopener" aria-label="LinkedIn" class="hover:text-[#134675] transition">
+        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.026-3.063-1.867-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.843-1.563 3.041 0 3.603 2.003 3.603 4.605v5.591z"/>
+        </svg>
+      </a>
+      <div class="flex items-center gap-2 bg-[#4CC9F0]/10 px-4 py-2 rounded-full text-base font-medium shadow-lg">
+        <svg class="w-5 h-5 text-[#F4C430]" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        <svg class="w-4 h-4 text-[#F4C430]" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 15.27L16.18 18l-1.64-7.03L19 7.24l-7.19-.61L10 0 8.19 6.63 1 7.24l5.46 3.73L4.82 18z"/>
+        </svg>
+        <span>{githubStars ?? '—'}</span>
+      </div>
+    </div>
+    <div class="w-full border-t border-[#4CC9F0] my-4"></div>
+    <div class="text-sm text-[#134675] text-center">
+      © 2023 - {new Date().getFullYear()} | Raúl Mauricio Uñate Castro &amp; Orionis Framework Team
+    </div>
+  </div>
+</footer>
