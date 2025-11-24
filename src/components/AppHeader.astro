@@ -15,10 +15,10 @@ const links = [
     },
 ];
 const githubUrl = "https://github.com/orionis-framework";
-const version = await fetch('https://pypi.org/pypi/orionis/json')
+const version = (await fetch('https://pypi.org/pypi/orionis/json', { cache: 'no-store' })
     .then(res => res.json())
     .then(data => data.info.version)
-    .catch(() => null);
+    .catch(() => null));
 ---
 
 <header>

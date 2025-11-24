@@ -1,5 +1,5 @@
 ---
-const githubStars = await fetch('https://api.github.com/repos/orionis-framework/framework')
+const githubStars = await fetch('https://api.github.com/repos/orionis-framework/framework', { cache: 'no-store' })
   .then(res => res.json())
   .then(data => data.stargazers_count)
   .catch(() => null);
