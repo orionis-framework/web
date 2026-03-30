@@ -1,166 +1,200 @@
-# 🚀 Orionis Framework - Astro Theme
+# Orionis Framework — Landing Page
 
-A modern and elegant theme built with Astro and TailwindCSS, designed to create fast and attractive websites with an exceptional development experience.
+Official landing page for the **Orionis Framework**, a high-performance async Python framework powered by a Rust-based HTTP core ([Granian](https://github.com/emmett-framework/granian) RSGI).
 
-## ✨ Features
+🌐 **Live site:** [orionis-framework.com](https://orionis-framework.com/)
+📦 **Main framework:** [github.com/orionis-framework/framework](https://github.com/orionis-framework/framework)
+📖 **Documentation:** [docs.orionis-framework.com](https://docs.orionis-framework.com/)
 
-- 🌟 **Built with Astro 5.1.3** - Modern web framework for blazing fast sites
-- 🎨 **TailwindCSS 4.0 Beta** - Next-generation utility-first CSS framework
-- ⚡ **Optimized performance** - Static sites with ultra-fast loading
-- 📱 **Responsive design** - Perfect on all devices
-- 🌙 **Dark mode** - Native support for light/dark themes
-- 🎯 **SEO optimized** - Ready-to-go search engine configuration
-- 🔧 **TypeScript ready** - Full TypeScript support
+---
 
-## 🏗️ Project Structure
+## What is Orionis?
 
-```
-astro-theme/
-├── public/                 # Static files
-│   ├── CNAME              # Domain configuration
-│   └── images/            # Images and assets
-│       ├── code/          # Code-related images
-│       └── logo/          # Logos and branding
-├── src/
-│   ├── components/        # Reusable components
-│   │   ├── AppFooter.astro      # Footer
-│   │   ├── AppHeader.astro      # Navigation header
-│   │   ├── Blog.astro           # Blog section
-│   │   ├── Container.astro      # Base container
-│   │   ├── Features.astro       # Features section
-│   │   ├── HeroSection.astro    # Main hero section
-│   │   ├── News.astro           # News section
-│   │   ├── Nucleus.astro        # Nucleus component
-│   │   └── Stats.astro          # Statistics section
-│   ├── layouts/
-│   │   └── Layout.astro         # Main layout
-│   ├── pages/
-│   │   └── index.astro          # Home page
-│   ├── env.d.ts           # Environment type definitions
-│   └── tailus.css         # Custom styles
-├── astro.config.mjs       # Astro configuration
-├── package.json           # Dependencies and scripts
-├── tsconfig.json          # TypeScript configuration
-└── prettier.config.mjs    # Prettier configuration
+Orionis is a framework for building async web applications and APIs in Python, featuring an elegant architecture inspired by the best industry patterns:
+
+- **Rust-Powered HTTP Core** — Uses Granian (RSGI) as its HTTP server, achieving ~455k projected req/s with framework overhead.
+- **Layered Architecture** — HTTP/CLI → Service Layer → Core (IoC, Scheduler, Exception Handler) → Infrastructure.
+- **Dependency Injection** — IoC container with automatic resolution via type annotations (singleton, transient, scoped).
+- **Service Providers** — Explicit service registration with `register()` and `boot()` lifecycles.
+- **Reactor CLI** — Component generation, dev server, task scheduler, testing, and more.
+- **Native Testing** — Testing suite designed for async applications with parallel execution.
+- **Built-in Security** — Authentication, middleware, and OWASP compliance by design.
+
+```bash
+pip install orionis
 ```
 
-## 📦 Dependencies
+---
 
-### Core
-- **[Astro](https://astro.build/)** `^5.1.3` - Modern web framework
-- **[TailwindCSS](https://tailwindcss.com/)** `4.0.0-beta.8` - Utility-first CSS framework
-- **[@tailwindcss/vite](https://github.com/tailwindlabs/tailwindcss/tree/next/packages/@tailwindcss-vite)** `4.0.0-beta.8` - Vite plugin for TailwindCSS
-- **[astro-font](https://github.com/rishi-raj-jain/astro-font)** `^0.0.72` - Font optimization for Astro
+## About This Repository
 
-### Development Tools
-- **[TypeScript](https://www.typescriptlang.org/)** - Static typing
-- **[Prettier](https://prettier.io/)** - Code formatter
-- **[pnpm](https://pnpm.io/)** - Fast and efficient package manager
+This repository contains **only the landing page** for the framework, built as a static site with:
 
-## 🚀 Quick Start
+| Technology | Version | Role |
+|---|---|---|
+| [Astro](https://astro.build/) | ^5.1.3 | Static site generator |
+| [Tailwind CSS](https://tailwindcss.com/) | 4.0.0-beta.8 | Utility-first CSS framework |
+| [TypeScript](https://www.typescriptlang.org/) | — | Static typing |
 
-### Prerequisites
-- Node.js 22 or higher
+### Page Sections
+
+| Component | Description |
+|---|---|
+| `HeroSection` | Hero with canvas constellation animation, dynamic version from PyPI |
+| `Features` | 6 glass-morphism cards showcasing framework capabilities |
+| `Nucleus` | 3 real code examples with syntax highlighting (bootstrap, providers, CLI) |
+| `Architecture` | Visualization of the framework's 4-layer architecture |
+| `Stats` | Performance benchmarks based on TechEmpower Round 22 |
+| `News` | Compact CTA with install command and copy-to-clipboard |
+
+### Design System
+
+- **Theme:** Dark-first (`#0a0e1a` base)
+- **Fonts:** Inter (UI) + JetBrains Mono (code)
+- **Palette:** Cyan `#4CC9F0` · Gold `#F4C430` · Dark blue `#134675`
+- **Effects:** Glass-morphism, gradient text, scroll reveal animations, Dracula-inspired syntax tokens
+
+---
+
+## Quick Start
+
+### Requirements
+
+- Node.js 22+
 - pnpm (recommended) or npm
 
 ### Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/orionis-framework/web.git
-   cd web
-   ```
+```bash
+git clone https://github.com/orionis-framework/web.git
+cd web
+pnpm install
+```
 
-2. **Install dependencies**
-   ```bash
-   pnpm install
-   ```
+### Development
 
-3. **Start the development server**
-   ```bash
-   pnpm dev
-   ```
+```bash
+pnpm dev
+```
 
-4. **Open your browser**
-   
-   Visit `http://localhost:4321` to see the site in development.
+Open `http://localhost:4321` in your browser.
 
-## 📋 Available Scripts
-
-| Script | Description |
-|--------|-------------|
-| `pnpm dev` | Start the development server |
-| `pnpm start` | Alias for `pnpm dev` |
-| `pnpm build` | Build the site for production |
-| `pnpm preview` | Preview the production build locally |
-
-## 🌐 Deployment
-
-This project is configured to automatically deploy to **GitHub Pages** using GitHub Actions.
-
-### Automatic Deployment
-- Every push to the `master` branch automatically deploys the site
-- The workflow uses pnpm for faster installation
-- Includes optimized caching for efficient builds
-
-### Manual Deployment
-To deploy manually:
+### Production Build
 
 ```bash
 pnpm build
-# Generated files will be in ./dist
 ```
 
-## 🎨 Customization
+Generated files will be in `./dist`.
 
-### TailwindCSS
-The project uses TailwindCSS 4.0 Beta with Vite configuration. You can customize:
+### Local Build Preview
 
-- Colors and themes in Tailwind configuration
-- Custom components in `src/tailus.css`
-- Gradients and visual effects in components
-
-### Components
-All components are in `src/components/` and are fully customizable:
-
-- **HeroSection**: Main section with animated gradients
-- **Features**: Feature showcase
-- **Blog/News**: Content sections
-- **Stats**: Statistics and metrics
-
-## 🔧 Configuration
-
-### Astro Config
-```javascript
-{
-  output: "static",        // Static site generation
-  vite: {
-    plugins: [tailwindcss()] // TailwindCSS plugin
-  }
-}
+```bash
+pnpm preview
 ```
-
-### TypeScript
-The project includes complete TypeScript configuration for a better development experience.
-
-## 🤝 Contributing
-
-Contributions are welcome. To contribute:
-
-1. Fork the project
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is under the license specified in `LICENCE.md`.
-
-## 🏢 About the Project
-
-**Orionis Framework** is a set of tools and themes designed to create modern and efficient web experiences. This Astro theme is part of the Orionis ecosystem.
 
 ---
 
-⭐ If you like this project, give it a star on GitHub!
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── AppHeader.astro        # Fixed nav with blur on scroll
+│   ├── AppFooter.astro        # Footer with GitHub stars counter
+│   ├── HeroSection.astro      # Main hero with particle canvas
+│   ├── Features.astro         # Features grid
+│   ├── Nucleus.astro          # Real code showcase
+│   ├── Architecture.astro     # Framework layer diagram
+│   ├── Stats.astro            # Performance metrics
+│   ├── News.astro             # Install CTA
+│   ├── Container.astro        # Content wrapper
+│   └── Blog.astro             # (Reserved)
+├── layouts/
+│   └── Layout.astro           # Global layout, styles, fonts, SEO
+├── pages/
+│   └── index.astro            # Main page
+├── tailus.css                 # Theme CSS variables
+└── env.d.ts                   # Environment types
+```
+
+---
+
+## Deployment
+
+The site deploys automatically to **GitHub Pages** on every push to `master`.
+
+**Workflow:** `.github/workflows/jekyll-gh-pages.yml`
+- Node.js 22 + pnpm
+- Build: `pnpm install --frozen-lockfile && pnpm build`
+- Deploy via `actions/deploy-pages@v4`
+- Custom domain: `orionis-framework.com`
+
+---
+
+## Contributing
+
+Contributions are welcome! Follow these steps:
+
+### 1. Fork & Setup
+
+```bash
+git clone https://github.com/<your-username>/web.git
+cd web
+pnpm install
+pnpm dev
+```
+
+### 2. Create a Branch
+
+```bash
+git checkout -b feature/my-improvement
+```
+
+### 3. Make Your Changes
+
+- Components live in `src/components/`. Each `.astro` file is self-contained (markup + styles + scripts).
+- Global styles and design tokens are in `src/layouts/Layout.astro` and `src/tailus.css`.
+- Make sure the build passes before submitting:
+
+```bash
+pnpm build
+```
+
+### 4. Commit & Push
+
+```bash
+git add .
+git commit -m "feat: clear description of the change"
+git push origin feature/my-improvement
+```
+
+### 5. Open a Pull Request
+
+Open a PR targeting the `master` branch of the original repository with a clear description of your changes.
+
+### Conventions
+
+- **Commits:** Use [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, `style:`, `refactor:`).
+- **Code:** Formatted with Prettier (configuration included in the project).
+- **Components:** Keep the one-component-per-section structure. Each `.astro` file includes its own HTML, `<style>`, and `<script>` when needed.
+- **Styles:** Use Tailwind CSS utilities. For custom styles, add them to the component's `<style>` block or to `Layout.astro` for global styles.
+
+### Areas Where You Can Contribute
+
+- **New sections** — Comparisons, testimonials, framework roadmap.
+- **Visual improvements** — Animations, transitions, responsive edge cases.
+- **Performance** — Image optimization, lazy loading, bundle reduction.
+- **Accessibility** — ARIA labels, keyboard navigation, contrast.
+- **i18n** — Multi-language support for the landing page.
+- **Content** — Corrections, benchmark updates, new code examples.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See [LICENCE.md](LICENCE.md) for details.
+
+---
+
+**Orionis Framework** © 2023 – 2026 Raúl Mauricio Uñate Castro & Orionis Framework Team
