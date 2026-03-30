@@ -6,11 +6,11 @@ import "./../tailus.css"
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/svg+xml" href="/images/logo/orionis-framework.svg" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
         <meta name="generator" content={Astro.generator} />
 
         <!-- SEO Meta Tags -->
@@ -38,8 +38,8 @@ import "./../tailus.css"
         <meta property="twitter:image" content="images/seo/seo.png" />
 
         <!-- Additional SEO Tags -->
-        <meta name="theme-color" content="#000000" />
-        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="theme-color" content="#0a0e1a" />
+        <meta name="msapplication-TileColor" content="#0a0e1a" />
         <link rel="canonical" href="https://orionisframework.com/" />
 
         <!-- Preconnect to external domains -->
@@ -50,19 +50,140 @@ import "./../tailus.css"
             config={[
                 {
                     src: [],
-                    name: "Urbanist",
+                    name: "Inter",
                     preload: true,
                     display: "swap",
                     selector: "html",
                     fallback: "sans-serif",
-                    googleFontsURL: 'https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap',
+                    googleFontsURL: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap',
+                },
+                {
+                    src: [],
+                    name: "JetBrains Mono",
+                    preload: true,
+                    display: "swap",
+                    selector: "code, pre",
+                    fallback: "monospace",
+                    googleFontsURL: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap',
                 },
             ]}
         />
     </head>
-    <body class="bg-white dark:bg-gray-950">
+    <body class="bg-[#0a0e1a] text-gray-100 antialiased overflow-x-hidden">
         <AppHeader />
         <slot />
         <AppFooter />
+
+        <style is:global>
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+            code, pre {
+                font-family: 'JetBrains Mono', monospace;
+            }
+
+            /* Scroll-triggered animations */
+            .reveal {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .reveal.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .reveal-delay-1 { transition-delay: 0.1s; }
+            .reveal-delay-2 { transition-delay: 0.2s; }
+            .reveal-delay-3 { transition-delay: 0.3s; }
+            .reveal-delay-4 { transition-delay: 0.4s; }
+
+            /* Glow effects */
+            .glow-cyan {
+                box-shadow: 0 0 40px rgba(76, 201, 240, 0.15), 0 0 80px rgba(76, 201, 240, 0.05);
+            }
+            .glow-gold {
+                box-shadow: 0 0 40px rgba(244, 196, 48, 0.15), 0 0 80px rgba(244, 196, 48, 0.05);
+            }
+
+            /* Gradient text */
+            .gradient-text {
+                background: linear-gradient(135deg, #4CC9F0 0%, #F4C430 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            /* Glass effect */
+            .glass {
+                background: rgba(26, 31, 53, 0.6);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(76, 201, 240, 0.1);
+            }
+
+            /* Code block styling */
+            .code-block {
+                background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+                border: 1px solid rgba(76, 201, 240, 0.15);
+                border-radius: 12px;
+                overflow: hidden;
+            }
+            .code-block .code-header {
+                background: rgba(76, 201, 240, 0.05);
+                border-bottom: 1px solid rgba(76, 201, 240, 0.1);
+                padding: 12px 16px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .code-block .code-dots {
+                display: flex;
+                gap: 6px;
+            }
+            .code-block .code-dots span {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+            }
+            .code-block pre {
+                padding: 16px 20px;
+                margin: 0;
+                overflow-x: auto;
+                font-size: 11.5px;
+                line-height: 1.6;
+            }
+
+            /* Syntax highlighting tokens */
+            .tk-keyword { color: #ff79c6; }
+            .tk-string { color: #f1fa8c; }
+            .tk-function { color: #50fa7b; }
+            .tk-class { color: #8be9fd; }
+            .tk-decorator { color: #bd93f9; }
+            .tk-comment { color: #6272a4; }
+            .tk-number { color: #bd93f9; }
+            .tk-operator { color: #ff79c6; }
+            .tk-param { color: #ffb86c; }
+            .tk-type { color: #8be9fd; font-style: italic; }
+            .tk-builtin { color: #8be9fd; }
+            .tk-self { color: #ffb86c; font-style: italic; }
+            .tk-bool { color: #bd93f9; }
+            .tk-plain { color: #f8f8f2; }
+        </style>
+
+        <script>
+            // Intersection Observer for scroll-triggered animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        </script>
     </body>
 </html>

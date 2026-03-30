@@ -1,0 +1,96 @@
+---
+import Container from "./Container.astro";
+
+const layers = [
+  {
+    name: "HTTP / CLI",
+    description: "Entry points for your application",
+    items: ["Routes", "Controllers", "Commands", "Middleware"],
+    color: "#4CC9F0",
+  },
+  {
+    name: "Service Layer",
+    description: "Business logic and domain services",
+    items: ["Providers", "Facades", "Services", "Jobs"],
+    color: "#F4C430",
+  },
+  {
+    name: "Core",
+    description: "Framework foundation",
+    items: ["IoC Container", "Request Lifecycle", "Exception Handler", "Scheduler"],
+    color: "#4CC9F0",
+  },
+  {
+    name: "Infrastructure",
+    description: "Rust-powered engine",
+    items: ["Granian ASGI/RSGI", "Async Event Loop", "Worker Management", "Security"],
+    color: "#F4C430",
+  },
+];
+---
+
+<section class="relative py-32 overflow-hidden" id="architecture">
+  <div class="absolute top-1/2 right-0 w-[500px] h-[500px] bg-[#134675]/10 rounded-full blur-[120px] -translate-y-1/2"></div>
+
+  <Container>
+    <div class="reveal max-w-2xl mx-auto text-center mb-20">
+      <span class="inline-block text-[#4CC9F0] text-sm font-semibold tracking-widest uppercase mb-4">Architecture</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">
+        Designed for<br>
+        <span class="gradient-text">real-world scale</span>
+      </h2>
+      <p class="mt-6 text-gray-400 text-lg">
+        A layered architecture inspired by the best frameworks. Every component has a clear responsibility and a well-defined lifecycle.
+      </p>
+    </div>
+
+    <!-- Architecture layers -->
+    <div class="max-w-3xl mx-auto space-y-4">
+      {layers.map((layer, i) => (
+        <div class={`reveal reveal-delay-${(i % 4) + 1} group`}>
+          <div class="relative p-6 rounded-2xl glass transition-all duration-500 hover:scale-[1.01]">
+            <!-- Layer indicator -->
+            <div class="flex items-center gap-4 mb-4">
+              <div class="w-3 h-3 rounded-full" style={`background: ${layer.color};`}></div>
+              <h3 class="text-lg font-bold text-white">{layer.name}</h3>
+              <span class="text-gray-500 text-sm hidden sm:inline">{layer.description}</span>
+            </div>
+
+            <!-- Items -->
+            <div class="flex flex-wrap gap-2 ml-7">
+              {layer.items.map(item => (
+                <span class="px-3 py-1.5 text-sm rounded-lg font-mono" style={`background: ${layer.color}10; color: ${layer.color};`}>
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            <!-- Connection line -->
+            {i < layers.length - 1 && (
+              <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-px h-4 bg-gradient-to-b from-gray-700 to-transparent"></div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Philosophy cards -->
+    <div class="grid md:grid-cols-3 gap-6 mt-20">
+      <div class="reveal reveal-delay-1 p-6 rounded-2xl glass text-center">
+        <div class="text-3xl mb-4">🎯</div>
+        <h4 class="text-white font-semibold mb-2">Convention over Config</h4>
+        <p class="text-gray-400 text-sm">Sensible defaults that just work. Override only what you need.</p>
+      </div>
+      <div class="reveal reveal-delay-2 p-6 rounded-2xl glass text-center">
+        <div class="text-3xl mb-4">🔌</div>
+        <h4 class="text-white font-semibold mb-2">Modular by Design</h4>
+        <p class="text-gray-400 text-sm">Service providers, deferred loading, and clean separation of concerns.</p>
+      </div>
+      <div class="reveal reveal-delay-3 p-6 rounded-2xl glass text-center">
+        <div class="text-3xl mb-4">🧪</div>
+        <h4 class="text-white font-semibold mb-2">Test-First Mindset</h4>
+        <p class="text-gray-400 text-sm">Native testing suite with async support, mocking, and parallel execution.</p>
+      </div>
+    </div>
+  </Container>
+</section>

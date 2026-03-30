@@ -2,75 +2,141 @@
 import Container from "./Container.astro";
 ---
 
-<div id="nucleus">
+<section class="relative py-32 overflow-hidden" id="nucleus">
+  <!-- Background -->
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#4CC9F0]/5 rounded-full blur-[120px]"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#F4C430]/4 rounded-full blur-[100px]"></div>
+
   <Container>
+    <!-- Section header -->
+    <div class="reveal max-w-2xl mx-auto text-center mb-20">
+      <span class="inline-block text-[#F4C430] text-sm font-semibold tracking-widest uppercase mb-4">Developer Experience</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">
+        Code that feels<br>
+        <span class="gradient-text">like home</span>
+      </h2>
+      <p class="mt-6 text-gray-400 text-lg">
+        Intuitive patterns, expressive syntax, and a familiar architecture. If you've used modern frameworks before, you'll feel right at home.
+      </p>
+    </div>
 
-    <!-- Main Icon: Modern Rocket/Launch (Alternative: Lightning Bolt) -->
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-8 h-8 text-yellow-400">
-      <path d="M13 2L3 14h7v8l8-12h-7V2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="currentColor"/>
-    </svg>
+    <!-- Code examples grid -->
+    <div class="space-y-16">
 
-    <div class="space-y-6 justify-between text-gray-600 md:flex flex-row-reverse md:gap-6 md:space-y-0 lg:gap-12 lg:items-center">
-      <div class="md:5/12 lg:w-1/2">
-        <img
-          src="./images/code/app.svg"
-          alt="Performance statistics"
-          loading="lazy"
-          width=""
-          height=""
-          class="w-full"
-        />
-        <br>
-        <img
-        src="./images/code/serve.svg"
-        alt="Performance statistics"
-        loading="lazy"
-        width=""
-        height=""
-        class="w-full"
-        />
-        <br>
-        <img
-          src="./images/code/schedule.svg"
-          alt="Performance statistics"
-          loading="lazy"
-          width=""
-          height=""
-          class="w-full"
-        />
-      </div>
-      <div class="md:7/12 lg:w-1/2">
-        <h2 class="text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
-          Orionis Framework<br>Unmatched performance and efficiency in Python.
-        </h2>
-        <p class="my-8 text-gray-600 dark:text-gray-300">
-          Orionis is built to run on <strong>Granian</strong>, the fastest HTTP server in the Python ecosystem, developed in Rust. Enjoy exceptional efficiency and speed for your applications, leveraging the best of both languages.
-          <br>
-          <span class="font-semibold">Supported interfaces:</span>
-        </p>
-        <div class="divide-y space-y-4 divide-gray-100 dark:divide-gray-800">
-          <div class="mt-8 flex gap-4 md:items-center">
-            <!-- ASGI Icon: Letter "A" for ASGI -->
-            <div class="w-12 h-12 flex items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900/20">
-              <span class="text-3xl font-bold text-indigo-500 dark:text-indigo-400">A</span>
+      <!-- Example 1: Bootstrap -->
+      <div class="reveal grid lg:grid-cols-2 gap-10 items-center">
+        <div class="order-2 lg:order-1">
+          <div class="code-block glow-cyan">
+            <div class="code-header">
+              <div class="code-dots">
+                <span class="bg-red-500/80"></span>
+                <span class="bg-yellow-500/80"></span>
+                <span class="bg-green-500/80"></span>
+              </div>
+              <span class="text-gray-400 text-xs ml-auto font-mono">bootstrap/app.py</span>
             </div>
-            <div class="w-5/6">
-              <h3 class="font-semibold text-lg text-gray-700 dark:text-indigo-300">ASGI</h3>
-              <p class="text-gray-500 dark:text-gray-400">Full compatibility with ASGI interfaces, allowing Orionis to integrate with the main frameworks and tools of the modern Python ecosystem.</p>
-            </div> 
-          </div> 
-          <div class="pt-4 flex gap-4 md:items-center">
-            <!-- RSGI Icon: Rust logo -->
-            <div class="w-12 h-12 flex items-center justify-center rounded-full bg-teal-100 dark:bg-teal-900/20">
-              <span class="text-3xl font-bold text-teal-600 dark:text-teal-400">R</span>
-            </div>
-            <div class="w-5/6">
-              <h3 class="font-semibold text-lg text-gray-700 dark:text-teal-300">RSGI</h3>
-              <p class="text-gray-500 dark:text-gray-400">Harness the power of Granian and Rust with the RSGI interface, achieving ultra-fast response times and maximum efficiency for your Orionis applications.</p>
-            </div> 
-          </div> 
+            <pre><code><span class="tk-keyword">from</span> <span class="tk-class">pathlib</span> <span class="tk-keyword">import</span> <span class="tk-class">Path</span>
+<span class="tk-keyword">from</span> <span class="tk-class">app.console.scheduler</span> <span class="tk-keyword">import</span> <span class="tk-class">Scheduler</span>
+<span class="tk-keyword">from</span> <span class="tk-class">app.exceptions.handler</span> <span class="tk-keyword">import</span> <span class="tk-class">ExceptionHandler</span>
+<span class="tk-keyword">from</span> <span class="tk-class">orionis.foundation.application</span> <span class="tk-keyword">import</span> <span class="tk-class">Application</span>
+
+<span class="tk-plain">app</span> <span class="tk-operator">=</span> <span class="tk-class">Application</span>(<span class="tk-param">base_path</span><span class="tk-operator">=</span><span class="tk-class">Path</span>(__file__).resolve().parent.parent)
+
+<span class="tk-plain">app</span>.<span class="tk-function">withRouting</span>(
+    <span class="tk-param">api</span><span class="tk-operator">=</span><span class="tk-string">"routes/api.py"</span>,
+    <span class="tk-param">web</span><span class="tk-operator">=</span><span class="tk-string">"routes/web.py"</span>,
+    <span class="tk-param">channels</span><span class="tk-operator">=</span><span class="tk-string">"routes/channels.py"</span>
+)
+
+<span class="tk-plain">app</span>.<span class="tk-function">withScheduler</span>(<span class="tk-class">Scheduler</span>)
+<span class="tk-plain">app</span>.<span class="tk-function">withExceptionHandler</span>(<span class="tk-class">ExceptionHandler</span>)
+<span class="tk-plain">app</span>.<span class="tk-function">create</span>()</code></pre>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2">
+          <span class="text-[#4CC9F0] text-sm font-semibold tracking-widest uppercase">Application Bootstrap</span>
+          <h3 class="text-2xl md:text-3xl font-bold text-white mt-3 mb-4">Clean, declarative setup</h3>
+          <p class="text-gray-400 leading-relaxed text-lg">
+            Configure your entire application in a single file. Routes, middleware, schedulers, exception handlers &mdash; all declared explicitly. No magic, no hidden configuration.
+          </p>
         </div>
       </div>
+
+      <!-- Example 2: Service Provider -->
+      <div class="reveal grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="text-[#F4C430] text-sm font-semibold tracking-widest uppercase">Service Providers</span>
+          <h3 class="text-2xl md:text-3xl font-bold text-white mt-3 mb-4">Powerful dependency injection</h3>
+          <p class="text-gray-400 leading-relaxed text-lg">
+            Register services with elegant contracts. Singleton, transient, or scoped lifecycles &mdash; the IoC container resolves dependencies automatically through type annotations.
+          </p>
+        </div>
+        <div>
+          <div class="code-block glow-gold">
+            <div class="code-header">
+              <div class="code-dots">
+                <span class="bg-red-500/80"></span>
+                <span class="bg-yellow-500/80"></span>
+                <span class="bg-green-500/80"></span>
+              </div>
+              <span class="text-gray-400 text-xs ml-auto font-mono">app/providers/app_service_provider.py</span>
+            </div>
+            <pre><code><span class="tk-keyword">from</span> <span class="tk-class">orionis.container.providers.service_provider</span> <span class="tk-keyword">import</span> <span class="tk-class">ServiceProvider</span>
+<span class="tk-keyword">from</span> <span class="tk-class">app.contracts.email</span> <span class="tk-keyword">import</span> <span class="tk-class">IEmailService</span>
+<span class="tk-keyword">from</span> <span class="tk-class">app.services.email</span> <span class="tk-keyword">import</span> <span class="tk-class">EmailService</span>
+
+<span class="tk-keyword">class</span> <span class="tk-class">AppServiceProvider</span>(<span class="tk-type">ServiceProvider</span>):
+
+    <span class="tk-keyword">def</span> <span class="tk-function">register</span>(<span class="tk-self">self</span>):
+        <span class="tk-self">self</span>.app.<span class="tk-function">singleton</span>(
+            <span class="tk-class">IEmailService</span>,
+            <span class="tk-class">EmailService</span>
+        )
+
+    <span class="tk-keyword">async</span> <span class="tk-keyword">def</span> <span class="tk-function">boot</span>(<span class="tk-self">self</span>):
+        <span class="tk-comment"># Called after all providers are registered</span>
+        <span class="tk-keyword">pass</span></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Example 3: Reactor CLI -->
+      <div class="reveal grid lg:grid-cols-2 gap-10 items-center">
+        <div class="order-2 lg:order-1">
+          <div class="code-block glow-cyan">
+            <div class="code-header">
+              <div class="code-dots">
+                <span class="bg-red-500/80"></span>
+                <span class="bg-yellow-500/80"></span>
+                <span class="bg-green-500/80"></span>
+              </div>
+              <span class="text-gray-400 text-xs ml-auto font-mono">Terminal</span>
+            </div>
+            <pre><code><span class="tk-comment"># Start the development server</span>
+<span class="tk-plain">$ python -B reactor serve</span>
+
+<span class="tk-comment"># Generate a new command</span>
+<span class="tk-plain">$ python -B reactor make:command</span> <span class="tk-string">sync_users</span>
+
+<span class="tk-comment"># Run scheduled tasks</span>
+<span class="tk-plain">$ python -B reactor schedule:work</span>
+
+<span class="tk-comment"># Execute tests</span>
+<span class="tk-plain">$ python -B reactor test</span>
+
+<span class="tk-comment"># List all available commands</span>
+<span class="tk-plain">$ python -B reactor list</span></code></pre>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2">
+          <span class="text-[#4CC9F0] text-sm font-semibold tracking-widest uppercase">Reactor CLI</span>
+          <h3 class="text-2xl md:text-3xl font-bold text-white mt-3 mb-4">Your command center</h3>
+          <p class="text-gray-400 leading-relaxed text-lg">
+            Generate components, run tests, start servers, manage scheduled tasks &mdash; everything from a unified, intelligent CLI. Extensible with custom commands.
+          </p>
+        </div>
+      </div>
+
     </div>
   </Container>
-</div>
+</section>

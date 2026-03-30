@@ -2,151 +2,192 @@
 import Container from "./Container.astro";
 ---
 
-<div class="relative" id="home">
-  <div
-    aria-hidden="true"
-    class="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20"
-  >
-    <div
-      class="blur-[106px] h-56 bg-gradient-to-br from-[#134675] to-[#4CC9F0] dark:from-[#134675] dark:to-[#F4C430]"
-    >
-    </div>
-    <div
-      class="blur-[106px] h-32 bg-gradient-to-r from-[#F4C430] to-[#4CC9F0] dark:from-[#4CC9F0] dark:to-[#134675]"
-    >
-    </div>
+<section class="relative min-h-screen flex items-center overflow-hidden" id="home">
+  <!-- Canvas constellation background -->
+  <canvas id="constellation" class="absolute inset-0 w-full h-full"></canvas>
+
+  <!-- Gradient mesh overlays -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#4CC9F0]/8 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#F4C430]/6 rounded-full blur-[120px]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#134675]/10 rounded-full blur-[150px]"></div>
   </div>
+
+  <!-- Grid pattern overlay -->
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(76,201,240,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(76,201,240,0.3) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
   <Container>
-    <div class="relative pt-36 ml-auto">
-      <div class="lg:w-2/3 text-center mx-auto">
-        <img
-          src="/images/logo/orionis-framework.svg"
-          alt="Orionis Framework Logo"
-          class="mx-auto mb-10 h-40 w-auto animate-[logoPulse_3s_ease-in-out_infinite]"
-          loading="lazy"
-          style="--tw-animate-logoPulse: logoPulse 3s ease-in-out infinite;"
-        />
-        <h1
-          class="text-[#134675] text-balance dark:text-white font-bold text-5xl md:text-6xl xl:text-7xl"
-        >
-          Orionis <span class="text-[#4CC9F0] dark:text-[#F4C430]">Framework</span>
+    <div class="relative z-10 pt-32 pb-20 lg:pt-40 lg:pb-32">
+      <div class="max-w-4xl mx-auto text-center">
+
+        <!-- Version badge -->
+        <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 text-sm">
+          <span class="w-2 h-2 rounded-full bg-[#4CC9F0] animate-pulse"></span>
+          <span class="text-gray-400">Latest Release</span>
+          <span id="hero-version" class="text-[#4CC9F0] font-semibold">loading...</span>
+        </div>
+
+        <!-- Main heading -->
+        <h1 class="reveal text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.9]">
+          <span class="block text-white">Build Without</span>
+          <span class="block gradient-text mt-2">Boundaries</span>
         </h1>
-        <p class="mt-8 text-[#134675] dark:text-gray-300">
-          Discover the asynchronous Python framework that is redefining modern development: maximum productivity, elegant code, and unbeatable performance thanks to its Rust-powered kernel. Orionis Framework, real speed without compromise.
+
+        <!-- Subtitle -->
+        <p class="reveal reveal-delay-1 mt-8 text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          The async Python framework with a <span class="text-[#4CC9F0]">Rust-powered HTTP core</span> that delivers
+          <span class="text-[#F4C430]">10x faster</span> responses. Elegant architecture, maximum productivity, zero compromise.
         </p>
-        <div class="mt-16 flex flex-wrap justify-center gap-y-4 gap-x-6">
+
+        <!-- CTA buttons -->
+        <div class="reveal reveal-delay-2 mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="https://docs.orionis-framework.com/"
-            class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-[#134675] before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max gap-2"
+            class="group relative inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#4CC9F0] to-[#134675] rounded-xl font-semibold text-white transition-all duration-300 hover:shadow-[0_0_30px_rgba(76,201,240,0.3)] hover:scale-[1.02]"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 relative text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <span>Get Started</span>
+            <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
             </svg>
-            <span class="relative text-base font-semibold text-white">Get Started</span>
           </a>
           <a
             href="https://github.com/orionis-framework"
-            class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:border before:border-transparent before:bg-[#4CC9F0]/10 before:bg-gradient-to-b before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-[#134675] dark:before:bg-[#134675] sm:w-max gap-2"
+            class="group inline-flex items-center gap-2 px-8 py-4 glass rounded-xl font-semibold text-gray-300 transition-all duration-300 hover:border-[#4CC9F0]/30 hover:text-white"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 relative text-[#4CC9F0] dark:text-[#F4C430]" viewBox="0 0 24 24" fill="currentColor">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.867 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.528 2.341 1.088 2.91.832.091-.646.349-1.088.635-1.339-2.221-.253-4.555-1.112-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.338 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.099 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .268.18.579.688.481C19.135 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
             </svg>
-            <span class="relative text-base font-semibold text-[#4CC9F0] dark:text-[#F4C430]">View on GitHub</span>
+            <span>View on GitHub</span>
           </a>
         </div>
-        <div class="hidden py-10 mt-16 sm:flex justify-center gap-10 bg-gradient-to-r from-[#134675]/5 via-white/60 to-[#4CC9F0]/5 rounded-xl shadow-lg border border-gray-100 dark:border-[#134675]">
-          <div class="flex flex-col items-center text-center px-6">
-            <div class="flex items-center justify-center w-14 h-14 rounded-full bg-[#134675]/10 dark:bg-[#F4C430]/10 mb-4 shadow">
-              <span class="text-3xl">⚡</span>
-            </div>
-            <h6 class="text-lg font-bold text-[#134675] dark:text-[#F4C430] mb-2">Unmatched Performance</h6>
-            <p class="text-[#4CC9F0] dark:text-[#F4C430]/80 text-sm">Ultra-fast HTTP core in Rust</p>
-          </div>
-          <div class="flex flex-col items-center text-center px-6">
-            <div class="flex items-center justify-center w-14 h-14 rounded-full bg-[#4CC9F0]/10 dark:bg-[#134675]/10 mb-4 shadow">
-              <span class="text-3xl">🚀</span>
-            </div>
-            <h6 class="text-lg font-bold text-[#134675] dark:text-[#F4C430] mb-2">Maximum Productivity</h6>
-            <p class="text-[#4CC9F0] dark:text-[#F4C430]/80 text-sm">Efficient asynchronous development</p>
-          </div>
-          <div class="flex flex-col items-center text-center px-6">
-            <div class="flex items-center justify-center w-14 h-14 rounded-full bg-[#F4C430]/10 dark:bg-[#4CC9F0]/10 mb-4 shadow">
-              <span class="text-3xl">🔥</span>
-            </div>
-            <h6 class="text-lg font-bold text-[#134675] dark:text-[#F4C430] mb-2">Powerful Console</h6>
-            <p class="text-[#4CC9F0] dark:text-[#F4C430]/80 text-sm">Intuitive, elegant, and flexible CLI</p>
-          </div>
+
+        <!-- Quick install command -->
+        <div class="reveal reveal-delay-3 mt-12 inline-flex items-center gap-3 px-6 py-3 rounded-xl glass">
+          <span class="text-gray-500 text-sm font-mono">$</span>
+          <code class="text-[#4CC9F0] text-sm font-mono">pip install orionis</code>
+          <button id="copy-install" class="text-gray-500 hover:text-[#4CC9F0] transition-colors" aria-label="Copy command">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+            </svg>
+          </button>
         </div>
+
       </div>
-      <!-- <div class="mt-12 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6">
-        <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-          <img
-            src="./images/clients/microsoft.svg"
-            class="h-12 w-auto mx-auto"
-            loading="lazy"
-            alt="client logo"
-            width=""
-            height=""
-          />
-        </div>
-        <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-          <img
-            src="./images/clients/airbnb.svg"
-            class="h-12 w-auto mx-auto"
-            loading="lazy"
-            alt="client logo"
-            width=""
-            height=""
-          />
-        </div>
-        <div
-          class="p-4 flex grayscale transition duration-200 hover:grayscale-0"
-        >
-          <img
-            src="./images/clients/google.svg"
-            class="h-9 w-auto m-auto"
-            loading="lazy"
-            alt="client logo"
-            width=""
-            height=""
-          />
-        </div>
-        <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-          <img
-            src="./images/clients/ge.svg"
-            class="h-12 w-auto mx-auto"
-            loading="lazy"
-            alt="client logo"
-            width=""
-            height=""
-          />
-        </div>
-        <div
-          class="p-4 flex grayscale transition duration-200 hover:grayscale-0"
-        >
-          <img
-            src="./images/clients/netflix.svg"
-            class="h-8 w-auto m-auto"
-            loading="lazy"
-            alt="client logo"
-            width=""
-            height=""
-          />
-        </div>
-        <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-          <img
-            src="./images/clients/google-cloud.svg"
-            class="h-12 w-auto mx-auto"
-            loading="lazy"
-            alt="client logo"
-            width=""
-            height=""
-          />
-        </div>
-      </div> -->
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+        <span class="text-xs tracking-widest uppercase text-gray-500">Scroll</span>
+        <div class="w-px h-8 bg-gradient-to-b from-[#4CC9F0] to-transparent"></div>
+      </div>
     </div>
   </Container>
-</div>
+</section>
+
+<script>
+  // Constellation canvas animation
+  const canvas = document.getElementById('constellation') as HTMLCanvasElement;
+  if (canvas) {
+    const ctx = canvas.getContext('2d')!;
+    let animationId: number;
+    let particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function initParticles() {
+      const count = Math.min(80, Math.floor((window.innerWidth * window.innerHeight) / 15000));
+      particles = [];
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          size: Math.random() * 2 + 0.5,
+          opacity: Math.random() * 0.5 + 0.1
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 150) {
+            const opacity = (1 - dist / 150) * 0.15;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(76, 201, 240, ${opacity})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw and update particles
+      for (const p of particles) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(76, 201, 240, ${p.opacity})`;
+        ctx.fill();
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      }
+
+      animationId = requestAnimationFrame(draw);
+    }
+
+    resize();
+    initParticles();
+    draw();
+
+    window.addEventListener('resize', () => {
+      resize();
+      initParticles();
+    });
+  }
+
+  // Copy install command
+  document.getElementById('copy-install')?.addEventListener('click', () => {
+    navigator.clipboard.writeText('pip install orionis');
+    const btn = document.getElementById('copy-install');
+    if (btn) {
+      btn.innerHTML = '<svg class="w-4 h-4 text-[#4CC9F0]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
+      setTimeout(() => {
+        btn.innerHTML = '<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>';
+      }, 2000);
+    }
+  });
+
+  // Fetch version for hero
+  async function fetchHeroVersion() {
+    try {
+      const response = await fetch('https://pypi.org/pypi/orionis/json');
+      const data = await response.json();
+      const el = document.getElementById('hero-version');
+      if (el && data.info?.version) {
+        el.textContent = `v${data.info.version}`;
+      }
+    } catch {
+      const el = document.getElementById('hero-version');
+      if (el) el.textContent = '';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', fetchHeroVersion);
+</script>
 
 <style>
   @keyframes logoPulse {

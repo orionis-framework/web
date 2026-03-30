@@ -1,7 +1,10 @@
 @import 'tailwindcss';
 
 @theme {
-    --color-primary : var(--color-indigo-600);
-    --color-secondary : var(--color-orange-600);
-    --color-info : var(--color-blue-600);
+    --color-primary : #134675;
+    --color-accent : #4CC9F0;
+    --color-highlight : #F4C430;
+    --color-surface : #0a0e1a;
+    --color-surface-light : #111827;
+    --color-surface-card : #1a1f35;
 }

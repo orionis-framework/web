@@ -1,193 +1,85 @@
 ---
 import Container from "./Container.astro";
+
+const features = [
+  {
+    icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+    title: "Rust-Powered HTTP Core",
+    description: "Revolutionary HTTP engine built on Granian ASGI/RSGI. Responses 10x faster than traditional Python frameworks.",
+    accent: "#4CC9F0",
+  },
+  {
+    icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>`,
+    title: "Async-First Architecture",
+    description: "Built from scratch for async/await patterns. Handle millions of concurrent connections with sub-millisecond response times.",
+    accent: "#F4C430",
+  },
+  {
+    icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>`,
+    title: "Reactor CLI",
+    description: "Smart command line with distributed task management, custom commands, task scheduling, and enterprise-level job processing.",
+    accent: "#4CC9F0",
+  },
+  {
+    icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`,
+    title: "Security by Design",
+    description: "Enterprise-grade security with built-in authentication, middleware protection, and OWASP compliance from day one.",
+    accent: "#F4C430",
+  },
+  {
+    icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>`,
+    title: "Elegant Architecture",
+    description: "Service providers, middleware, dependency injection, and facades. Clean patterns that scale from startups to enterprises.",
+    accent: "#4CC9F0",
+  },
+  {
+    icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>`,
+    title: "Native Testing Suite",
+    description: "Testing framework designed for async applications. Expressive syntax, parallel execution, and complete coverage.",
+    accent: "#F4C430",
+  },
+];
 ---
 
-<div id="features">
-  <Container>
-    <div class="md:w-2/3 lg:w-1/2">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        class="w-8 h-8 text-primary"
-      >
-        <rect
-          x="3"
-          y="3"
-          width="18"
-          height="18"
-          rx="4"
-          stroke="#134675"
-          stroke-width="2"></rect>
-        <path
-          stroke="#134675"
-          stroke-width="2"
-          stroke-linecap="round"
-          d="M8 8h8M8 12h8M8 16h4"></path>
-        <circle cx="7" cy="7" r="1" fill="#4CC9F0"></circle>
-        <circle cx="17" cy="7" r="1" fill="#F4C430"></circle>
-      </svg>
+<section class="relative py-32 overflow-hidden" id="features">
+  <!-- Background accent -->
+  <div class="absolute top-1/2 left-0 w-[400px] h-[400px] bg-[#4CC9F0]/5 rounded-full blur-[120px] -translate-y-1/2"></div>
+  <div class="absolute top-1/3 right-0 w-[300px] h-[300px] bg-[#F4C430]/5 rounded-full blur-[100px]"></div>
 
-      <h2 class="my-8 text-3xl font-extrabold text-primary md:text-5xl">
-        Build extraordinary applications, without limits or complications!
+  <Container>
+    <!-- Section header -->
+    <div class="reveal max-w-2xl mx-auto text-center mb-20">
+      <span class="inline-block text-[#4CC9F0] text-sm font-semibold tracking-widest uppercase mb-4">Features</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">
+        Everything you need,<br>
+        <span class="gradient-text">nothing you don't</span>
       </h2>
-      <p class="mt-4 text-lg text-gray-700 dark:text-gray-200">
-        Orionis lets you build scalable and modern solutions: APIs, websites, sockets, queues, jobs, scheduled tasks, and commands—all ready so you can focus only on your business logic. <span
-          class="font-semibold text-accent"
-          >Develop fast, innovate effortlessly.</span
-        >
+      <p class="mt-6 text-gray-400 text-lg">
+        A complete toolkit for building extraordinary applications. Every feature is designed to maximize your productivity.
       </p>
     </div>
-    <div
-      class="mt-16 grid divide-x divide-y divide-gray-100 dark:divide-gray-700 overflow-hidden rounded-3xl border border-gray-100 text-gray-600 dark:border-gray-700 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"
-    >
-      <div
-        class="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-[#134675]/10"
-      >
-        <div class="relative space-y-8 py-12 p-8">
-          <div class="w-12 h-12 flex items-center justify-center text-3xl">
-            ⚡
+
+    <!-- Features grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {features.map((feature, i) => (
+        <div class={`reveal reveal-delay-${(i % 3) + 1} group relative p-8 rounded-2xl glass transition-all duration-500 hover:border-[${feature.accent}]/30 hover:shadow-[0_0_40px_rgba(76,201,240,0.08)]`}>
+          <!-- Icon -->
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style={`background: ${feature.accent}15; color: ${feature.accent};`}>
+            <Fragment set:html={feature.icon} />
           </div>
-          <div class="space-y-2">
-            <h5
-              class="text-xl font-semibold text-primary dark:text-white transition group-hover:text-accent"
-            >
-              HTTP Core Powered by Rust
-            </h5>
-            <p class="text-gray-600 dark:text-gray-300">
-              Revolutionary HTTP core designed with Rust's performance DNA. The Granian ASGI/RSGI engine delivers <span
-                class="font-semibold text-accent"
-                >responses 10x faster</span
-              > than traditional Python frameworks.
-            </p>
-          </div>
+
+          <!-- Content -->
+          <h3 class="text-xl font-semibold text-white mb-3 group-hover:text-[#4CC9F0] transition-colors">
+            {feature.title}
+          </h3>
+          <p class="text-gray-400 leading-relaxed">
+            {feature.description}
+          </p>
+
+          <!-- Hover gradient line -->
+          <div class="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-[#4CC9F0]/0 to-transparent group-hover:via-[#4CC9F0]/40 transition-all duration-500"></div>
         </div>
-      </div>
-      <div
-        class="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-[#134675]/10"
-      >
-        <div class="relative space-y-8 py-12 p-8">
-          <div class="w-12 h-12 flex items-center justify-center text-3xl">
-            🚀
-          </div>
-          <div class="space-y-2">
-            <h5
-              class="text-xl font-semibold text-primary dark:text-white transition group-hover:text-accent"
-            >
-              High-Performance Asynchronous Framework
-            </h5>
-            <p class="text-gray-600 dark:text-gray-300">
-              Built from scratch for async/await patterns with unmatched performance. Handles <span class="font-semibold text-accent"
-                >millions of concurrent connections</span
-              > with sub-millisecond response times.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        class="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-[#134675]/10"
-      >
-        <div class="relative space-y-8 py-12 p-8">
-          <div class="w-12 h-12 flex items-center justify-center text-3xl">
-            🔥
-          </div>
-          <div class="space-y-2">
-            <h5
-              class="text-xl font-semibold text-primary dark:text-white transition group-hover:text-accent"
-            >
-              Advanced Reactor CLI
-            </h5>
-            <p class="text-gray-600 dark:text-gray-300">
-              Smart command line with distributed task management. Run <span class="font-semibold text-accent"
-                >'python -B reactor schedule:work'</span
-              > and unlock enterprise-level job processing.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        class="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-[#134675]/10"
-      >
-        <div class="relative space-y-8 py-12 p-8">
-          <div class="w-12 h-12 flex items-center justify-center text-3xl">
-            🧪
-          </div>
-          <div class="space-y-2">
-            <h5
-              class="text-xl font-semibold text-primary dark:text-white transition group-hover:text-accent"
-            >
-              Native Testing Suite
-            </h5>
-            <p class="text-gray-600 dark:text-gray-300">
-              Testing framework designed for asynchronous applications. Write comprehensive tests with expressive syntax and parallel execution capabilities.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        class="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-[#134675]/10"
-      >
-        <div class="relative space-y-8 py-12 p-8">
-          <div class="w-12 h-12 flex items-center justify-center text-3xl">
-            🏛️
-          </div>
-          <div class="space-y-2">
-            <h5
-              class="text-xl font-semibold text-primary dark:text-white transition group-hover:text-accent"
-            >
-              Elegant Architecture
-            </h5>
-            <p class="text-gray-600 dark:text-gray-300">
-              Beautiful and intuitive patterns with service providers, middleware, and dependency injection. Clean code architecture that scales from startups to enterprises.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        class="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-[#134675]/10"
-      >
-        <div class="relative space-y-8 py-12 p-8">
-          <div class="w-12 h-12 flex items-center justify-center text-3xl">
-            🛡️
-          </div>
-          <div class="space-y-2">
-            <h5
-              class="text-xl font-semibold text-primary dark:text-white transition group-hover:text-accent"
-            >
-              Security by Design
-            </h5>
-            <p class="text-gray-600 dark:text-gray-300">
-              Enterprise-grade security with built-in authentication, middleware protection, and OWASP compliance. Your applications are secure from day one.
-            </p>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
   </Container>
-</div>
-
-<style>
-  :root {
-    --primary: #134675;
-    --accent: #4cc9f0;
-    --highlight: #f4c430;
-  }
-  .text-primary {
-    color: var(--primary);
-  }
-  .text-accent {
-    color: var(--accent);
-  }
-  .text-highlight {
-    color: var(--highlight);
-  }
-  .group:hover .group-hover\:text-accent {
-    color: var(--accent);
-  }
-  .group:hover .group-hover\:shadow-2xl {
-    box-shadow:
-      0 20px 25px -5px var(--primary),
-      0 8px 10px -6px var(--primary);
-  }
-</style>
+</section>

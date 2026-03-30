@@ -2,34 +2,75 @@
 import Container from "./Container.astro"
 ---
 
-<div class="relative py-16">
-  <div aria-hidden="true" class="absolute inset-0 h-max w-full m-auto grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20">
-    <div class="blur-[106px] h-56 bg-gradient-to-br from-[#134675] to-[#4CC9F0] dark:from-[#134675]"></div>
-    <div class="blur-[106px] h-32 bg-gradient-to-r from-[#4CC9F0] to-[#F4C430] dark:to-[#134675]"></div>
-  </div>
+<section class="relative py-20 overflow-hidden">
+  <!-- Subtle background glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#4CC9F0]/5 rounded-full blur-[100px] pointer-events-none"></div>
+
   <Container>
-    <div class="relative">
-      <div class="mt-6 m-auto space-y-6 md:w-8/12 lg:w-7/12">
-        <h1 class="text-center text-4xl font-bold text-[#134675] dark:text-[#4CC9F0] md:text-5xl">Subscribe to Orionis Framework News</h1>
-        <p class="text-center text-xl text-[#000000] dark:text-[#FFFFFF]">
-          Get the latest updates, news, and resources about Orionis Framework delivered straight to your inbox.
-        </p>
-        <form class="flex flex-wrap justify-center gap-4 mt-6" method="post" action="#">
-          <input
-            type="email"
-            name="email"
-            required
-            placeholder="Your email address"
-            class="w-full sm:w-auto px-4 py-3 rounded-full border border-[#134675] dark:border-[#4CC9F0] focus:outline-none focus:ring-2 focus:ring-[#F4C430] bg-white dark:bg-[#134675] text-[#134675] dark:text-[#4CC9F0]"
-          />
-          <button
-            type="submit"
-            class="relative flex h-12 items-center justify-center px-8 rounded-full bg-[#F4C430] text-[#134675] font-semibold hover:scale-105 transition duration-300"
-          >
-            Subscribe
-          </button>
-        </form>
+    <div class="reveal relative max-w-4xl mx-auto">
+      <!-- Compact inline CTA -->
+      <div class="relative flex flex-col lg:flex-row items-center gap-8 lg:gap-12 p-8 md:p-10 rounded-2xl glass">
+
+        <!-- Left: message -->
+        <div class="flex-1 text-center lg:text-left">
+          <h2 class="text-2xl md:text-3xl font-bold text-white leading-snug">
+            Ready to build <span class="gradient-text">without limits?</span>
+          </h2>
+          <p class="mt-3 text-gray-400 text-sm md:text-base max-w-md mx-auto lg:mx-0">
+            Install Orionis in seconds and start shipping high-performance async Python apps.
+          </p>
+        </div>
+
+        <!-- Right: install + actions -->
+        <div class="flex flex-col items-center lg:items-end gap-4 shrink-0">
+          <!-- Install command -->
+          <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-lg bg-[#0d1117] border border-[#4CC9F0]/15 text-sm font-mono">
+            <span class="text-gray-500">$</span>
+            <code class="text-[#4CC9F0]">pip install orionis</code>
+            <button id="cta-copy" class="text-gray-500 hover:text-[#4CC9F0] transition-colors ml-1" aria-label="Copy">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Action buttons -->
+          <div class="flex items-center gap-3">
+            <a
+              href="https://docs.orionis-framework.com/"
+              class="group inline-flex items-center gap-1.5 px-5 py-2.5 bg-gradient-to-r from-[#4CC9F0] to-[#134675] rounded-lg text-sm font-semibold text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(76,201,240,0.25)] hover:scale-[1.02]"
+            >
+              <span>Get Started</span>
+              <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </a>
+            <a
+              href="https://github.com/orionis-framework"
+              class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg text-sm font-semibold text-gray-400 border border-gray-700/50 hover:border-gray-600 hover:text-white transition-all duration-300"
+            >
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.867 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.528 2.341 1.088 2.91.832.091-.646.349-1.088.635-1.339-2.221-.253-4.555-1.112-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.338 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.099 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .268.18.579.688.481C19.135 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+              </svg>
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </Container>
-</div>
+</section>
+
+<script>
+  document.getElementById('cta-copy')?.addEventListener('click', () => {
+    navigator.clipboard.writeText('pip install orionis');
+    const btn = document.getElementById('cta-copy');
+    if (btn) {
+      btn.innerHTML = '<svg class="w-3.5 h-3.5 text-[#4CC9F0]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
+      setTimeout(() => {
+        btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>';
+      }, 2000);
+    }
+  });
+</script>
