@@ -43,14 +43,21 @@ import Container from "./Container.astro";
 <span class="tk-plain">app</span> <span class="tk-operator">=</span> <span class="tk-class">Application</span>(<span class="tk-param">base_path</span><span class="tk-operator">=</span><span class="tk-class">Path</span>(__file__).resolve().parent.parent)
 
 <span class="tk-plain">app</span>.<span class="tk-function">withRouting</span>(
-    <span class="tk-param">api</span><span class="tk-operator">=</span><span class="tk-string">"routes/api.py"</span>,
-    <span class="tk-param">web</span><span class="tk-operator">=</span><span class="tk-string">"routes/web.py"</span>,
-    <span class="tk-param">channels</span><span class="tk-operator">=</span><span class="tk-string">"routes/channels.py"</span>
+  <span class="tk-param">console</span><span class="tk-operator">=</span><span class="tk-string">"routes/console.py"</span>,
+  <span class="tk-param">web</span><span class="tk-operator">=</span><span class="tk-string">"routes/web.py"</span>,
+  <span class="tk-param">api</span><span class="tk-operator">=</span><span class="tk-string">"routes/api.py"</span>,
+  <span class="tk-param">health</span><span class="tk-operator">=</span><span class="tk-string">"/up"</span>
 )
 
 <span class="tk-plain">app</span>.<span class="tk-function">withScheduler</span>(<span class="tk-class">Scheduler</span>)
 <span class="tk-plain">app</span>.<span class="tk-function">withExceptionHandler</span>(<span class="tk-class">ExceptionHandler</span>)
-<span class="tk-plain">app</span>.<span class="tk-function">create</span>()</code></pre>
+<span class="tk-plain">app</span>.<span class="tk-function">withProviders</span>(
+  <span class="tk-class">AppServiceProvider</span>,
+  <span class="tk-comment"># Add additional providers below...</span>
+)
+
+<span class="tk-comment"># Boot the application and prepare the runtime environment</span>
+<span class="tk-plain">app</span>.<span class="tk-function">create</span>()
           </div>
         </div>
         <div class="order-1 lg:order-2">
