@@ -3,19 +3,23 @@ import Container from "./Container.astro";
 const links = [
     {
         to: "/#features",
-        label: "Features",
+        label: "Systems",
+        code: "SYS",
     },
     {
         to: "/#nucleus",
-        label: "Code",
+        label: "Engineering",
+        code: "ENG",
     },
     {
         to: "/#architecture",
-        label: "Architecture",
+        label: "Blueprints",
+        code: "BLU",
     },
     {
         to: "/#stats",
-        label: "Performance",
+        label: "Telemetry",
+        code: "TEL",
     },
 ];
 const githubUrl = "https://github.com/orionis-framework";
@@ -24,63 +28,84 @@ const docsUrl = "https://docs.orionis-framework.com/";
 
 <header>
     <nav id="nav" class="fixed group z-50 w-full transition-all duration-300" style="background: transparent;">
+        <!-- Top telemetry bar -->
+        <div class="hidden lg:block border-b border-[#4CC9F0]/5 bg-[#0a0e1a]/60">
+            <Container>
+                <div class="flex items-center justify-between py-1 text-[10px] font-mono tracking-widest uppercase text-[#4CC9F0]/40">
+                    <div class="flex items-center gap-4">
+                        <span class="flex items-center gap-1.5"><span class="status-dot"></span> SYSTEM ONLINE</span>
+                        <span>NAV:ORBITAL</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <span id="header-datetime" class="tabular-nums">--:--:-- UTC</span>
+                        <span>SECTOR:ORIONIS</span>
+                    </div>
+                </div>
+            </Container>
+        </div>
+
         <Container>
-            <div class="relative flex items-center justify-between py-4">
+            <div class="relative flex items-center justify-between py-3 lg:py-2">
                 <!-- Logo -->
-                <a href="/#home" aria-label="logo" class="flex items-center space-x-2.5 shrink-0">
-                    <img src="/images/logo/orionis-framework.svg" alt="Orionis Framework Logo" class="h-8 w-8" />
-                    <span class="text-lg font-bold text-white">Orionis</span>
-                    <span id="version-badge" class="rounded-full bg-[#4CC9F0]/10 border border-[#4CC9F0]/20 px-2 py-0.5 text-xs font-mono text-[#4CC9F0]">...</span>
+                <a href="/#home" aria-label="logo" class="flex items-center space-x-2.5 shrink-0 group/logo">
+                    <img src="/images/logo/orionis-framework.svg" alt="Orionis Framework Logo" class="h-7 w-7 transition-transform group-hover/logo:rotate-12 duration-300" />
+                    <span class="font-hud text-sm font-bold text-white tracking-wider">ORIONIS</span>
+                    <span id="version-badge" class="rounded bg-[#4CC9F0]/10 border border-[#4CC9F0]/20 px-2 py-0.5 text-[10px] font-mono text-[#4CC9F0] tracking-wider">...</span>
                 </a>
 
                 <!-- Desktop nav -->
-                <div class="hidden lg:flex items-center gap-1">
+                <div class="hidden lg:flex items-center gap-0.5">
                     {links.map((link) => (
-                        <a href={link.to} class="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">
+                        <a href={link.to} class="nav-link group/link relative px-4 py-2 text-xs font-mono tracking-wider uppercase text-gray-500 hover:text-[#4CC9F0] transition-all duration-300">
+                            <span class="text-[#4CC9F0]/30 mr-1.5 text-[10px] group-hover/link:text-[#4CC9F0]/60 transition-colors">[{link.code}]</span>
                             {link.label}
+                            <span class="absolute bottom-0 left-4 right-4 h-px bg-[#4CC9F0]/0 group-hover/link:bg-[#4CC9F0]/40 transition-all duration-300"></span>
                         </a>
                     ))}
                 </div>
 
                 <!-- Desktop actions -->
                 <div class="hidden lg:flex items-center gap-3">
-                    <a href={githubUrl} target="_blank" aria-label="GitHub" class="p-2 text-gray-400 hover:text-white transition-colors">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <a href={githubUrl} target="_blank" aria-label="GitHub" class="p-2 text-gray-500 hover:text-[#4CC9F0] transition-colors">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.867 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.528 2.341 1.088 2.91.832.091-.646.349-1.088.635-1.339-2.221-.253-4.555-1.112-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.338 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.099 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .268.18.579.688.481C19.135 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
                         </svg>
                     </a>
-                    <a href={docsUrl} class="px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-[#4CC9F0]/20 to-[#134675]/20 border border-[#4CC9F0]/20 rounded-lg hover:border-[#4CC9F0]/40 transition-all">
+                    <a href={docsUrl} class="btn-tactical btn-tactical-primary text-[10px] py-2 px-4">
+                        <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                         Documentation
                     </a>
                 </div>
 
                 <!-- Mobile hamburger -->
                 <button aria-label="hamburger" id="hamburger" class="relative p-2 lg:hidden active:scale-95 duration-300">
-                    <div aria-hidden="true" id="line" class="h-0.5 w-5 rounded bg-white transition duration-300 origin-top group-data-[state=active]:rotate-45 group-data-[state=active]:translate-y-1.5"></div>
-                    <div aria-hidden="true" id="line2" class="mt-1.5 h-0.5 w-5 rounded bg-white transition duration-300 origin-bottom group-data-[state=active]:-rotate-45 group-data-[state=active]:-translate-y-1"></div>
+                    <div aria-hidden="true" id="line" class="h-0.5 w-5 rounded bg-[#4CC9F0] transition duration-300 origin-top group-data-[state=active]:rotate-45 group-data-[state=active]:translate-y-1.5"></div>
+                    <div aria-hidden="true" id="line2" class="mt-1.5 h-0.5 w-5 rounded bg-[#4CC9F0] transition duration-300 origin-bottom group-data-[state=active]:-rotate-45 group-data-[state=active]:-translate-y-1"></div>
                 </button>
             </div>
 
             <!-- Mobile menu overlay -->
-            <div id="navLayer" aria-hidden="true" class="fixed inset-0 z-10 h-screen w-screen origin-bottom scale-y-0 bg-[#0a0e1a]/90 backdrop-blur-xl transition duration-500 group-data-[state=active]:origin-top group-data-[state=active]:scale-y-100 lg:hidden"></div>
+            <div id="navLayer" aria-hidden="true" class="fixed inset-0 z-10 h-screen w-screen origin-bottom scale-y-0 bg-[#0a0e1a]/95 backdrop-blur-xl transition duration-500 group-data-[state=active]:origin-top group-data-[state=active]:scale-y-100 lg:hidden"></div>
 
             <!-- Mobile menu -->
             <div id="navlinks" class="invisible absolute top-full left-0 z-20 w-full origin-top-right translate-y-1 scale-90 flex-col p-6 opacity-0 transition-all duration-300 lg:hidden group-data-[state=active]:visible group-data-[state=active]:scale-100 group-data-[state=active]:opacity-100">
-                <div class="rounded-2xl glass p-6 space-y-2">
+                <div class="hud-panel p-6 space-y-2">
+                    <div class="data-tag mb-4 text-[#4CC9F0]/40">// NAVIGATION SYSTEMS</div>
                     <div id="links-group" class="flex flex-col gap-1">
                         {links.map((link) => (
-                            <a href={link.to} class="px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                            <a href={link.to} class="px-4 py-3 text-gray-400 hover:text-[#4CC9F0] hover:bg-[#4CC9F0]/5 rounded transition-colors font-mono text-sm tracking-wider uppercase flex items-center gap-3">
+                                <span class="text-[#4CC9F0]/30 text-xs">[{link.code}]</span>
                                 {link.label}
                             </a>
                         ))}
                     </div>
-                    <div class="border-t border-gray-800 pt-4 mt-4 flex items-center gap-3">
-                        <a href={githubUrl} target="_blank" class="p-2 text-gray-400 hover:text-white transition-colors">
+                    <div class="border-t border-[#4CC9F0]/10 pt-4 mt-4 flex items-center gap-3">
+                        <a href={githubUrl} target="_blank" class="p-2 text-gray-500 hover:text-[#4CC9F0] transition-colors">
                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.867 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.528 2.341 1.088 2.91.832.091-.646.349-1.088.635-1.339-2.221-.253-4.555-1.112-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.338 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.099 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .268.18.579.688.481C19.135 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
                             </svg>
                         </a>
-                        <a href={docsUrl} class="flex-1 text-center px-4 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#4CC9F0]/20 to-[#134675]/20 border border-[#4CC9F0]/20 rounded-lg">
+                        <a href={docsUrl} class="flex-1 text-center btn-tactical btn-tactical-primary py-2.5 text-xs justify-center">
                             Documentation
                         </a>
                     </div>
@@ -98,7 +123,7 @@ const docsUrl = "https://docs.orionis-framework.com/";
             const data = await response.json();
             const versionBadge = document.getElementById('version-badge');
             if (versionBadge && data.info?.version) {
-                versionBadge.textContent = data.info.version;
+                versionBadge.textContent = `v${data.info.version}`;
             }
         } catch {
             const versionBadge = document.getElementById('version-badge');
@@ -106,6 +131,17 @@ const docsUrl = "https://docs.orionis-framework.com/";
         }
     }
     document.addEventListener('DOMContentLoaded', fetchVersion);
+
+    // Live UTC clock
+    function updateHeaderClock() {
+        const el = document.getElementById('header-datetime');
+        if (el) {
+            const now = new Date();
+            el.textContent = now.toISOString().slice(11, 19) + ' UTC';
+        }
+    }
+    setInterval(updateHeaderClock, 1000);
+    updateHeaderClock();
 
     // Nav scroll effect
     const navbar = document.querySelector("#nav") as HTMLElement | null;
@@ -115,9 +151,9 @@ const docsUrl = "https://docs.orionis-framework.com/";
         if (!navbar) return;
         const scrollY = window.scrollY;
         if (scrollY > 50) {
-            navbar.style.background = 'rgba(10, 14, 26, 0.8)';
+            navbar.style.background = 'rgba(10, 14, 26, 0.85)';
             navbar.style.backdropFilter = 'blur(20px)';
-            navbar.style.borderBottom = '1px solid rgba(76, 201, 240, 0.05)';
+            navbar.style.borderBottom = '1px solid rgba(76, 201, 240, 0.08)';
         } else {
             navbar.style.background = 'transparent';
             navbar.style.backdropFilter = 'none';

@@ -2,111 +2,131 @@
 import Container from "./Container.astro";
 
 const stats = [
-  { value: "455k+", label: "Requests/sec", detail: "Granian RSGI projected", color: "#4CC9F0" },
-  { value: "<2ms", label: "Avg Latency", detail: "Granian internal benchmarks", color: "#F4C430" },
-  { value: "2.6x", label: "vs FastAPI", detail: "JSON serialization throughput", color: "#4CC9F0" },
-  { value: "6.6x", label: "vs Django", detail: "JSON serialization throughput", color: "#F4C430" },
+  { value: "455k+", label: "Requests/sec", detail: "Granian RSGI projected", color: "#4CC9F0", code: "REQ.S" },
+  { value: "<2ms", label: "Avg Latency", detail: "Granian internal benchmarks", color: "#F4C430", code: "LAT.MS" },
+  { value: "2.6x", label: "vs FastAPI", detail: "JSON serialization throughput", color: "#4CC9F0", code: "COMP.FA" },
+  { value: "6.6x", label: "vs Django", detail: "JSON serialization throughput", color: "#F4C430", code: "COMP.DJ" },
 ];
 ---
 
 <section class="relative py-32 overflow-hidden" id="stats">
   <!-- Background -->
   <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-gradient-to-b from-[#0a0e1a] via-[#0f1629] to-[#0a0e1a]"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#4CC9F0]/5 rounded-full blur-[120px]"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0a0e1a] via-[#0c1222] to-[#0a0e1a]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#4CC9F0]/3 rounded-full blur-[150px]"></div>
   </div>
+
+  <!-- Grid overlay -->
+  <div class="absolute inset-0 grid-overlay pointer-events-none"></div>
+
+  <!-- Section divider -->
+  <div class="section-divider absolute top-0 left-0 right-0"></div>
+
+  <!-- 3D model background — left side accent -->
+  <div id="stats-3d-container" class="hidden xl:block absolute left-0 top-1/2 -translate-y-1/2 w-[350px] h-[500px] pointer-events-none" style="opacity: 0.35; z-index: 0;"></div>
 
   <Container>
     <div class="relative">
       <!-- Section header -->
       <div class="reveal max-w-2xl mx-auto text-center mb-20">
-        <span class="inline-block text-[#F4C430] text-sm font-semibold tracking-widest uppercase mb-4">Performance</span>
-        <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">
-          Numbers that<br>
-          <span class="gradient-text">speak for themselves</span>
+        <div class="data-tag mb-4">// TELEMETRY DATA STREAM</div>
+        <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight font-hud tracking-wide">
+          MISSION<br>
+          <span class="gradient-text">TELEMETRY</span>
         </h2>
-        <p class="mt-6 text-gray-400 text-lg">
-          Powered by Granian, the fastest HTTP server in the Python ecosystem, built with Rust. Real benchmarks, real performance.
+        <p class="mt-6 text-gray-500 text-base">
+          Powered by Granian, the fastest HTTP server in the Python ecosystem, built with Rust.
         </p>
       </div>
 
-      <!-- Stats grid -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Stats grid as telemetry readouts -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {stats.map((stat, i) => (
-          <div class={`reveal reveal-delay-${(i % 4) + 1} group relative p-8 rounded-2xl glass text-center transition-all duration-500 hover:scale-[1.03]`}>
-            <!-- Glow effect on hover -->
-            <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={`box-shadow: 0 0 40px ${stat.color}15;`}></div>
+          <div class={`reveal reveal-delay-${(i % 4) + 1} group relative hud-panel ${stat.color === '#F4C430' ? 'hud-panel-gold' : ''} p-6 text-center transition-all duration-500 hover:scale-[1.02]`}>
+            <!-- Telemetry code -->
+            <div class="text-[10px] font-mono tracking-widest mb-4" style={`color: ${stat.color}50;`}>
+              [{stat.code}]
+            </div>
 
             <div class="relative">
-              <div class="text-4xl md:text-5xl font-black mb-2 stat-counter" style={`color: ${stat.color};`} data-value={stat.value}>
+              <div class="text-3xl md:text-4xl font-black mb-2 font-hud tracking-wider stat-counter" style={`color: ${stat.color};`} data-value={stat.value}>
                 {stat.value}
               </div>
-              <div class="text-white font-semibold text-lg mb-1">{stat.label}</div>
-              <div class="text-gray-500 text-sm">{stat.detail}</div>
+              <div class="text-white font-semibold text-sm mb-1 font-hud tracking-wider uppercase">{stat.label}</div>
+              <div class="text-gray-600 text-xs font-mono">{stat.detail}</div>
             </div>
+
+            <!-- Glow on hover -->
+            <div class="absolute inset-0 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={`box-shadow: 0 0 30px ${stat.color}10;`}></div>
           </div>
         ))}
       </div>
 
       <!-- Performance bar comparison -->
       <div class="reveal mt-20 max-w-3xl mx-auto">
-        <h3 class="text-white font-semibold text-center mb-2">Requests per second — JSON serialization</h3>
-        <p class="text-gray-500 text-xs text-center mb-8">Based on TechEmpower Framework Benchmarks Round 22 · Granian RSGI baseline for Orionis</p>
-        <div class="space-y-4">
-          <div class="flex items-center gap-4">
-            <span class="text-gray-400 text-sm w-28 text-right font-mono">Orionis</span>
-            <div class="flex-1 h-8 rounded-lg overflow-hidden bg-[#1a1f35]">
-              <div class="perf-bar h-full rounded-lg bg-gradient-to-r from-[#4CC9F0] to-[#F4C430] flex items-center justify-end pr-3" style="width: 0%;" data-width="95%">
-                <span class="text-xs font-bold text-[#0a0e1a]">~455k*</span>
+        <div class="hud-panel p-6">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-white font-semibold font-hud text-xs tracking-wider uppercase">Throughput Comparison — JSON Serialization</h3>
+            <span class="data-tag">REQ/SEC</span>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex items-center gap-4">
+              <span class="text-gray-500 text-xs w-24 text-right font-mono tracking-wider">ORIONIS</span>
+              <div class="flex-1 h-6 rounded overflow-hidden bg-[#0a0e1a] border border-[#4CC9F0]/10">
+                <div class="perf-bar h-full rounded bg-gradient-to-r from-[#4CC9F0] to-[#F4C430] flex items-center justify-end pr-3" style="width: 0%;" data-width="95%">
+                  <span class="text-[10px] font-bold text-[#0a0e1a] font-mono">~455k*</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-gray-600 text-xs w-24 text-right font-mono tracking-wider">FASTAPI</span>
+              <div class="flex-1 h-6 rounded overflow-hidden bg-[#0a0e1a] border border-gray-800/50">
+                <div class="perf-bar h-full rounded bg-gray-700 flex items-center justify-end pr-3" style="width: 0%;" data-width="37%">
+                  <span class="text-[10px] font-bold text-gray-300 font-mono">~177k</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-gray-600 text-xs w-24 text-right font-mono tracking-wider">DJANGO</span>
+              <div class="flex-1 h-6 rounded overflow-hidden bg-[#0a0e1a] border border-gray-800/50">
+                <div class="perf-bar h-full rounded bg-gray-800 flex items-center justify-end pr-3" style="width: 0%;" data-width="14%">
+                  <span class="text-[10px] font-bold text-gray-400 font-mono">~69k</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-gray-600 text-xs w-24 text-right font-mono tracking-wider">FLASK</span>
+              <div class="flex-1 h-6 rounded overflow-hidden bg-[#0a0e1a] border border-gray-800/50">
+                <div class="perf-bar h-full rounded bg-gray-800 flex items-center justify-end pr-3" style="width: 0%;" data-width="6%">
+                  <span class="text-[10px] font-bold text-gray-400 font-mono">~30k</span>
+                </div>
               </div>
             </div>
           </div>
-          <div class="flex items-center gap-4">
-            <span class="text-gray-400 text-sm w-28 text-right font-mono">FastAPI</span>
-            <div class="flex-1 h-8 rounded-lg overflow-hidden bg-[#1a1f35]">
-              <div class="perf-bar h-full rounded-lg bg-gray-600 flex items-center justify-end pr-3" style="width: 0%;" data-width="37%">
-                <span class="text-xs font-bold text-gray-300">~177k</span>
-              </div>
-            </div>
-          </div>
-          <div class="flex items-center gap-4">
-            <span class="text-gray-400 text-sm w-28 text-right font-mono">Django</span>
-            <div class="flex-1 h-8 rounded-lg overflow-hidden bg-[#1a1f35]">
-              <div class="perf-bar h-full rounded-lg bg-gray-700 flex items-center justify-end pr-3" style="width: 0%;" data-width="14%">
-                <span class="text-xs font-bold text-gray-300">~69k</span>
-              </div>
-            </div>
-          </div>
-          <div class="flex items-center gap-4">
-            <span class="text-gray-400 text-sm w-28 text-right font-mono">Flask</span>
-            <div class="flex-1 h-8 rounded-lg overflow-hidden bg-[#1a1f35]">
-              <div class="perf-bar h-full rounded-lg bg-gray-700 flex items-center justify-end pr-3" style="width: 0%;" data-width="6%">
-                <span class="text-xs font-bold text-gray-300">~30k</span>
-              </div>
-            </div>
-          </div>
+
+          <p class="text-gray-700 text-[10px] text-center mt-4 font-mono">* Estimated: Granian RSGI scored 652k raw (TechEmpower R22). Orionis adds framework overhead, projected ~455k req/s.</p>
         </div>
-        <p class="text-gray-600 text-[10px] text-center mt-4">* Estimated: Granian RSGI scored 652k raw (TechEmpower R22). Orionis adds framework overhead, projected ~455k req/s.</p>
       </div>
 
       <!-- Supported interfaces badges -->
-      <div class="reveal flex justify-center gap-4 mt-16">
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass">
-          <div class="w-8 h-8 rounded-lg bg-[#4CC9F0]/10 flex items-center justify-center">
-            <span class="text-[#4CC9F0] font-bold text-sm">A</span>
+      <div class="reveal flex justify-center gap-4 mt-12">
+        <div class="inline-flex items-center gap-2 px-4 py-2 hud-panel">
+          <div class="w-7 h-7 rounded flex items-center justify-center bg-[#4CC9F0]/10 border border-[#4CC9F0]/20">
+            <span class="text-[#4CC9F0] font-bold text-xs font-hud">A</span>
           </div>
           <div>
-            <div class="text-white text-sm font-semibold">ASGI</div>
-            <div class="text-gray-500 text-xs">Async standard</div>
+            <div class="text-white text-xs font-semibold font-hud tracking-wider">ASGI</div>
+            <div class="text-gray-600 text-[10px] font-mono">Async standard</div>
           </div>
         </div>
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass">
-          <div class="w-8 h-8 rounded-lg bg-[#F4C430]/10 flex items-center justify-center">
-            <span class="text-[#F4C430] font-bold text-sm">R</span>
+        <div class="inline-flex items-center gap-2 px-4 py-2 hud-panel hud-panel-gold">
+          <div class="w-7 h-7 rounded flex items-center justify-center bg-[#F4C430]/10 border border-[#F4C430]/20">
+            <span class="text-[#F4C430] font-bold text-xs font-hud">R</span>
           </div>
           <div>
-            <div class="text-white text-sm font-semibold">RSGI</div>
-            <div class="text-gray-500 text-xs">Rust-powered</div>
+            <div class="text-white text-xs font-semibold font-hud tracking-wider">RSGI</div>
+            <div class="text-gray-600 text-[10px] font-mono">Rust-powered</div>
           </div>
         </div>
       </div>
@@ -134,4 +154,38 @@ const stats = [
 
   const statsSection = document.getElementById('stats');
   if (statsSection) perfObserver.observe(statsSection);
+
+  // Load 3D model for stats section
+  async function initStats3D() {
+    const container = document.getElementById('stats-3d-container');
+    if (!container || window.innerWidth < 1280) return;
+
+    const { SpaceSceneManager } = await import('../scripts/scene-manager');
+    new SpaceSceneManager({
+      container,
+      modelPath: '/models/Aqua (C).glb',
+      fov: 35,
+      cameraDistance: 3.0,
+      cameraOffset: [0, 0, 3.0],
+      modelScale: 2.2,
+      initialRotation: [0.2, 0.6, -0.1],
+      autoRotateSpeed: 0.0012,
+      enableScroll: false,
+      enableFloat: true,
+      floatAmplitude: 0.08,
+      floatSpeed: 0.7,
+      parallaxStrength: 0.1,
+      showStars: false,
+      exposure: 1.3,
+      envIntensity: 1.0,
+      rimColor: '#F4C430',
+      fillLightColor: '#4CC9F0',
+    });
+  }
+
+  if (document.readyState === 'complete') {
+    initStats3D();
+  } else {
+    window.addEventListener('load', initStats3D);
+  }
 </script>

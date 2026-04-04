@@ -4,19 +4,25 @@ import Container from "./Container.astro";
 
 <section class="relative py-32 overflow-hidden" id="nucleus">
   <!-- Background -->
-  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#4CC9F0]/5 rounded-full blur-[120px]"></div>
-  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#F4C430]/4 rounded-full blur-[100px]"></div>
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#4CC9F0]/3 rounded-full blur-[150px]"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#F4C430]/3 rounded-full blur-[120px]"></div>
+
+  <!-- Section divider -->
+  <div class="section-divider absolute top-0 left-0 right-0"></div>
+
+  <!-- 3D satellite floating alongside code (desktop) -->
+  <div id="nucleus-3d-container" class="hidden xl:block absolute right-0 top-1/2 -translate-y-1/2 w-[400px] h-[600px] pointer-events-none" style="opacity: 0.45; z-index: 0;"></div>
 
   <Container>
     <!-- Section header -->
     <div class="reveal max-w-2xl mx-auto text-center mb-20">
-      <span class="inline-block text-[#F4C430] text-sm font-semibold tracking-widest uppercase mb-4">Developer Experience</span>
-      <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">
-        Code that feels<br>
-        <span class="gradient-text">like home</span>
+      <div class="data-tag mb-4">// ENGINEERING CONSOLE</div>
+      <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight font-hud tracking-wide">
+        CODE THAT FEELS<br>
+        <span class="gradient-text">LIKE HOME</span>
       </h2>
-      <p class="mt-6 text-gray-400 text-lg">
-        Intuitive patterns, expressive syntax, and a familiar architecture. If you've used modern frameworks before, you'll feel right at home.
+      <p class="mt-6 text-gray-500 text-base">
+        Intuitive patterns, expressive syntax, and a familiar architecture. Mission-ready from the first line.
       </p>
     </div>
 
@@ -29,11 +35,11 @@ import Container from "./Container.astro";
           <div class="code-block glow-cyan">
             <div class="code-header">
               <div class="code-dots">
-                <span class="bg-red-500/80"></span>
-                <span class="bg-yellow-500/80"></span>
-                <span class="bg-green-500/80"></span>
+                <span class="bg-[#4CC9F0]/40"></span>
+                <span class="bg-[#F4C430]/40"></span>
+                <span class="bg-[#2ed573]/40"></span>
               </div>
-              <span class="text-gray-400 text-xs ml-auto font-mono">bootstrap/app.py</span>
+              <span class="data-tag ml-auto">bootstrap/app.py</span>
             </div>
             <pre><code><span class="tk-keyword">from</span> <span class="tk-class">pathlib</span> <span class="tk-keyword">import</span> <span class="tk-class">Path</span>
 <span class="tk-keyword">from</span> <span class="tk-class">app.console.scheduler</span> <span class="tk-keyword">import</span> <span class="tk-class">Scheduler</span>
@@ -57,14 +63,17 @@ import Container from "./Container.astro";
 )
 
 <span class="tk-comment"># Boot the application and prepare the runtime environment</span>
-<span class="tk-plain">app</span>.<span class="tk-function">create</span>()
+<span class="tk-plain">app</span>.<span class="tk-function">create</span>()<span class="cursor-blink"></span></code></pre>
           </div>
         </div>
         <div class="order-1 lg:order-2">
-          <span class="text-[#4CC9F0] text-sm font-semibold tracking-widest uppercase">Application Bootstrap</span>
-          <h3 class="text-2xl md:text-3xl font-bold text-white mt-3 mb-4">Clean, declarative setup</h3>
-          <p class="text-gray-400 leading-relaxed text-lg">
-            Configure your entire application in a single file. Routes, middleware, schedulers, exception handlers &mdash; all declared explicitly. No magic, no hidden configuration.
+          <div class="flex items-center gap-2 mb-3">
+            <span class="status-dot"></span>
+            <span class="data-tag text-[#4CC9F0]/60">MODULE: BOOTSTRAP</span>
+          </div>
+          <h3 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4 font-hud tracking-wide">Clean, Declarative Setup</h3>
+          <p class="text-gray-500 leading-relaxed text-base">
+            Configure your entire application in a single file. Routes, middleware, schedulers, exception handlers &mdash; all declared explicitly. No hidden configuration.
           </p>
         </div>
       </div>
@@ -72,9 +81,12 @@ import Container from "./Container.astro";
       <!-- Example 2: Service Provider -->
       <div class="reveal grid lg:grid-cols-2 gap-10 items-center">
         <div>
-          <span class="text-[#F4C430] text-sm font-semibold tracking-widest uppercase">Service Providers</span>
-          <h3 class="text-2xl md:text-3xl font-bold text-white mt-3 mb-4">Powerful dependency injection</h3>
-          <p class="text-gray-400 leading-relaxed text-lg">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="status-dot status-dot-gold"></span>
+            <span class="data-tag text-[#F4C430]/60">MODULE: SERVICE PROVIDERS</span>
+          </div>
+          <h3 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4 font-hud tracking-wide">Powerful Dependency Injection</h3>
+          <p class="text-gray-500 leading-relaxed text-base">
             Register services with elegant contracts. Singleton, transient, or scoped lifecycles &mdash; the IoC container resolves dependencies automatically through type annotations.
           </p>
         </div>
@@ -82,11 +94,11 @@ import Container from "./Container.astro";
           <div class="code-block glow-gold">
             <div class="code-header">
               <div class="code-dots">
-                <span class="bg-red-500/80"></span>
-                <span class="bg-yellow-500/80"></span>
-                <span class="bg-green-500/80"></span>
+                <span class="bg-[#4CC9F0]/40"></span>
+                <span class="bg-[#F4C430]/40"></span>
+                <span class="bg-[#2ed573]/40"></span>
               </div>
-              <span class="text-gray-400 text-xs ml-auto font-mono">app/providers/app_service_provider.py</span>
+              <span class="data-tag ml-auto">app/providers/app_service_provider.py</span>
             </div>
             <pre><code><span class="tk-keyword">from</span> <span class="tk-class">orionis.container.providers.service_provider</span> <span class="tk-keyword">import</span> <span class="tk-class">ServiceProvider</span>
 <span class="tk-keyword">from</span> <span class="tk-class">app.contracts.email</span> <span class="tk-keyword">import</span> <span class="tk-class">IEmailService</span>
@@ -113,32 +125,35 @@ import Container from "./Container.astro";
           <div class="code-block glow-cyan">
             <div class="code-header">
               <div class="code-dots">
-                <span class="bg-red-500/80"></span>
-                <span class="bg-yellow-500/80"></span>
-                <span class="bg-green-500/80"></span>
+                <span class="bg-[#4CC9F0]/40"></span>
+                <span class="bg-[#F4C430]/40"></span>
+                <span class="bg-[#2ed573]/40"></span>
               </div>
-              <span class="text-gray-400 text-xs ml-auto font-mono">Terminal</span>
+              <span class="data-tag ml-auto">REACTOR TERMINAL</span>
             </div>
-            <pre><code><span class="tk-comment"># Start the development server</span>
+            <pre><code><span class="tk-comment"># Initialize the reactor core</span>
 <span class="tk-plain">$ python -B reactor serve</span>
 
-<span class="tk-comment"># Generate a new command</span>
+<span class="tk-comment"># Fabricate a new command module</span>
 <span class="tk-plain">$ python -B reactor make:command</span> <span class="tk-string">sync_users</span>
 
-<span class="tk-comment"># Run scheduled tasks</span>
+<span class="tk-comment"># Engage scheduled tasks</span>
 <span class="tk-plain">$ python -B reactor schedule:work</span>
 
-<span class="tk-comment"># Execute tests</span>
+<span class="tk-comment"># Run diagnostics</span>
 <span class="tk-plain">$ python -B reactor test</span>
 
-<span class="tk-comment"># List all available commands</span>
-<span class="tk-plain">$ python -B reactor list</span></code></pre>
+<span class="tk-comment"># List all mission modules</span>
+<span class="tk-plain">$ python -B reactor list</span><span class="cursor-blink"></span></code></pre>
           </div>
         </div>
         <div class="order-1 lg:order-2">
-          <span class="text-[#4CC9F0] text-sm font-semibold tracking-widest uppercase">Reactor CLI</span>
-          <h3 class="text-2xl md:text-3xl font-bold text-white mt-3 mb-4">Your command center</h3>
-          <p class="text-gray-400 leading-relaxed text-lg">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="status-dot"></span>
+            <span class="data-tag text-[#4CC9F0]/60">MODULE: REACTOR CLI</span>
+          </div>
+          <h3 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4 font-hud tracking-wide">Your Command Center</h3>
+          <p class="text-gray-500 leading-relaxed text-base">
             Generate components, run tests, start servers, manage scheduled tasks &mdash; everything from a unified, intelligent CLI. Extensible with custom commands.
           </p>
         </div>
@@ -147,3 +162,39 @@ import Container from "./Container.astro";
     </div>
   </Container>
 </section>
+
+<script>
+  // Load 3D model for nucleus section
+  async function initNucleus3D() {
+    const container = document.getElementById('nucleus-3d-container');
+    if (!container || window.innerWidth < 1280) return;
+
+    const { SpaceSceneManager } = await import('../scripts/scene-manager');
+    new SpaceSceneManager({
+      container,
+      modelPath: '/models/Saturn V.glb',
+      fov: 35,
+      cameraDistance: 3.2,
+      cameraOffset: [0, 0, 3.2],
+      modelScale: 2.5,
+      initialRotation: [0.1, -0.5, 0.15],
+      autoRotateSpeed: 0.0015,
+      enableScroll: false,
+      enableFloat: true,
+      floatAmplitude: 0.1,
+      floatSpeed: 0.6,
+      parallaxStrength: 0.1,
+      showStars: false,                // No stars — cleaner in section context
+      exposure: 1.3,
+      envIntensity: 1.0,
+      rimColor: '#4CC9F0',
+      fillLightColor: '#F4C430',
+    });
+  }
+
+  if (document.readyState === 'complete') {
+    initNucleus3D();
+  } else {
+    window.addEventListener('load', initNucleus3D);
+  }
+</script>
