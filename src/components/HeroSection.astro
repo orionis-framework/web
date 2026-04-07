@@ -130,29 +130,17 @@
     if (!container || window.innerWidth < 1024) return;
 
     const { SpaceSceneManager } = await import('../scripts/scene-manager');
+    const spacecraftData = await import('../data/spacecraft-configs.json');
+
+    // Seleccionar nave aleatoria
+    const spacecraftKeys = Object.keys(spacecraftData.spacecraft);
+    const randomKey = spacecraftKeys[Math.floor(Math.random() * spacecraftKeys.length)];
+    const spacecraft = spacecraftData.spacecraft[randomKey];
+
     new SpaceSceneManager({
       container,
-      modelPath: '/models/Pioneer_10.glb',
-      fov: 50,
-      cameraDistance: 5,
-      cameraOffset: [0, 0.1, 5],           // Camera centered
-      modelOffset: [2, -2, 0],            // Model pushed to RIGHT in 3D space
-      modelScale: 6,
-      initialRotation: [-0.15, 0.8, 0.05],
-      autoRotateSpeed: 0.001,
-      enableOrbitControls: true,             // Drag to rotate
-      enableScroll: false,
-      enableFloat: true,
-      floatAmplitude: 0.04,
-      floatSpeed: 0.35,
-      parallaxStrength: 0.25,               // Strong mouse rotation response
-      showStars: true,
-      starsCount: 800,
-      exposure: 1.5,
-      envIntensity: 1.2,
-      keyLightColor: '#ffffff',
-      fillLightColor: '#4CC9F0',
-      rimColor: '#4CC9F0',
+      modelPath: spacecraft.modelPath,
+      ...spacecraft.config
     });
   }
 
