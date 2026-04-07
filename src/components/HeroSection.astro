@@ -132,12 +132,12 @@
     const { SpaceSceneManager } = await import('../scripts/scene-manager');
     new SpaceSceneManager({
       container,
-      modelPath: '/models/International Space Station (ISS).glb',
+      modelPath: '/models/Pioneer_10.glb',
       fov: 50,
       cameraDistance: 5,
       cameraOffset: [0, 0.1, 5],           // Camera centered
-      modelOffset: [2, -0.1, 0],            // Model pushed to RIGHT in 3D space
-      modelScale: 1.8,
+      modelOffset: [2, -2, 0],            // Model pushed to RIGHT in 3D space
+      modelScale: 6,
       initialRotation: [-0.15, 0.8, 0.05],
       autoRotateSpeed: 0.001,
       enableOrbitControls: true,             // Drag to rotate
