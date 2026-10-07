@@ -144,7 +144,7 @@ export const features: Feature[] = [
         summary:
           'Express your domain through models, relationships and fluent queries. Engine-neutral plans keep application code independent of the SQL dialect.',
         bullets: [
-          'PostgreSQL, MySQL, SQLite, Oracle and SQL Server',
+          'PostgreSQL, MySQL, SQLite, Oracle, SQL Server and Amazon Redshift',
           'Eager loading, pagination, scopes and soft deletes',
           'Migrations, transactions and model factories',
         ],
@@ -155,7 +155,7 @@ export const features: Feature[] = [
         summary:
           'Expresa tu dominio con modelos, relaciones y consultas fluidas. Los planes independientes del motor separan tu código del dialecto SQL.',
         bullets: [
-          'PostgreSQL, MySQL, SQLite, Oracle y SQL Server',
+          'PostgreSQL, MySQL, SQLite, Oracle, SQL Server y Amazon Redshift',
           'Eager loading, paginación, scopes y soft deletes',
           'Migraciones, transacciones y factories de modelos',
         ],
@@ -379,11 +379,11 @@ export const ecosystemFeatures: EcosystemFeature[] = [
     content: {
       en: {
         title: 'Persistent scheduling',
-        summary: 'Schedule registered commands with the integrated APScheduler service.',
+        summary: 'Schedule registered commands with the integrated scheduling service.',
       },
       es: {
         title: 'Scheduling persistente',
-        summary: 'Programa comandos registrados con el servicio APScheduler integrado.',
+        summary: 'Programa comandos registrados con el servicio de planificación integrado.',
       },
     },
   },
@@ -407,11 +407,12 @@ export const ecosystemFeatures: EcosystemFeature[] = [
     content: {
       en: {
         title: 'Async views',
-        summary: 'Server-rendered Jinja2 templates connected to routes, sessions and localization.',
+        summary: 'Server-rendered templates connected to routes, sessions and localization.',
       },
       es: {
         title: 'Vistas asíncronas',
-        summary: 'Plantillas Jinja2 en servidor conectadas a rutas, sesiones y traducciones.',
+        summary:
+          'Plantillas renderizadas en el servidor, conectadas a rutas, sesiones y traducciones.',
       },
     },
   },

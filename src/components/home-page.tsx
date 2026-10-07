@@ -262,6 +262,10 @@ export default async function HomePage({ locale }: { locale: Locale }) {
         { label: 'GitHub', href: site.repo },
         { label: 'PyPI', href: site.pypi },
         { label: translate('footer.releases'), href: `${site.repo}/releases` },
+        {
+          label: translate('footer.thirdPartyNotices'),
+          href: asset(site.granian.license),
+        },
       ],
     },
     {
@@ -398,6 +402,7 @@ export default async function HomePage({ locale }: { locale: Locale }) {
                 copyLabel={translate('examples.copyCode')}
                 copiedLabel={translate('examples.copied')}
                 copyCommandLabel={translate('examples.copyCommand')}
+                commandRunnerLabel={translate('examples.commandRunner')}
               />
             </div>
           </section>
@@ -654,9 +659,6 @@ export default async function HomePage({ locale }: { locale: Locale }) {
                 <span className="status-mark" aria-hidden="true" />
                 {translate('footer.madeFor')}
               </span>
-              <a href={asset(site.granian.license)} target="_blank" rel="noreferrer">
-                {translate('footer.thirdPartyNotices')}
-              </a>
             </div>
           </div>
         </footer>

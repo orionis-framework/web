@@ -50,6 +50,7 @@
       "tabsLabel": "Ejemplos de componentes de Orionis",
       "copyCode": "Copiar código",
       "copyCommand": "Copiar comando",
+      "commandRunner": "Comando de creación",
       "copied": "Copiado",
       "labels": {
         "http": "HTTP",

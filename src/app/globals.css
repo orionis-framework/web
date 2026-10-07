@@ -983,13 +983,56 @@ button:disabled {
 .code-editor .hljs {
   display: block;
 }
+.code-command-section {
+  border-top: 1px solid var(--line-color);
+  background: var(--soft);
+}
+.code-command-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 14px;
+  padding: 10px 14px 0 19px;
+}
+.code-command-toolbar > span {
+  color: var(--muted);
+  font-size: 11px;
+}
+.command-runner-switch {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--line-color);
+  border-radius: 6px;
+  background: var(--paper);
+}
+.command-runner-switch button {
+  height: 28px;
+  padding-inline: 10px;
+  border-radius: 3px;
+  color: var(--muted);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.command-runner-switch button:hover {
+  color: var(--primary);
+}
+.command-runner-switch button[aria-pressed='true'] {
+  color: var(--primary);
+  background: var(--soft);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
 .code-command {
   display: flex;
   align-items: center;
   gap: 12px;
   min-height: 51px;
   padding: 6px 14px 6px 19px;
-  border-top: 1px solid var(--line-color);
   color: var(--muted);
   background: var(--soft);
 }
@@ -1136,11 +1179,14 @@ button:disabled {
   display: inline-flex;
   flex: none;
   align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
 }
 .granian-logo {
   display: block;
-  width: 94px;
-  height: 90px;
+  width: 44px;
+  height: auto;
   object-fit: contain;
 }
 .segmented-control {

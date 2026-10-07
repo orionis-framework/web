@@ -13,7 +13,7 @@ const tabs: CodeSampleTab[] = [
     fileName: 'controller.py',
     code: 'return response.json({})',
     highlightedCode: 'return response.json({})',
-    command: 'python reactor make:http-controller StatusController',
+    command: 'make:http-controller StatusController',
   },
   {
     id: 'orm',
@@ -21,7 +21,7 @@ const tabs: CodeSampleTab[] = [
     fileName: 'user.py',
     code: 'class User(Model): pass',
     highlightedCode: 'class User(Model): pass',
-    command: 'python reactor make:model User',
+    command: 'make:model User',
   },
 ];
 
@@ -33,8 +33,18 @@ function renderTabs(sampleTabs = tabs) {
       copyLabel="Copy code"
       copiedLabel="Copied"
       copyCommandLabel="Copy command"
+      commandRunnerLabel="Creation command"
     />,
   );
+}
+
+function renderCatalog() {
+  const catalog = codeSamples.map((sample) => {
+    const code = document.createElement('code');
+    code.textContent = sample.code;
+    return { ...sample, highlightedCode: code.innerHTML };
+  });
+  return renderTabs(catalog);
 }
 
 afterEach(() => {
@@ -52,7 +62,25 @@ describe('code examples', () => {
     expect(screen.getByRole('tab', { name: 'ORM' })).toHaveAttribute('aria-selected', 'true');
     expect(screen.getByRole('tabpanel', { name: 'ORM' })).toBeVisible();
     expect(screen.getByText('user.py')).toBeVisible();
-    expect(screen.getByText('python reactor make:model User')).toBeVisible();
+    expect(screen.getByText('python -B reactor make:model User')).toBeVisible();
+  });
+
+  it('switches command runners and keeps the selected runner across examples', () => {
+    renderTabs();
+    expect(
+      screen.getByText('python -B reactor make:http-controller StatusController'),
+    ).toBeVisible();
+
+    fireEvent.click(screen.getByRole('button', { name: 'orionis' }));
+    expect(screen.getByRole('button', { name: 'orionis' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByText('orionis make:http-controller StatusController')).toBeVisible();
+
+    fireEvent.click(screen.getByRole('tab', { name: 'ORM' }));
+    expect(screen.getByText('orionis make:model User')).toBeVisible();
+
+    fireEvent.click(screen.getByRole('button', { name: 'python -B reactor' }));
+    expect(screen.getByText('python -B reactor make:model User')).toBeVisible();
+    expect(screen.getByRole('tab', { name: 'ORM' })).toHaveAttribute('aria-selected', 'true');
   });
 
   it('supports arrow-key navigation with wrapping and focus', () => {
@@ -85,17 +113,28 @@ describe('code examples', () => {
     expect(screen.getByRole('button', { name: 'Copied' })).toBeVisible();
   });
 
-  it('copies the generator command of the selected component', async () => {
-    const writeText = vi.fn().mockResolvedValue(undefined);
-    vi.stubGlobal(
-      'navigator',
-      Object.assign(Object.create(navigator), { clipboard: { writeText } }),
-    );
-    renderTabs();
-    fireEvent.click(screen.getByRole('tab', { name: 'ORM' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Copy command' }));
+  it.each(['python -B reactor', 'orionis'])(
+    'copies the selected generator command using %s',
+    async (runner) => {
+      const writeText = vi.fn().mockResolvedValue(undefined);
+      vi.stubGlobal(
+        'navigator',
+        Object.assign(Object.create(navigator), { clipboard: { writeText } }),
+      );
+      renderTabs();
+      fireEvent.click(screen.getByRole('button', { name: runner }));
+      fireEvent.click(screen.getByRole('tab', { name: 'ORM' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Copy command' }));
 
-    await waitFor(() => expect(writeText).toHaveBeenCalledWith(tabs[1].command));
+      await waitFor(() => expect(writeText).toHaveBeenCalledWith(`${runner} ${tabs[1].command}`));
+    },
+  );
+
+  it('omits command controls when the example has no generator command', () => {
+    renderTabs([{ ...tabs[0], command: undefined }]);
+    expect(screen.getByRole('tabpanel', { name: 'HTTP' })).toBeVisible();
+    expect(screen.queryByRole('group', { name: 'Creation command' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Copy command' })).not.toBeInTheDocument();
   });
 
   it('renders nothing when there are no examples', () => {
@@ -113,18 +152,30 @@ describe('component catalog', () => {
     }
     expect(codeSamples.find((sample) => sample.id === 'mcp')).toMatchObject({
       fileName: 'app/mcp/servers/orionis_server.py',
-      command: 'python reactor make:mcp-server OrionisServer',
+      command: 'make:mcp-server OrionisServer',
       source: 'mcp_server.stub',
     });
   });
 
+  it.each(['python -B reactor', 'orionis'])(
+    'shows all ten generator commands using %s without changing their arguments',
+    (runner) => {
+      renderCatalog();
+      fireEvent.click(screen.getByRole('button', { name: runner }));
+
+      for (const sample of codeSamples) {
+        fireEvent.click(screen.getByRole('tab', { name: sample.label }));
+        expect(screen.getByText(`${runner} ${sample.command}`)).toBeVisible();
+        expect(screen.getByRole('button', { name: runner })).toHaveAttribute(
+          'aria-pressed',
+          'true',
+        );
+      }
+    },
+  );
+
   it('renders and selects the migration and facade examples', () => {
-    const catalog = codeSamples.map((sample) => {
-      const code = document.createElement('code');
-      code.textContent = sample.code;
-      return { ...sample, highlightedCode: code.innerHTML };
-    });
-    renderTabs(catalog);
+    renderCatalog();
     expect(screen.getAllByRole('tab')).toHaveLength(10);
 
     fireEvent.click(screen.getByRole('tab', { name: 'Migrations' }));
@@ -136,7 +187,7 @@ describe('component catalog', () => {
       'getFacadeAccessor',
     );
     expect(
-      screen.getByText('python reactor make:facade MyService --accessor my-service'),
+      screen.getByText('python -B reactor make:facade MyService --accessor my-service'),
     ).toBeVisible();
   });
 });

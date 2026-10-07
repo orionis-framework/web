@@ -50,6 +50,7 @@
       "tabsLabel": "Orionis component examples",
       "copyCode": "Copy code",
       "copyCommand": "Copy command",
+      "commandRunner": "Creation command",
       "copied": "Copied",
       "labels": {
         "http": "HTTP",

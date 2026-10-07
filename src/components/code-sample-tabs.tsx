@@ -6,6 +6,8 @@ import { Terminal } from 'lucide-react';
 import { asset } from '@/lib/asset';
 import { CopyCodeButton } from './copy-code-button';
 
+const commandRunners = ['python -B reactor', 'orionis'] as const;
+
 export interface CodeSampleTab {
   id: string;
   label: string;
@@ -21,6 +23,7 @@ interface CodeSampleTabsProps {
   copyLabel: string;
   copiedLabel: string;
   copyCommandLabel?: string;
+  commandRunnerLabel?: string;
 }
 
 export function CodeSampleTabs({
@@ -29,10 +32,15 @@ export function CodeSampleTabs({
   copyLabel,
   copiedLabel,
   copyCommandLabel = copyLabel,
+  commandRunnerLabel = 'Creation command',
 }: CodeSampleTabsProps) {
   const [activeTabId, setActiveTabId] = useState(tabs[0]?.id ?? '');
+  const [commandRunner, setCommandRunner] = useState<(typeof commandRunners)[number]>(
+    commandRunners[0],
+  );
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const activeTab = tabs.find((tab) => tab.id === activeTabId) ?? tabs[0];
+  const command = activeTab?.command ? `${commandRunner} ${activeTab.command}` : undefined;
 
   if (!activeTab) return null;
 
@@ -129,15 +137,28 @@ export function CodeSampleTabs({
           </div>
         );
       })}
-      {activeTab.command && (
-        <div className="code-command">
-          <Terminal size={16} aria-hidden="true" />
-          <code>{activeTab.command}</code>
-          <CopyCodeButton
-            code={activeTab.command}
-            label={copyCommandLabel}
-            copiedLabel={copiedLabel}
-          />
+      {command && (
+        <div className="code-command-section">
+          <div className="code-command-toolbar">
+            <span>{commandRunnerLabel}</span>
+            <div className="command-runner-switch" role="group" aria-label={commandRunnerLabel}>
+              {commandRunners.map((runner) => (
+                <button
+                  key={runner}
+                  type="button"
+                  aria-pressed={commandRunner === runner}
+                  onClick={() => setCommandRunner(runner)}
+                >
+                  {runner}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="code-command">
+            <Terminal size={16} aria-hidden="true" />
+            <code>{command}</code>
+            <CopyCodeButton code={command} label={copyCommandLabel} copiedLabel={copiedLabel} />
+          </div>
         </div>
       )}
     </div>

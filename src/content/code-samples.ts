@@ -10,7 +10,7 @@ export const codeSamples: SampleDefinition[] = [
     id: 'http',
     label: 'HTTP',
     fileName: 'app/http/controllers/status_controller.py',
-    command: 'python reactor make:http-controller StatusController --api',
+    command: 'make:http-controller StatusController --api',
     source: 'http_controller.stub',
     code: `from orionis.http import JSONResponse, response
 from orionis.http.base import BaseController
@@ -27,7 +27,7 @@ class StatusController(BaseController):
     id: 'orm',
     label: 'ORM',
     fileName: 'app/models/user.py',
-    command: 'python reactor make:model User',
+    command: 'make:model User',
     source: 'model.stub',
     code: `from typing import ClassVar
 from orionis.orm import Integer, Model, String
@@ -50,7 +50,7 @@ async def active_users():
     id: 'queues',
     label: 'Queues',
     fileName: 'app/jobs/process_invoice.py',
-    command: 'python reactor make:job ProcessInvoice',
+    command: 'make:job ProcessInvoice',
     source: 'job.stub',
     code: `from typing import ClassVar
 from orionis.logging.contracts.logger import ILogger
@@ -75,7 +75,7 @@ class ProcessInvoice(BaseJob):
     id: 'mcp',
     label: 'MCP',
     fileName: 'app/mcp/servers/orionis_server.py',
-    command: 'python reactor make:mcp-server OrionisServer',
+    command: 'make:mcp-server OrionisServer',
     source: 'mcp_server.stub',
     code: `from orionis.mcp import Server
 
@@ -93,7 +93,7 @@ class OrionisServer(Server):
     id: 'console',
     label: 'Console',
     fileName: 'app/console/commands/greet_command.py',
-    command: 'python reactor make:console-command GreetCommand',
+    command: 'make:console-command GreetCommand',
     source: 'console_command.stub',
     code: `from typing import ClassVar
 from orionis.console import Argument
@@ -117,7 +117,7 @@ class GreetCommand(BaseCommand):
     id: 'middleware',
     label: 'Middleware',
     fileName: 'app/http/middleware/powered_by.py',
-    command: 'python reactor make:http-middleware PoweredBy',
+    command: 'make:http-middleware PoweredBy',
     source: 'http_middleware.stub',
     code: `from orionis.http import BaseMiddleware, NextCallable
 from orionis.http import Request, Response
@@ -137,7 +137,7 @@ class PoweredBy(BaseMiddleware):
     id: 'mail',
     label: 'Mail',
     fileName: 'app/mail/welcome_mail.py',
-    command: 'python reactor make:mail WelcomeMail',
+    command: 'make:mail WelcomeMail',
     source: 'mail.stub',
     code: `from orionis.mail import Content, Envelope, Mailable
 
@@ -156,7 +156,7 @@ class WelcomeMail(Mailable):
     id: 'tests',
     label: 'Tests',
     fileName: 'tests/test_arithmetic.py',
-    command: 'python reactor make:test TestArithmetic',
+    command: 'make:test TestArithmetic',
     source: 'test.stub',
     code: `from orionis.test import TestCase
 
@@ -172,7 +172,7 @@ class TestArithmetic(TestCase):
     id: 'migrations',
     label: 'Migrations',
     fileName: 'database/migrations/create_scheduler_tasks_table.py',
-    command: 'python reactor make:database-migration CreateSchedulerTasksTable',
+    command: 'make:database-migration CreateSchedulerTasksTable',
     source: 'database_migration.stub',
     code: `from orionis.database import Migration
 from orionis.support.facades import Schema
@@ -193,7 +193,7 @@ class CreateSchedulerTasksTable(Migration):
     id: 'facades',
     label: 'Facades',
     fileName: 'app/facades/my_service.py',
-    command: 'python reactor make:facade MyService --accessor my-service',
+    command: 'make:facade MyService --accessor my-service',
     source: 'facade.stub',
     code: `from orionis.container.facades.facade import Facade
 
