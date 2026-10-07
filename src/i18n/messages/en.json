@@ -1,0 +1,151 @@
+{
+  "Home": {
+    "nav": {
+      "ariaLabel": "Main navigation",
+      "features": "Framework",
+      "architecture": "Architecture",
+      "examples": "Code",
+      "ecosystem": "Ecosystem",
+      "docs": "Docs",
+      "capabilities": "Capabilities",
+      "menuFeatures": "HTTP, realtime, data and AI on one foundation.",
+      "menuArchitecture": "A clear journey for every request.",
+      "menuExamples": "Components built from Reactor stubs.",
+      "menuEcosystem": "The tools that complete your application.",
+      "openMenu": "Open navigation",
+      "closeMenu": "Close navigation",
+      "skip": "Skip to content",
+      "switchLocale": "Ver en Español",
+      "localeName": "English"
+    },
+    "theme": {
+      "switchToLight": "Switch to light theme",
+      "switchToDark": "Switch to dark theme",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "hero": {
+      "eyebrow": "The complete async-first Python framework",
+      "taglineFirst": "Stop assembling.",
+      "taglineSecond": "Start building.",
+      "description": "HTTP, realtime, data and AI. One cohesive foundation for your next great Python application.",
+      "docsCta": "Read the docs",
+      "githubCta": "GitHub",
+      "engine": "Rust-powered. Async by design."
+    },
+    "scene": {
+      "description": "Orionis architecture: HTTP, realtime and MCP above the service container, async kernel and Granian, connected to ORM, cache and queues.",
+      "pause": "Pause animation",
+      "play": "Play animation",
+      "expand": "Separate layers",
+      "collapse": "Join layers",
+      "reset": "Reset view"
+    },
+    "proof": { "title": "One framework. Every layer." },
+    "examples": {
+      "eyebrow": "The developer experience",
+      "titleFirst": "Expressive code.",
+      "titleSecond": "Unmistakably Python.",
+      "description": "Clear classes, type annotations and well-defined responsibilities. Reactor generators give every component a consistent starting point.",
+      "tabsLabel": "Orionis component examples",
+      "copyCode": "Copy code",
+      "copyCommand": "Copy command",
+      "copied": "Copied",
+      "labels": {
+        "http": "HTTP",
+        "orm": "ORM",
+        "queues": "Jobs",
+        "mcp": "MCP",
+        "console": "CLI",
+        "middleware": "Middleware",
+        "mail": "Mail",
+        "tests": "Tests",
+        "migrations": "Migrations",
+        "facades": "Facades"
+      },
+      "points": {
+        "types": {
+          "title": "Your types are the contract",
+          "description": "Schemas, arguments and services with Python annotations."
+        },
+        "async": {
+          "title": "Async from day one",
+          "description": "The same way of working in HTTP, jobs and tools."
+        },
+        "di": {
+          "title": "Your logic, with its dependencies",
+          "description": "The container resolves services for each execution."
+        }
+      }
+    },
+    "features": {
+      "eyebrow": "The framework, connected",
+      "titleFirst": "A complete foundation.",
+      "titleSecond": "An advantage at every layer.",
+      "description": "From your first endpoint to background work and AI clients. Components designed to share contracts, configuration and application lifecycles."
+    },
+    "transport": {
+      "label": "HTTP server interface",
+      "rsgi": "Granian's native interface, directly connected to its Rust engine.",
+      "asgi": "Interoperability with Granian and the Python ASGI server ecosystem."
+    },
+    "architecture": {
+      "eyebrow": "Clarity by design",
+      "titleFirst": "Built to fit together.",
+      "titleSecond": "Ready to grow with you.",
+      "description": "A request has a journey. A service has a lifetime. Compiled plans and explicit responsibilities keep your application clear as it grows.",
+      "pipelineLabel": "HTTP request journey",
+      "steps": {
+        "request": "Request",
+        "route": "Route",
+        "middleware": "Middleware",
+        "controller": "Controller",
+        "response": "Response"
+      },
+      "details": {
+        "scope": {
+          "title": "A scope for every execution",
+          "description": "HTTP, jobs and commands keep dependencies local to their execution context."
+        },
+        "compile": {
+          "title": "Work prepared ahead of time",
+          "description": "Routes, schemas and dispatch plans are compiled to reduce repeated work."
+        },
+        "contracts": {
+          "title": "Replaceable contracts",
+          "description": "Swap service implementations without mixing infrastructure and business logic."
+        }
+      },
+      "bootstrap": "One application, one explicit configuration entry point."
+    },
+    "ecosystem": {
+      "eyebrow": "The pieces that complete your product",
+      "title": "And the rest? Already here.",
+      "description": "Authentication, mail, files, testing and operational tools. The capabilities a real application needs, integrated into the same architecture."
+    },
+    "start": {
+      "eyebrow": "Your next project starts here",
+      "titleFirst": "Big ideas.",
+      "titleSecond": "A framework to match.",
+      "description": "Discover the guides, explore the source and build on a foundation that connects every part of your application."
+    },
+    "footer": {
+      "description": "Async-first Python. A Rust-powered engine. A complete, open foundation, made for building.",
+      "learn": "Learn",
+      "api": "API reference",
+      "installation": "Installation",
+      "project": "Project",
+      "releases": "Releases",
+      "community": "Community",
+      "contribute": "Contribute",
+      "contributors": "Contributors",
+      "issues": "Issues",
+      "stars": "GitHub stars",
+      "version": "latest release on PyPI",
+      "unavailable": "View source",
+      "thirdPartyNotices": "Third-party notices",
+      "madeFor": "Async-first. Rust-powered. Open source.",
+      "copyright": "© {year} {name}. MIT License."
+    }
+  }
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://orionis-framework.com/sitemap.xml

@@ -1,0 +1,151 @@
+{
+  "Home": {
+    "nav": {
+      "ariaLabel": "Navegación principal",
+      "features": "Framework",
+      "architecture": "Arquitectura",
+      "examples": "Código",
+      "ecosystem": "Ecosistema",
+      "docs": "Documentación",
+      "capabilities": "Capacidades",
+      "menuFeatures": "HTTP, realtime, datos e IA en una sola base.",
+      "menuArchitecture": "Un recorrido claro para cada solicitud.",
+      "menuExamples": "Componentes nacidos de los stubs de Reactor.",
+      "menuEcosystem": "Las herramientas que completan tu aplicación.",
+      "openMenu": "Abrir navegación",
+      "closeMenu": "Cerrar navegación",
+      "skip": "Saltar al contenido",
+      "switchLocale": "View in English",
+      "localeName": "Español"
+    },
+    "theme": {
+      "switchToLight": "Cambiar al tema claro",
+      "switchToDark": "Cambiar al tema oscuro",
+      "light": "Claro",
+      "dark": "Oscuro"
+    },
+    "hero": {
+      "eyebrow": "El framework Python async-first completo",
+      "taglineFirst": "Deja de ensamblar.",
+      "taglineSecond": "Empieza a crear.",
+      "description": "HTTP, realtime, datos e IA. Toda la arquitectura para tu próxima gran aplicación Python.",
+      "docsCta": "Documentación",
+      "githubCta": "GitHub",
+      "engine": "Motor Rust. Diseño async-first."
+    },
+    "scene": {
+      "description": "Arquitectura de Orionis: HTTP, realtime y MCP sobre el contenedor de servicios, el kernel async y Granian, conectados a ORM, caché y queues.",
+      "pause": "Pausar animación",
+      "play": "Reproducir animación",
+      "expand": "Separar capas",
+      "collapse": "Unir capas",
+      "reset": "Restablecer vista"
+    },
+    "proof": { "title": "Un framework. Cada capa." },
+    "examples": {
+      "eyebrow": "La experiencia de desarrollo",
+      "titleFirst": "Código expresivo.",
+      "titleSecond": "Python de verdad.",
+      "description": "Clases claras, anotaciones de tipo y responsabilidades bien definidas. Los generadores de Reactor te dan un punto de partida coherente para cada componente.",
+      "tabsLabel": "Ejemplos de componentes de Orionis",
+      "copyCode": "Copiar código",
+      "copyCommand": "Copiar comando",
+      "copied": "Copiado",
+      "labels": {
+        "http": "HTTP",
+        "orm": "ORM",
+        "queues": "Jobs",
+        "mcp": "MCP",
+        "console": "CLI",
+        "middleware": "Middleware",
+        "mail": "Mail",
+        "tests": "Tests",
+        "migrations": "Migraciones",
+        "facades": "Facades"
+      },
+      "points": {
+        "types": {
+          "title": "El contrato está en tus tipos",
+          "description": "Schemas, argumentos y servicios con anotaciones Python."
+        },
+        "async": {
+          "title": "Async desde el primer día",
+          "description": "La misma forma de trabajar en HTTP, jobs y herramientas."
+        },
+        "di": {
+          "title": "Tu lógica, con sus dependencias",
+          "description": "El contenedor resuelve los servicios de cada ejecución."
+        }
+      }
+    },
+    "features": {
+      "eyebrow": "El framework, conectado",
+      "titleFirst": "Una base completa.",
+      "titleSecond": "Ventajas en cada capa.",
+      "description": "Del primer endpoint a los procesos en segundo plano y los clientes de IA. Componentes diseñados para compartir contratos, configuración y ciclo de vida."
+    },
+    "transport": {
+      "label": "Interfaz del servidor HTTP",
+      "rsgi": "La interfaz nativa de Granian, conectada directamente a su motor Rust.",
+      "asgi": "Interoperabilidad con Granian y el ecosistema de servidores ASGI de Python."
+    },
+    "architecture": {
+      "eyebrow": "Claridad por diseño",
+      "titleFirst": "Diseñado para encajar.",
+      "titleSecond": "Preparado para crecer.",
+      "description": "Una solicitud tiene un recorrido. Un servicio, un ciclo de vida. Los planes compilados y las responsabilidades explícitas mantienen clara la aplicación cuando crece.",
+      "pipelineLabel": "Recorrido de una solicitud HTTP",
+      "steps": {
+        "request": "Solicitud",
+        "route": "Ruta",
+        "middleware": "Middleware",
+        "controller": "Controlador",
+        "response": "Respuesta"
+      },
+      "details": {
+        "scope": {
+          "title": "Un scope por ejecución",
+          "description": "HTTP, jobs y comandos mantienen sus dependencias locales al contexto de ejecución."
+        },
+        "compile": {
+          "title": "Trabajo preparado de antemano",
+          "description": "Rutas, schemas y planes de despacho se compilan para reducir trabajo repetido."
+        },
+        "contracts": {
+          "title": "Contratos reemplazables",
+          "description": "Cambia implementaciones de servicios sin mezclar infraestructura y lógica de negocio."
+        }
+      },
+      "bootstrap": "Una aplicación, un punto de configuración explícito."
+    },
+    "ecosystem": {
+      "eyebrow": "Las piezas que completan tu producto",
+      "title": "Y el resto también está aquí.",
+      "description": "Autenticación, correo, archivos, pruebas y herramientas de operación. Las capacidades que una aplicación real necesita, integradas en la misma arquitectura."
+    },
+    "start": {
+      "eyebrow": "Tu próximo proyecto empieza aquí",
+      "titleFirst": "Grandes ideas.",
+      "titleSecond": "Un framework a su altura.",
+      "description": "Descubre las guías, explora el código y construye sobre una base que conecta todas las partes de tu aplicación."
+    },
+    "footer": {
+      "description": "Python async-first. Un motor impulsado por Rust. Una arquitectura completa, abierta y hecha para construir.",
+      "learn": "Aprende",
+      "api": "Referencia de API",
+      "installation": "Instalación",
+      "project": "Proyecto",
+      "releases": "Releases",
+      "community": "Comunidad",
+      "contribute": "Contribuir",
+      "contributors": "Colaboradores",
+      "issues": "Issues",
+      "stars": "estrellas en GitHub",
+      "version": "última versión en PyPI",
+      "unavailable": "Consultar fuente",
+      "thirdPartyNotices": "Avisos de terceros",
+      "madeFor": "Async-first. Rust-powered. Open source.",
+      "copyright": "© {year} {name}. Licencia MIT."
+    }
+  }
+}
