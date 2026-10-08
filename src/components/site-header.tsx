@@ -5,6 +5,7 @@ import { ArrowRight, ArrowUpRight, BookOpen, ChevronDown, Languages, Menu, X } f
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
+import { PreviewNotice } from './project-stats';
 import { ThemeToggle } from './theme-toggle';
 import type { Locale } from '@/i18n/routing';
 import { asset } from '@/lib/asset';
@@ -60,6 +61,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
 
   return (
     <header ref={headerRef} className="site-header">
+      <PreviewNotice message={translate('previewNotice')} />
       <div className="header-inner">
         <a href={asset(`/${locale}/`)} className="brand" aria-label={site.fullName}>
           <Image src={asset('/favicon.svg')} alt="" width={43} height={43} priority />

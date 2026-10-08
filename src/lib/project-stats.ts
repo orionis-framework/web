@@ -22,6 +22,22 @@ function readVersion(payload: unknown): string | null {
   return typeof version === 'string' && /^\d[\da-zA-Z.!+_-]{0,63}$/.test(version) ? version : null;
 }
 
+export function isPreviewVersion(version: string | null): boolean {
+  const match = version?.match(
+    /^(?:(\d+)!)?(\d+(?:\.\d+)*)([-_.]?(?:alpha|beta|preview|pre|rc|a|b|c)[-_.]?\d*)?(-\d+|[-_.]?(?:post|rev|r)[-_.]?\d*)?([-_.]?dev[-_.]?\d*)?(?:\+[a-z0-9]+(?:[-_.][a-z0-9]+)*)?$/i,
+  );
+  if (!match) return false;
+
+  const [, epoch = '0', release, prerelease, postrelease, development] = match;
+  if (Number(epoch) > 0) return false;
+
+  const [major, ...remaining] = release.split('.').map(Number);
+  if (major !== 1) return major < 1;
+  if (remaining.some((part) => part > 0)) return false;
+
+  return Boolean(prerelease || (development && !postrelease));
+}
+
 export async function loadProjectStats({
   cache = 'no-store',
   signal,

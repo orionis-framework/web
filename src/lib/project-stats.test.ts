@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { loadProjectStats } from './project-stats';
+import { isPreviewVersion, loadProjectStats } from './project-stats';
 
 afterEach(() => vi.unstubAllGlobals());
 
@@ -82,5 +82,37 @@ describe('project statistics', () => {
 
     await loadProjectStats({ cache: 'force-cache' });
     expect(fetchMock.mock.calls[0][1].cache).toBe('force-cache');
+  });
+});
+
+describe('versions below the first stable release', () => {
+  it.each<[string | null, boolean]>([
+    [null, false],
+    ['', false],
+    ['invalid', false],
+    ['0.invalid', false],
+    ['0.900.0', true],
+    ['0.999.999', true],
+    ['0.9.0.post1', true],
+    ['1.0.0a1', true],
+    ['1.0.0b1', true],
+    ['1.0.0rc1', true],
+    ['1.0.0.dev1', true],
+    ['1.0rc1', true],
+    ['1.0.0-rc.1', true],
+    ['1.0.0rc1.post1', true],
+    ['1.0', false],
+    ['1.0.0', false],
+    ['1.0.0.0', false],
+    ['1.0.0.post1', false],
+    ['1.0.0.post1.dev1', false],
+    ['1.0.0+local', false],
+    ['1.0.1.dev1', false],
+    ['1.1.0rc1', false],
+    ['2.0.0', false],
+    ['0!0.9.0', true],
+    ['1!0.9.0', false],
+  ])('classifies %s as preview: %s', (version, expected) => {
+    expect(isPreviewVersion(version)).toBe(expected);
   });
 });

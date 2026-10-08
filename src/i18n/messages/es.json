@@ -1,5 +1,6 @@
 {
   "Home": {
+    "previewNotice": "Orionis aún no tiene una versión estable. Solo para pruebas, no para producción.",
     "nav": {
       "ariaLabel": "Navegación principal",
       "features": "Framework",

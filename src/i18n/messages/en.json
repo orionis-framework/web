@@ -1,5 +1,6 @@
 {
   "Home": {
+    "previewNotice": "Orionis has no stable release yet. For testing only, not for production.",
     "nav": {
       "ariaLabel": "Main navigation",
       "features": "Framework",

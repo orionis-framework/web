@@ -36,7 +36,7 @@ import python from 'highlight.js/lib/languages/python';
 import { CodeSampleTabs, type CodeSampleTab } from './code-sample-tabs';
 import { ArchitectureScene } from './architecture-scene';
 import { CopyCodeButton } from './copy-code-button';
-import { ProjectStats } from './project-stats';
+import { ProjectStats, ProjectStatsProvider } from './project-stats';
 import { ProtocolSwitch } from './protocol-switch';
 import { SiteHeader } from './site-header';
 import { ecosystemFeatures, featureContent, getFeatures, type IconName } from '@/content/features';
@@ -284,7 +284,7 @@ export default async function HomePage({ locale }: { locale: Locale }) {
     },
   ];
 
-  return (
+  const page = (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <div lang={locale} className="site-shell">
         <a className="skip-link" href="#main-content">
@@ -620,7 +620,6 @@ export default async function HomePage({ locale }: { locale: Locale }) {
                 </a>
                 <p>{translate('footer.description')}</p>
                 <ProjectStats
-                  initialStats={stats}
                   locale={locale}
                   starsLabel={translate('footer.stars')}
                   versionLabel={translate('footer.version')}
@@ -665,4 +664,6 @@ export default async function HomePage({ locale }: { locale: Locale }) {
       </div>
     </NextIntlClientProvider>
   );
+
+  return <ProjectStatsProvider initialStats={stats}>{page}</ProjectStatsProvider>;
 }

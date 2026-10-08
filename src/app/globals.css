@@ -473,6 +473,24 @@ button:disabled {
   border-bottom: 1px solid var(--line-color);
   background: var(--paper);
 }
+.preview-notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 32px;
+  padding: 6px 20px;
+  border-bottom: 1px solid color-mix(in srgb, var(--brand-gold) 24%, var(--line-color));
+  background: color-mix(in srgb, var(--brand-gold) 12%, var(--paper));
+  color: var(--brand-gold-soft);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+}
+.preview-notice svg {
+  flex: none;
+}
 .header-inner {
   display: flex;
   align-items: center;
