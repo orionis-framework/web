@@ -179,15 +179,15 @@ from orionis.support.facades import Schema
 
 class CreateSchedulerTasksTable(Migration):
 
-        async def up(self) -> None:
-                async with Schema.create("scheduler_tasks") as table:
-                        table.unicode("id", 191).primary().comment("Job ID")
-                        table.float("next_run_time").nullable().index().comment("Next Run Time")
-                        table.largeBinary("job_state").comment("Job State")
-                        table.comment("Table to store scheduled jobs (tasks).")
+    async def up(self) -> None:
+        async with Schema.create("scheduler_tasks") as table:
+            table.unicode("id", 191).primary().comment("Job ID")
+            table.float("next_run_time").nullable().index().comment("Next Run Time")
+            table.largeBinary("job_state").comment("Job State")
+            table.comment("Table to store scheduled jobs (tasks).")
 
-        async def down(self) -> None:
-                await Schema.drop("scheduler_tasks")`,
+    async def down(self) -> None:
+        await Schema.drop("scheduler_tasks")`,
   },
   {
     id: 'facades',
@@ -199,8 +199,8 @@ class CreateSchedulerTasksTable(Migration):
 
 class MyService(Facade):
 
-        @classmethod
-        def getFacadeAccessor(cls) -> str:
-                return "my-service"`,
+    @classmethod
+    def getFacadeAccessor(cls) -> str:
+        return "my-service"`,
   },
 ];
