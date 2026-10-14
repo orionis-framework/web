@@ -57,6 +57,8 @@ jobs:
           test -s out/index.html
           test -s out/en/index.html
           test -s out/es/index.html
+          test -s out/robots.txt
+          cmp public/robots.txt out/robots.txt
           test -s out/sitemap.xml
           test -s out/images/seo/seo.png
           test -s out/images/brands/granian.png

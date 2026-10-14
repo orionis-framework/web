@@ -26,6 +26,20 @@ Titillium Web and JetBrains Mono are bundled locally in `src/app/fonts` with the
 GitHub stars and the latest PyPI release are fetched from the official public APIs at build time and refreshed in the browser. Each source can fail independently without breaking the page.
 Canonical URLs, language alternatives, Open Graph, Twitter previews, and the sitemap are generated for both languages. Social previews use the local `public/images/seo/seo.png` image.
 
+## ChatGPT Crawling and Search
+
+`public/robots.txt` allows all crawlers and explicitly allows `OAI-SearchBot` and `GPTBot`. It advertises `https://orionis-framework.com/sitemap.xml`.
+`OAI-SearchBot` is used for ChatGPT search; `GPTBot` crawls content that may be used for model training. Their permissions are independent, and allowing GPTBot is not required to appear in ChatGPT search.
+`ChatGPT-User` visits pages on behalf of users rather than automatically crawling for search; OpenAI notes that robots.txt rules may not apply to these user-initiated requests.
+
+The static export includes readable page content without requiring JavaScript, localized canonical URLs, and `index, follow` metadata. Tests cover the crawler permissions and indexing metadata, and deployment verifies that the exported robots.txt matches the source file.
+
+Keep `/robots.txt`, `/sitemap.xml`, `/en/`, and `/es/` publicly accessible over HTTPS with HTTP 200 responses, without login requirements, CAPTCHA challenges, or `noindex` HTTP headers or metadata.
+If adding a CDN, firewall, or bot protection, allow the published OpenAI IP ranges as well as the user agents. See the [official OpenAI crawler documentation](https://developers.openai.com/api/docs/bots), including the current [SearchBot IP ranges](https://openai.com/searchbot.json) and [GPTBot IP ranges](https://openai.com/gptbot.json).
+Each documentation/API subdomain needs its own crawl policy and sitemap; this site's robots.txt only controls this host. For project sub-path deployments, robots.txt must still be served at the host root and its sitemap URL must point to the deployed sitemap.
+
+Allowing crawling does not guarantee indexing, ranking, or citations in ChatGPT. OpenAI says search systems can take approximately 24 hours to adjust to robots.txt updates. An `llms.txt` file is not a documented prerequisite for OpenAI crawling or ChatGPT search.
+
 ## Third-Party Assets
 
 The Granian logo identifies the upstream HTTP server without implying endorsement. Its original PNG is retained in `public/images/brands/granian-original.png`; the displayed `granian.png` copy is trimmed and resized without changing its colors.

@@ -1,4 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { getPageMetadata, localeUrl, site } from './site';
 import sitemap from '@/app/sitemap';
 import packageInfo from '../../package.json';
@@ -47,6 +49,24 @@ describe('official site metadata', () => {
       es: `${site.url}/es/`,
       'x-default': `${site.url}/`,
     });
+  });
+
+  it('explicitly allows OpenAI crawlers and advertises the public sitemap', () => {
+    const robots = readFileSync(resolve('public', 'robots.txt'), 'utf8').replace(/\r\n/g, '\n');
+    const groups = robots.trim().split(/\n\s*\n/);
+
+    for (const userAgent of ['*', 'OAI-SearchBot', 'GPTBot']) {
+      expect(groups).toContain(`User-agent: ${userAgent}\nAllow: /`);
+    }
+
+    expect(robots).toContain(`Sitemap: ${site.url}/sitemap.xml`);
+    expect(robots).not.toMatch(/^Disallow:\s*\S/im);
+  });
+
+  it('allows indexing and following links on both localized pages', () => {
+    for (const locale of ['en', 'es'] as const) {
+      expect(getPageMetadata(locale).robots).toEqual({ index: true, follow: true });
+    }
   });
 
   it('preserves project sub-paths in canonical and social-image URLs', async () => {
