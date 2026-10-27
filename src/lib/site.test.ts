@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { getPageMetadata, localeUrl, site } from './site';
+import { documentationUrl, getPageMetadata, localeUrl, site } from './site';
 import sitemap from '@/app/sitemap';
 import packageInfo from '../../package.json';
 
@@ -11,6 +11,23 @@ afterEach(() => {
 });
 
 describe('official site metadata', () => {
+  it('links both languages directly to the current documentation pages', () => {
+    for (const locale of ['en', 'es'] as const) {
+      expect(documentationUrl(locale)).toBe(
+        `https://docs.orionis-framework.com/${locale}/getting-started/`,
+      );
+      for (const page of [
+        'getting-started/installation',
+        'contribute/guide',
+        'contribute/contributors',
+      ] as const) {
+        expect(documentationUrl(locale, page)).toBe(
+          `https://docs.orionis-framework.com/${locale}/${page}/`,
+        );
+      }
+    }
+  });
+
   it('uses the requested author and project installer consistently', () => {
     expect(site.author).toBe('Raul Mauricio U\u00f1ate & Orionis Team');
     expect(packageInfo.author).toBe(site.author);

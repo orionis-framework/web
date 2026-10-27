@@ -15,14 +15,11 @@
       "openMenu": "Abrir navegación",
       "closeMenu": "Cerrar navegación",
       "skip": "Saltar al contenido",
-      "switchLocale": "View in English",
-      "localeName": "Español"
+      "switchLocale": "View in English"
     },
     "theme": {
       "switchToLight": "Cambiar al tema claro",
-      "switchToDark": "Cambiar al tema oscuro",
-      "light": "Claro",
-      "dark": "Oscuro"
+      "switchToDark": "Cambiar al tema oscuro"
     },
     "hero": {
       "eyebrow": "El framework Python async-first completo",
@@ -34,12 +31,45 @@
       "engine": "Motor Rust. Diseño async-first."
     },
     "scene": {
-      "description": "Arquitectura de Orionis: HTTP, realtime y MCP sobre el contenedor de servicios, el kernel async y Granian, conectados a ORM, caché y queues.",
+      "description": "Ciclo de vida de Orionis en 3D: bootstrap y arranque del proceso, solicitudes y respuestas con su propio scope, y cierre. HTTP, realtime y MCP se conectan al contenedor de servicios y al kernel sobre Granian.",
       "pause": "Pausar animación",
       "play": "Reproducir animación",
       "expand": "Separar capas",
       "collapse": "Unir capas",
-      "reset": "Restablecer vista"
+      "reset": "Restablecer vista",
+      "zoomIn": "Acercar modelo",
+      "zoomOut": "Alejar modelo",
+      "resetZoom": "Restablecer zoom al 100%",
+      "unavailable": "El visor 3D no está disponible en este navegador. Puedes explorar el ciclo de vida a continuación.",
+      "lifecycle": "Ciclo de vida de la aplicación",
+      "interact": "Arrastra para girar · Rueda o pellizca para zoom",
+      "steps": {
+        "bootstrap": {
+          "title": "Bootstrap",
+          "scope": "Al iniciar · Configuración",
+          "description": "Configuración y registro de servicios."
+        },
+        "startup": {
+          "title": "Arranque",
+          "scope": "Al iniciar · Runtime HTTP",
+          "description": "Providers async, hooks y preparación del kernel HTTP."
+        },
+        "request": {
+          "title": "Solicitud",
+          "scope": "Cada solicitud · Scope aislado",
+          "description": "Ruta, middleware y controlador con sus dependencias."
+        },
+        "response": {
+          "title": "Respuesta",
+          "scope": "Cada solicitud · Liberar scope",
+          "description": "Transmitir la respuesta; después, liberar su scope."
+        },
+        "shutdown": {
+          "title": "Cierre",
+          "scope": "Al detener · Shutdown",
+          "description": "Hooks de cierre y limpieza explícita de recursos."
+        }
+      }
     },
     "proof": { "title": "Un framework. Cada capa." },
     "examples": {

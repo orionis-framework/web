@@ -37,8 +37,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Audit dependencies
+        run: npm audit --audit-level=low
+
       - name: Typecheck
         run: npm run typecheck
+
+      - name: Check formatting
+        run: npm run format:check
 
       - name: Lint
         run: npm run lint
@@ -47,7 +53,7 @@ jobs:
         run: npm test
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Build static website
         run: npm run build
@@ -63,13 +69,19 @@ jobs:
           test -s out/images/seo/seo.png
           test -s out/images/brands/granian.png
           test -s out/licenses/granian-BSD-3-Clause.txt
+          test -s out/licenses/jetbrains-mono-OFL.txt
+          test -s out/licenses/titillium-web-OFL.txt
           test -f out/.nojekyll
           test "$(cat out/CNAME)" = "orionis-framework.com"
 
+      - name: Check exported links and assets
+        run: npm run check:links
+
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./out
+          include-hidden-files: true
 
   deploy:
     runs-on: ubuntu-latest
@@ -83,4 +95,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

@@ -1,4 +1,4 @@
-import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import { act, cleanup, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ProjectStats } from './project-stats';
 
@@ -36,30 +36,56 @@ function renderStats(version: string | null) {
 
 describe('project statistics display', () => {
   it.each(['0.900.0', '1.0.0rc1', '1.0.0', '2.0.0'])(
-    'shows the initial PyPI version %s',
-    (version) => {
+    'reveals the confirmed PyPI version %s after the lookup',
+    async (version) => {
       mockStats(version);
       renderStats(version);
 
-      expect(screen.getByText(`v${version}`)).toBeVisible();
+      const pypiCard = screen.getByRole('link', { name: /PyPI/ });
+      expect(pypiCard).toHaveAttribute('aria-busy', 'true');
+      expect(screen.queryByText(`v${version}`)).not.toBeInTheDocument();
+      expect(screen.getByText('PyPI')).toBeVisible();
       expect(screen.getByText('23')).toBeVisible();
+      await waitFor(() => expect(screen.getByText(`v${version}`)).toBeVisible());
+      expect(pypiCard).toHaveAttribute('aria-busy', 'false');
     },
   );
 
-  it('shows an unavailable label when the PyPI version is missing', () => {
+  it('shows an unavailable label only after the lookup has no known PyPI version', async () => {
     mockStats(null);
     renderStats(null);
 
+    const pypiCard = screen.getByRole('link', { name: /PyPI/ });
     expect(screen.getByText('PyPI')).toBeVisible();
+    expect(screen.queryByText('Unavailable')).not.toBeInTheDocument();
+    expect(screen.getByText('PyPI version')).toBeVisible();
+    await waitFor(() => expect(pypiCard).toHaveAttribute('aria-busy', 'false'));
     expect(screen.getByText('Unavailable')).toBeVisible();
   });
 
-  it('updates the displayed version with one request per official API', async () => {
-    const fetchMock = mockStats('1.0.0');
-    renderStats('0.900.0');
-    expect(screen.getByText('v0.900.0')).toBeVisible();
+  it('never flashes the stale build version while waiting for the latest PyPI response', async () => {
+    let resolvePyPI!: (response: Response) => void;
+    const pendingPyPI = new Promise<Response>((resolve) => {
+      resolvePyPI = resolve;
+    });
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce(jsonResponse({ stargazers_count: 23 }))
+      .mockReturnValueOnce(pendingPyPI);
+    vi.stubGlobal('fetch', fetchMock);
+    renderStats('0.803.0');
+    const pypiCard = screen.getByRole('link', { name: /PyPI/ });
+    expect(screen.queryByText('v0.803.0')).not.toBeInTheDocument();
+    expect(screen.getByText('PyPI')).toBeVisible();
+    expect(pypiCard).toHaveAttribute('aria-busy', 'true');
 
-    await waitFor(() => expect(screen.getByText('v1.0.0')).toBeVisible());
+    await act(async () => {
+      resolvePyPI(jsonResponse({ info: { version: '1.0.9' } }));
+    });
+
+    await waitFor(() => expect(screen.getByText('v1.0.9')).toBeVisible());
+    expect(screen.queryByText('v0.803.0')).not.toBeInTheDocument();
+    expect(pypiCard).toHaveAttribute('aria-busy', 'false');
     expect(fetchMock.mock.calls.map(([url]) => url)).toEqual([
       'https://api.github.com/repos/orionis-framework/framework',
       'https://pypi.org/pypi/orionis/json',
@@ -85,14 +111,36 @@ describe('project statistics display', () => {
       vi.stubGlobal('fetch', fetchMock);
       renderStats(version);
 
+      const pypiCard = screen.getByRole('link', { name: /PyPI/ });
+      expect(pypiCard).toHaveAttribute('aria-busy', 'true');
+      expect(screen.getByText('PyPI')).toBeVisible();
+      if (version !== null) expect(screen.queryByText(`v${version}`)).not.toBeInTheDocument();
       await waitFor(() => expect(screen.getByText('42')).toBeVisible());
+      expect(pypiCard).toHaveAttribute('aria-busy', 'false');
       if (version === null) {
         expect(screen.getByText('PyPI')).toBeVisible();
+        expect(screen.getByText('Unavailable')).toBeVisible();
       } else {
         expect(screen.getByText(`v${version}`)).toBeVisible();
       }
     },
   );
+
+  it('reveals the latest PyPI version even when GitHub cannot refresh', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi
+        .fn()
+        .mockResolvedValueOnce(new Response('{}', { status: 403 }))
+        .mockResolvedValueOnce(jsonResponse({ info: { version: '1.0.9' } })),
+    );
+    renderStats('0.803.0');
+    expect(screen.queryByText('v0.803.0')).not.toBeInTheDocument();
+
+    await waitFor(() => expect(screen.getByText('v1.0.9')).toBeVisible());
+    expect(screen.getByText('23')).toBeVisible();
+    expect(screen.queryByText('v0.803.0')).not.toBeInTheDocument();
+  });
 
   it('cancels the refresh when the component unmounts', () => {
     const fetchMock = mockStats('1.0.0');

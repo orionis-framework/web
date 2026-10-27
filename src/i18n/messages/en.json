@@ -15,14 +15,11 @@
       "openMenu": "Open navigation",
       "closeMenu": "Close navigation",
       "skip": "Skip to content",
-      "switchLocale": "Ver en Español",
-      "localeName": "English"
+      "switchLocale": "Ver en Español"
     },
     "theme": {
       "switchToLight": "Switch to light theme",
-      "switchToDark": "Switch to dark theme",
-      "light": "Light",
-      "dark": "Dark"
+      "switchToDark": "Switch to dark theme"
     },
     "hero": {
       "eyebrow": "The complete async-first Python framework",
@@ -34,12 +31,45 @@
       "engine": "Rust-powered. Async by design."
     },
     "scene": {
-      "description": "Orionis architecture: HTTP, realtime and MCP above the service container, async kernel and Granian, connected to ORM, cache and queues.",
+      "description": "Orionis lifecycle in 3D: process bootstrap and startup, requests and responses in their own scope, then shutdown. HTTP, realtime and MCP connect to the service container and kernel on Granian.",
       "pause": "Pause animation",
       "play": "Play animation",
       "expand": "Separate layers",
       "collapse": "Join layers",
-      "reset": "Reset view"
+      "reset": "Reset view",
+      "zoomIn": "Zoom in on model",
+      "zoomOut": "Zoom out of model",
+      "resetZoom": "Reset zoom to 100%",
+      "unavailable": "The 3D viewer is unavailable in this browser. You can explore the lifecycle below.",
+      "lifecycle": "Application lifecycle",
+      "interact": "Drag to rotate · Scroll or pinch to zoom",
+      "steps": {
+        "bootstrap": {
+          "title": "Bootstrap",
+          "scope": "On startup · Configuration",
+          "description": "Configuration and service registration."
+        },
+        "startup": {
+          "title": "Startup",
+          "scope": "On startup · HTTP runtime",
+          "description": "Async providers, hooks and HTTP kernel preparation."
+        },
+        "request": {
+          "title": "Request",
+          "scope": "Per request · Isolated scope",
+          "description": "Routing, middleware and controller with their dependencies."
+        },
+        "response": {
+          "title": "Response",
+          "scope": "Per request · Release scope",
+          "description": "Transmit the response, then release its scope."
+        },
+        "shutdown": {
+          "title": "Shutdown",
+          "scope": "On shutdown · Cleanup",
+          "description": "Shutdown hooks and explicit resource cleanup."
+        }
+      }
     },
     "proof": { "title": "One framework. Every layer." },
     "examples": {

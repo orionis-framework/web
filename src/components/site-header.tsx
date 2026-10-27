@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ThemeToggle } from './theme-toggle';
 import type { Locale } from '@/i18n/routing';
 import { asset } from '@/lib/asset';
-import { nav, site } from '@/lib/site';
+import { documentationUrl, nav, site } from '@/lib/site';
 
 export function SiteHeader({ locale }: { locale: Locale }) {
   const translate = useTranslations('Home');
@@ -18,7 +18,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const frameworkButtonRef = useRef<HTMLButtonElement>(null);
   const mobileButtonRef = useRef<HTMLButtonElement>(null);
   const alternateLocale = locale === 'en' ? 'es' : 'en';
-  const docsUrl = site.docs.replace('/en/', `/${locale}/`);
+  const docsUrl = documentationUrl(locale);
 
   useEffect(() => {
     function closeOnOutsideClick(event: PointerEvent) {

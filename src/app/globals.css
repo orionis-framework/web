@@ -1,7 +1,6 @@
 @import 'tailwindcss';
 @config '../../tailwind.config.ts';
 
-.font-mono,
 pre,
 code,
 kbd {
@@ -701,90 +700,246 @@ button:disabled {
   padding-left: 16px;
   border-left: 1px solid var(--line-color);
 }
-.hero-annotation {
-  position: absolute;
-  right: 48px;
-  bottom: 26px;
-  display: flex;
-  gap: 18px;
-  color: var(--muted);
-  font-family: var(--font-jetbrains-mono), monospace;
-  font-size: 9px;
-  pointer-events: none;
-}
 .architecture-scene {
+  --scene-accent: var(--primary);
   position: absolute;
   z-index: 1;
-  inset: 0;
+  inset: 24px 36px 24px max(45%, 420px);
   overflow: hidden;
+}
+.architecture-scene[data-state='loading'] {
+  visibility: hidden;
+}
+.scene-heading {
+  position: absolute;
+  z-index: 1;
+  inset: 10px 12px auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.scene-heading > span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.scene-heading > span:last-child {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.scene-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--scene-accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--scene-accent) 10%, transparent);
+}
+.scene-viewport {
+  position: absolute;
+  inset: 26px -10px 148px;
+  background: radial-gradient(ellipse at 50% 45%, #78c6e625, transparent 67%);
+}
+.dark .scene-viewport {
+  background: radial-gradient(ellipse at 50% 48%, #1673a92a, transparent 67%);
+}
+.scene-instrument {
+  position: absolute;
+  z-index: 1;
+  inset: 12px 22px;
+  color: var(--muted);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+}
+.scene-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--line-color);
+}
+.scene-corner-top {
+  top: 0;
+  left: 0;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+.scene-corner-bottom {
+  bottom: 0;
+  right: 0;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
 }
 .architecture-scene canvas {
   display: block;
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity 650ms;
-  touch-action: pan-y !important;
+  transition: opacity 180ms;
+  touch-action: none;
+  cursor: grab;
+}
+.architecture-scene canvas:active {
+  cursor: grabbing;
 }
 .architecture-scene[data-state='ready'] canvas {
   opacity: 1;
 }
-.scene-controls {
+.scene-toolbar {
   position: absolute;
-  right: 48px;
-  bottom: 54px;
+  right: 12px;
+  left: 12px;
+  bottom: 132px;
   display: flex;
-  gap: 3px;
-  padding: 4px;
-  border: 1px solid var(--line-color);
-  border-radius: 6px;
+  align-items: center;
+  justify-content: space-between;
+}
+.scene-interact {
+  color: var(--muted);
+  font-size: 11px;
+  max-width: 220px;
+  padding-right: 12px;
+  line-height: 1.4;
+}
+.scene-controls {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.scene-zoom-controls {
+  display: flex;
+  align-items: center;
+  margin-right: 7px;
+  padding-right: 7px;
+  border-right: 1px solid var(--line-color);
+}
+.scene-zoom-value {
+  min-width: 48px;
+  min-height: 35px;
+  border-radius: 4px;
+  color: var(--text);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 11px;
+  cursor: pointer;
+}
+.scene-zoom-value:hover:not(:disabled) {
   background: var(--paper);
+  color: var(--primary);
+}
+.scene-controls button:disabled {
+  opacity: 0.35;
+  cursor: default;
 }
 .architecture-scene:not([data-state='ready']) .scene-controls {
-  visibility: hidden;
+  opacity: 0.4;
 }
 .scene-controls .icon-button {
-  width: 31px;
-  height: 31px;
-  border-radius: 3px;
+  width: 35px;
+  height: 35px;
+  border: 1px solid var(--line-color);
+  border-radius: 50%;
+  background: var(--paper);
 }
-.architecture-poster {
+.scene-controls button[aria-pressed='true'] {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+.scene-lifecycle {
   position: absolute;
-  left: 58%;
-  top: 24%;
-  width: 330px;
-  color: var(--navy);
-  font-weight: 600;
-  transform: perspective(850px) rotateY(-20deg) rotateX(12deg);
+  inset: auto 12px 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-color);
 }
-.architecture-poster > div {
-  padding: 18px;
-  border: 1px solid #244c6f;
-  text-align: center;
-}
-.poster-modules,
-.poster-services {
+.scene-phase-detail {
   display: flex;
-  justify-content: space-around;
-  gap: 12px;
-  background: #eef4fa;
+  align-items: center;
+  gap: 14px;
+  min-height: 48px;
 }
-.poster-container {
-  background: var(--cyan);
+.scene-phase-number {
+  color: var(--scene-accent);
+  font-size: 37px;
+  font-weight: 400;
+  line-height: 1;
 }
-.poster-kernel {
-  color: white;
-  background: #206bc4;
-  font-size: 40px;
+.scene-phase-scope {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--scene-accent);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
-.poster-engine {
-  color: white;
-  background: var(--navy);
-}
-.architecture-poster .poster-services {
-  margin-top: 14px;
-  border: 0;
+.scene-phase-detail p {
+  color: var(--muted);
   font-size: 13px;
+  line-height: 1.4;
+}
+.scene-steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 13px;
+}
+.scene-steps button {
+  display: block;
+  width: 100%;
+  min-height: 43px;
+  padding-bottom: 3px;
+  text-align: left;
+  cursor: pointer;
+}
+.scene-step-track {
+  display: block;
+  height: 2px;
+  margin-bottom: 9px;
+  background: var(--line-color);
+}
+.scene-step-track > span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--scene-accent);
+  transition: width 250ms;
+}
+.scene-step-label {
+  display: flex;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.scene-step-label > span {
+  color: var(--muted);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 9px;
+  line-height: 19px;
+}
+.scene-steps button[aria-pressed='true'] .scene-step-track > span {
+  width: 100%;
+}
+.scene-steps button[aria-pressed='true'] .scene-step-label,
+.scene-steps button:hover .scene-step-label {
+  color: var(--scene-accent);
+}
+.scene-unavailable {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(80%, 330px);
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+  transform: translate(-50%, -50%);
 }
 .stack-strip {
   border-block: 1px solid var(--line-color);
@@ -1630,6 +1785,25 @@ button:disabled {
 }
 
 @media (max-width: 1100px) {
+  .scene-viewport {
+    bottom: 188px;
+  }
+  .scene-toolbar {
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  .scene-interact {
+    max-width: none;
+    flex-basis: 100%;
+    padding-right: 0;
+    font-size: 10px;
+  }
+  .scene-step-label {
+    font-size: 10px;
+  }
+  .scene-step-label > span {
+    display: none;
+  }
   .header-inner {
     gap: 20px;
     padding-inline: 28px;
@@ -1920,7 +2094,7 @@ button:disabled {
   }
   .hero-section {
     height: auto;
-    padding-bottom: 260px;
+    padding-bottom: 510px;
   }
   .hero-inner {
     height: auto;
@@ -1967,36 +2141,14 @@ button:disabled {
   }
   .architecture-scene {
     top: auto;
-    height: 260px;
-  }
-  .scene-controls {
-    left: 24px;
-    top: 12px;
-    right: auto;
-    bottom: auto;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    height: 498px;
   }
   .scene-controls .icon-button {
-    width: 26px;
-    height: 26px;
-  }
-  .hero-annotation {
-    display: none;
-  }
-  .architecture-poster {
-    left: 50%;
-    top: 12px;
-    width: 230px;
-    transform: translateX(-50%) perspective(850px) rotateY(-20deg) rotateX(12deg);
-  }
-  .architecture-poster > div {
-    padding: 8px;
-    font-size: 12px;
-  }
-  .architecture-poster .poster-kernel {
-    font-size: 27px;
-  }
-  .architecture-poster .poster-services {
-    margin-top: 8px;
+    width: 38px;
+    height: 38px;
   }
   .stack-inner {
     min-height: 0;
@@ -2224,6 +2376,11 @@ button:disabled {
 }
 
 @media (max-width: 420px) {
+  .scene-heading {
+    gap: 8px;
+    font-size: 9px;
+    letter-spacing: 0.03em;
+  }
   .page-container {
     padding-inline: 18px;
   }
@@ -2272,9 +2429,6 @@ button:disabled {
   }
   .hero-meta > span:last-child {
     padding-left: 9px;
-  }
-  .scene-controls {
-    left: 18px;
   }
   .example-points {
     grid-template-columns: minmax(0, 1fr);
@@ -2353,38 +2507,6 @@ button:disabled {
     margin-top: 14px;
     font-size: 10px;
   }
-  .hero-section {
-    padding-bottom: 210px;
-  }
-  .architecture-scene {
-    height: 210px;
-  }
-  .architecture-poster {
-    top: 0;
-    width: 190px;
-  }
-}
-
-@media (max-width: 759px) and (max-height: 600px) {
-  .hero-section {
-    padding-bottom: 160px;
-  }
-  .architecture-scene {
-    height: 160px;
-  }
-  .scene-controls {
-    top: 8px;
-  }
-  .architecture-poster {
-    width: 150px;
-  }
-  .architecture-poster > div {
-    padding: 5px;
-    font-size: 10px;
-  }
-  .architecture-poster .poster-kernel {
-    font-size: 20px;
-  }
 }
 
 @media (max-width: 359px) and (max-height: 600px) {
@@ -2393,12 +2515,6 @@ button:disabled {
   }
   .hero-copy .eyebrow {
     font-size: 10px;
-  }
-  .hero-section {
-    padding-bottom: 150px;
-  }
-  .architecture-scene {
-    height: 150px;
   }
 }
 

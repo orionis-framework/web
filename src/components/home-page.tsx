@@ -15,7 +15,6 @@ import {
   FlaskConical,
   FolderOpen,
   Gauge,
-  Gem,
   Layers,
   Languages,
   KeyRound,
@@ -44,7 +43,8 @@ import { codeSamples } from '@/content/code-samples';
 import type { Locale } from '@/i18n/routing';
 import { asset } from '@/lib/asset';
 import { loadProjectStats } from '@/lib/project-stats';
-import { site } from '@/lib/site';
+import { highlightedCodeNodes } from '@/lib/highlighted-code';
+import { documentationUrl, site } from '@/lib/site';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 
@@ -189,7 +189,6 @@ function applyLightModernPythonScopes(highlightedCode: string) {
 const featureIcons: Record<IconName, LucideIcon> = {
   server: Server,
   layers: Layers,
-  gauge: Gauge,
   flask: FlaskConical,
   terminal: Terminal,
   fileCog: FileCog,
@@ -201,7 +200,6 @@ const featureIcons: Record<IconName, LucideIcon> = {
   refreshCw: RefreshCw,
   bot: Bot,
   badgeCheck: BadgeCheck,
-  gem: Gem,
   database: Database,
   radio: Radio,
   mail: Mail,
@@ -215,17 +213,20 @@ export default async function HomePage({ locale }: { locale: Locale }) {
   const [translate, messages, stats] = await Promise.all([
     getTranslations({ locale, namespace: 'Home' }),
     getMessages({ locale }),
-    loadProjectStats({ cache: 'force-cache' }),
+    // Next's default fetch policy supports a build snapshot in a static export.
+    loadProjectStats({ cache: 'default' }),
   ]);
   const features = getFeatures();
   const codeTabs: CodeSampleTab[] = codeSamples.map((sample) => ({
     ...sample,
     label: translate(`examples.labels.${sample.id}`),
-    highlightedCode: applyLightModernPythonScopes(
-      syntaxHighlighter.highlight(sample.code, { language: 'python' }).value,
+    highlightedCode: highlightedCodeNodes(
+      applyLightModernPythonScopes(
+        syntaxHighlighter.highlight(sample.code, { language: 'python' }).value,
+      ),
     ),
   }));
-  const docsUrl = site.docs.replace('/en/', `/${locale}/`);
+  const docsUrl = documentationUrl(locale);
   const installCommand = site.installCommand;
   const examplePoints = [
     { key: 'types', icon: BadgeCheck },
@@ -252,7 +253,7 @@ export default async function HomePage({ locale }: { locale: Locale }) {
         { label: translate('footer.api'), href: site.apiReference },
         {
           label: translate('footer.installation'),
-          href: new URL(`/${locale}/getting-started/installation/`, docsUrl).href,
+          href: documentationUrl(locale, 'getting-started/installation'),
         },
       ],
     },
@@ -273,12 +274,12 @@ export default async function HomePage({ locale }: { locale: Locale }) {
       links: [
         {
           label: translate('footer.contribute'),
-          href: new URL(`/${locale}/contribute/guide/`, docsUrl).href,
+          href: documentationUrl(locale, 'contribute/guide'),
         },
         { label: translate('footer.issues'), href: `${site.repo}/issues` },
         {
           label: translate('footer.contributors'),
-          href: new URL(`/${locale}/contribute/contributors/`, docsUrl).href,
+          href: documentationUrl(locale, 'contribute/contributors'),
         },
       ],
     },
@@ -301,6 +302,17 @@ export default async function HomePage({ locale }: { locale: Locale }) {
                 expand: translate('scene.expand'),
                 collapse: translate('scene.collapse'),
                 reset: translate('scene.reset'),
+                zoomIn: translate('scene.zoomIn'),
+                zoomOut: translate('scene.zoomOut'),
+                resetZoom: translate('scene.resetZoom'),
+                unavailable: translate('scene.unavailable'),
+                lifecycle: translate('scene.lifecycle'),
+                interact: translate('scene.interact'),
+                steps: ['bootstrap', 'startup', 'request', 'response', 'shutdown'].map((step) => ({
+                  title: translate(`scene.steps.${step}.title`),
+                  description: translate(`scene.steps.${step}.description`),
+                  scope: translate(`scene.steps.${step}.scope`),
+                })),
               }}
             />
             <div className="page-container hero-inner">
@@ -347,10 +359,6 @@ export default async function HomePage({ locale }: { locale: Locale }) {
                   <span>Python 3.14+</span>
                 </div>
               </div>
-            </div>
-            <div className="hero-annotation" aria-hidden="true">
-              <span>APPLICATION STACK</span>
-              <span>ASGI / RSGI</span>
             </div>
           </section>
 

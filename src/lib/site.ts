@@ -18,10 +18,24 @@ export const site = {
     license: '/licenses/granian-BSD-3-Clause.txt',
   },
   repo: 'https://github.com/orionis-framework/framework',
-  docs: 'https://docs.orionis-framework.com/en/introduction/prologue/',
+  docs: 'https://docs.orionis-framework.com',
   apiReference: 'https://api.orionis-framework.com/',
   pypi: 'https://pypi.org/project/orionis/',
 } as const;
+
+export type DocumentationPage =
+  | 'getting-started'
+  | 'getting-started/installation'
+  | 'contribute/guide'
+  | 'contribute/contributors';
+
+/** Use current documentation routes consistently across navigation and calls to action. */
+export function documentationUrl(
+  locale: Locale,
+  page: DocumentationPage = 'getting-started',
+): string {
+  return `${site.docs}/${locale}/${page}/`;
+}
 
 export const nav: { key: string; href: string }[] = [
   { key: 'features', href: '#features' },

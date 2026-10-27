@@ -22,15 +22,22 @@ export function ProjectStats({
   versionLabel,
   unavailableLabel,
 }: ProjectStatsProps) {
-  const [stats, setStats] = useState(initialStats);
+  const [state, setState] = useState({
+    stats: initialStats,
+    pendingVersion: true,
+  });
+  const { stats, pendingVersion } = state;
 
   useEffect(() => {
     const controller = new AbortController();
     loadProjectStats({ signal: controller.signal }).then((latest) => {
       if (controller.signal.aborted) return;
-      setStats((current) => ({
-        stars: latest.stars ?? current.stars,
-        version: latest.version ?? current.version,
+      setState((current) => ({
+        stats: {
+          stars: latest.stars ?? current.stats.stars,
+          version: latest.version ?? current.stats.version,
+        },
+        pendingVersion: false,
       }));
     });
     return () => controller.abort();
@@ -49,13 +56,19 @@ export function ProjectStats({
         </span>
         <ArrowUpRight size={16} aria-hidden="true" />
       </a>
-      <a href={site.pypi} className="project-stat" target="_blank" rel="noreferrer">
+      <a
+        href={site.pypi}
+        className="project-stat"
+        target="_blank"
+        rel="noreferrer"
+        aria-busy={pendingVersion}
+      >
         <Package size={25} strokeWidth={1.5} aria-hidden="true" />
         <span className="stat-copy">
           <span className="stat-value">
-            {stats.version === null ? 'PyPI' : `v${stats.version}`}
+            {pendingVersion || stats.version === null ? 'PyPI' : `v${stats.version}`}
           </span>
-          <span>{stats.version === null ? unavailableLabel : versionLabel}</span>
+          <span>{!pendingVersion && stats.version === null ? unavailableLabel : versionLabel}</span>
         </span>
         <ArrowUpRight size={16} aria-hidden="true" />
       </a>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, type KeyboardEvent } from 'react';
+import { useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import Image from 'next/image';
 import { Terminal } from 'lucide-react';
 import { asset } from '@/lib/asset';
@@ -13,7 +13,7 @@ export interface CodeSampleTab {
   label: string;
   fileName?: string;
   code: string;
-  highlightedCode: string;
+  highlightedCode: ReactNode;
   command?: string;
 }
 
@@ -38,7 +38,7 @@ export function CodeSampleTabs({
   const [commandRunner, setCommandRunner] = useState<(typeof commandRunners)[number]>(
     commandRunners[0],
   );
-  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
   const activeTab = tabs.find((tab) => tab.id === activeTabId) ?? tabs[0];
   const command = activeTab?.command ? `${commandRunner} ${activeTab.command}` : undefined;
 
@@ -49,7 +49,7 @@ export function CodeSampleTabs({
     const nextTab = tabs[nextIndex];
 
     setActiveTabId(nextTab.id);
-    tabRefs.current[nextIndex]?.focus();
+    tabsRef.current[nextIndex]?.focus();
   }
 
   function handleTabKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
@@ -79,7 +79,7 @@ export function CodeSampleTabs({
               <button
                 key={tab.id}
                 ref={(element) => {
-                  tabRefs.current[index] = element;
+                  tabsRef.current[index] = element;
                 }}
                 id={`${tab.id}-tab`}
                 type="button"
@@ -122,16 +122,16 @@ export function CodeSampleTabs({
           >
             <div className="code-body">
               <div className="code-line-numbers" aria-hidden="true">
-                {tab.code.split('\n').map((_, index) => (
-                  <span key={index}>{index + 1}</span>
-                ))}
+                {Array.from({ length: tab.code.split('\n').length }, (_, index) => index + 1).map(
+                  (lineNumber) => (
+                    <span key={lineNumber}>{lineNumber}</span>
+                  ),
+                )}
               </div>
               <pre>
-                <code
-                  lang="python"
-                  className="hljs"
-                  dangerouslySetInnerHTML={{ __html: tab.highlightedCode }}
-                />
+                <code lang="python" className="hljs">
+                  {tab.highlightedCode}
+                </code>
               </pre>
             </div>
           </div>

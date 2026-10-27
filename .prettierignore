@@ -1,7 +1,9 @@
 node_modules
 .next
+.cache
 out
 coverage
 pnpm-lock.yaml
 package-lock.json
 public
+next-env.d.ts

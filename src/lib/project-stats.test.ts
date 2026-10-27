@@ -23,9 +23,11 @@ describe('project statistics', () => {
       'https://api.github.com/repos/orionis-framework/framework',
       'https://pypi.org/pypi/orionis/json',
     ]);
-    expect(fetchMock.mock.calls[0][1]).toMatchObject({
-      cache: 'no-store',
-      signal: expect.any(AbortSignal),
+    fetchMock.mock.calls.forEach(([, options]) => {
+      expect(options).toMatchObject({
+        cache: 'no-store',
+        signal: expect.any(AbortSignal),
+      });
     });
   });
 
@@ -76,11 +78,13 @@ describe('project statistics', () => {
     });
   });
 
-  it('allows build-time caching without caching browser refreshes', async () => {
+  it('allows caching only when a caller explicitly opts in', async () => {
     const fetchMock = vi.fn().mockResolvedValue(jsonResponse({}));
     vi.stubGlobal('fetch', fetchMock);
 
     await loadProjectStats({ cache: 'force-cache' });
-    expect(fetchMock.mock.calls[0][1].cache).toBe('force-cache');
+    fetchMock.mock.calls.forEach(([, options]) => {
+      expect(options.cache).toBe('force-cache');
+    });
   });
 });

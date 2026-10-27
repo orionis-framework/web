@@ -39,11 +39,7 @@ function renderTabs(sampleTabs = tabs) {
 }
 
 function renderCatalog() {
-  const catalog = codeSamples.map((sample) => {
-    const code = document.createElement('code');
-    code.textContent = sample.code;
-    return { ...sample, highlightedCode: code.innerHTML };
-  });
+  const catalog = codeSamples.map((sample) => ({ ...sample, highlightedCode: sample.code }));
   return renderTabs(catalog);
 }
 

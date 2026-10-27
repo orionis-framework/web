@@ -3,7 +3,6 @@ import type { Locale } from '@/i18n/routing';
 export type IconName =
   | 'server'
   | 'layers'
-  | 'gauge'
   | 'flask'
   | 'terminal'
   | 'fileCog'
@@ -15,7 +14,6 @@ export type IconName =
   | 'refreshCw'
   | 'bot'
   | 'badgeCheck'
-  | 'gem'
   | 'database'
   | 'radio'
   | 'mail'
@@ -286,10 +284,6 @@ export const features: Feature[] = [
 
 export function getFeatures(): Feature[] {
   return [...features].sort((left, right) => left.order - right.order);
-}
-
-export function getFeature(slug: string): Feature | undefined {
-  return features.find((feature) => feature.slug === slug);
 }
 
 export function featureContent(feature: Feature, locale: Locale): FeatureContent {
