@@ -72,7 +72,7 @@ describe('official site metadata', () => {
     const robots = readFileSync(resolve('public', 'robots.txt'), 'utf8').replace(/\r\n/g, '\n');
     const groups = robots.trim().split(/\n\s*\n/);
 
-    for (const userAgent of ['*', 'OAI-SearchBot', 'GPTBot']) {
+    for (const userAgent of ['*', 'OAI-SearchBot', 'GPTBot', 'ChatGPT-User']) {
       expect(groups).toContain(`User-agent: ${userAgent}\nAllow: /`);
     }
 

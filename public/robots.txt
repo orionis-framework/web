@@ -7,4 +7,7 @@ Allow: /
 User-agent: GPTBot
 Allow: /
 
+User-agent: ChatGPT-User
+Allow: /
+
 Sitemap: https://orionis-framework.com/sitemap.xml
