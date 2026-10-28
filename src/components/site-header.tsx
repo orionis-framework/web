@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ThemeToggle } from './theme-toggle';
 import type { Locale } from '@/i18n/routing';
 import { asset } from '@/lib/asset';
-import { documentationUrl, nav, site } from '@/lib/site';
+import { documentationUrl, inspectorUrl, nav, site } from '@/lib/site';
 
 export function SiteHeader({ locale }: { locale: Locale }) {
   const translate = useTranslations('Home');
@@ -86,6 +86,10 @@ export function SiteHeader({ locale }: { locale: Locale }) {
               {translate(`nav.${item.key}`)}
             </a>
           ))}
+          <a href={inspectorUrl(locale)} className="nav-inspector" hrefLang={locale}>
+            {translate('nav.inspector')}
+            <ArrowUpRight size={13} aria-hidden="true" />
+          </a>
         </nav>
 
         <div className="header-actions">
@@ -168,6 +172,10 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             <ArrowRight size={18} aria-hidden="true" />
           </a>
         ))}
+        <a href={inspectorUrl(locale)} hrefLang={locale} onClick={() => setMenuOpen(false)}>
+          <span>{translate('nav.inspector')}</span>
+          <ArrowUpRight size={18} aria-hidden="true" />
+        </a>
         <a href={site.repo} target="_blank" rel="noreferrer">
           <span>GitHub</span>
           <SiGithub size={18} color="currentColor" aria-hidden="true" />

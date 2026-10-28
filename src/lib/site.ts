@@ -20,6 +20,7 @@ export const site = {
   repo: 'https://github.com/orionis-framework/framework',
   docs: 'https://docs.orionis-framework.com',
   apiReference: 'https://api.orionis-framework.com/',
+  inspector: 'https://inspector.orionis-framework.com',
   pypi: 'https://pypi.org/project/orionis/',
 } as const;
 
@@ -35,6 +36,11 @@ export function documentationUrl(
   page: DocumentationPage = 'getting-started',
 ): string {
   return `${site.docs}/${locale}/${page}/`;
+}
+
+/** Open the Inspector in the same language as the official site. */
+export function inspectorUrl(locale: Locale): string {
+  return `${site.inspector}/${locale === 'es' ? 'es/' : ''}`;
 }
 
 export const nav: { key: string; href: string }[] = [

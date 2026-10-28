@@ -44,7 +44,7 @@ import type { Locale } from '@/i18n/routing';
 import { asset } from '@/lib/asset';
 import { loadProjectStats } from '@/lib/project-stats';
 import { highlightedCodeNodes } from '@/lib/highlighted-code';
-import { documentationUrl, site } from '@/lib/site';
+import { documentationUrl, inspectorUrl, site } from '@/lib/site';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 
@@ -251,6 +251,7 @@ export default async function HomePage({ locale }: { locale: Locale }) {
       links: [
         { label: translate('nav.docs'), href: docsUrl },
         { label: translate('footer.api'), href: site.apiReference },
+        { label: translate('nav.inspector'), href: inspectorUrl(locale) },
         {
           label: translate('footer.installation'),
           href: documentationUrl(locale, 'getting-started/installation'),
@@ -498,6 +499,19 @@ export default async function HomePage({ locale }: { locale: Locale }) {
                   );
                 })}
               </div>
+              <aside className="inspector-callout" aria-labelledby="inspector-title">
+                <div className="inspector-callout-copy">
+                  <p className="eyebrow">{translate('inspector.eyebrow')}</p>
+                  <h3 id="inspector-title">Orionis MCP Inspector</h3>
+                  <p>{translate('inspector.description')}</p>
+                  <p className="inspector-note">{translate('inspector.connectionNote')}</p>
+                </div>
+                <a href={inspectorUrl(locale)} hrefLang={locale} className="button button-primary">
+                  <FlaskConical size={18} aria-hidden="true" />
+                  {translate('inspector.cta')}
+                  <ArrowUpRight size={16} aria-hidden="true" />
+                </a>
+              </aside>
             </div>
           </section>
 

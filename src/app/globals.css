@@ -520,6 +520,11 @@ button:disabled {
 .nav-disclosure:hover {
   color: var(--primary);
 }
+.nav-inspector {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
 .nav-disclosure {
   display: inline-flex;
   align-items: center;
@@ -1316,6 +1321,39 @@ button:disabled {
   margin-top: 3px;
   color: var(--capability-tone);
 }
+.inspector-callout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-top: 24px;
+  padding: 30px 32px;
+  border: 1px solid var(--line-color);
+  border-inline-start: 3px solid var(--primary);
+  border-radius: 8px;
+  background: var(--paper);
+}
+.inspector-callout-copy {
+  max-width: 740px;
+}
+.inspector-callout h3 {
+  margin-top: 8px;
+  color: var(--text);
+  font-size: 25px;
+  font-weight: 600;
+}
+.inspector-callout-copy > p:not(.eyebrow) {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.inspector-callout-copy > .inspector-note {
+  font-size: 12px;
+}
+.inspector-callout > .button {
+  flex: none;
+}
 .transport-preview,
 .realtime-preview {
   margin-top: 24px;
@@ -1809,7 +1847,7 @@ button:disabled {
     padding-inline: 28px;
   }
   .desktop-nav {
-    gap: 20px;
+    gap: 14px;
   }
   .header-github {
     display: none;
@@ -1878,6 +1916,12 @@ button:disabled {
 }
 
 @media (max-width: 979px) {
+  .inspector-callout {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    padding: 24px;
+  }
   .desktop-nav {
     display: none;
   }
