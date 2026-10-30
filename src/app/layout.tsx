@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import localFont from 'next/font/local';
+import Script from 'next/script';
 import { ThemeProvider } from '@/components/theme-provider';
 import { defaultLocale } from '@/i18n/routing';
 import { getPageMetadata } from '@/lib/site';
@@ -32,6 +33,20 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`${titilliumWeb.variable} ${jetBrainsMono.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-E63E3G8DZL"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-E63E3G8DZL');
+          `}
+        </Script>
+      </head>
       <body>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
