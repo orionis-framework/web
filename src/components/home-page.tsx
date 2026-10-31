@@ -1,3 +1,4 @@
+import { BenchmarkSection } from './benchmark-section';
 import { SiGithub } from '@icons-pack/react-simple-icons';
 import Image from 'next/image';
 import {
@@ -595,6 +596,7 @@ export default async function HomePage({ locale }: { locale: Locale }) {
               </div>
             </div>
           </section>
+          <BenchmarkSection locale={locale} />
         </main>
 
         <footer id="community" className="site-footer">
