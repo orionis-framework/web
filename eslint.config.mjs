@@ -1,13 +1,17 @@
+import { createRequire } from 'node:module';
 import js from '@eslint/js';
 import react from '@eslint-react/eslint-plugin';
 import next from '@next/eslint-plugin-next';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
-import { importX } from 'eslint-plugin-import-x';
 import jsxA11y from 'eslint-plugin-jsx-a11y-x';
 import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+
+// The CommonJS entry avoids eagerly importing minimatch.makeRe (removed in v11).
+// import-x/no-internal-modules uses that API and is not enabled in this configuration.
+const { importX } = createRequire(import.meta.url)('eslint-plugin-import-x');
 
 const sourceFiles = ['**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}'];
 
