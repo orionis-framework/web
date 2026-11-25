@@ -53,6 +53,8 @@
       "description": "HTTP, realtime, data and AI. One cohesive foundation for your next great Python application.",
       "docsCta": "Read the docs",
       "githubCta": "GitHub",
+      "starCta": "Star on GitHub",
+      "starHint": "Open the repository on GitHub and click Star.",
       "engine": "Rust-powered. Async by design."
     },
     "scene": {

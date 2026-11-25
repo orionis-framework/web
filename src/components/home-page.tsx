@@ -1,5 +1,4 @@
 import { BenchmarkSection } from './benchmark-section';
-import { SiGithub } from '@icons-pack/react-simple-icons';
 import {
   ArrowLeftRight,
   ArrowRight,
@@ -25,6 +24,7 @@ import {
   Server,
   ShieldCheck,
   Sparkles,
+  Star,
   Terminal,
   UsersRound,
   Workflow,
@@ -302,9 +302,10 @@ export default async function HomePage({ locale }: { locale: Locale }) {
                     className="button button-secondary"
                     target="_blank"
                     rel="noreferrer"
+                    title={translate('hero.starHint')}
                   >
-                    <SiGithub size={18} color="currentColor" aria-hidden="true" />
-                    {translate('hero.githubCta')}
+                    <Star size={18} aria-hidden="true" />
+                    {translate('hero.starCta')}
                   </a>
                 </div>
                 <a

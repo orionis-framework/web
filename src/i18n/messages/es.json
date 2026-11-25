@@ -53,6 +53,8 @@
       "description": "HTTP, realtime, datos e IA. Toda la arquitectura para tu próxima gran aplicación Python.",
       "docsCta": "Documentación",
       "githubCta": "GitHub",
+      "starCta": "Dar Estrella",
+      "starHint": "Abre el repositorio en GitHub y pulsa Star.",
       "engine": "Motor Rust. Diseño async-first."
     },
     "scene": {
