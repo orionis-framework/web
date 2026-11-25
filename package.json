@@ -11,7 +11,7 @@
     "build": "next build",
     "check:links": "node scripts/check-links.mjs",
     "check:links:external": "node scripts/check-links.mjs --external",
-    "preview": "sirv out --host 127.0.0.1 --port 4173 --dev --no-clear",
+    "preview": "node scripts/preview.mjs",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
@@ -23,7 +23,7 @@
     "@icons-pack/react-simple-icons": "^13.15.1",
     "highlight.js": "^11.12.0",
     "lucide-react": "^1.61.0",
-    "next": "^16.4.3",
+    "next": "^16.4.6",
     "next-intl": "^4.14.9",
     "next-themes": "^0.4.6",
     "react": "^19.3.1",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@eslint-react/eslint-plugin": "^5.28.8",
-    "@next/eslint-plugin-next": "^16.4.3",
+    "@next/eslint-plugin-next": "^16.4.6",
     "@tailwindcss/postcss": "^4.3.3",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^7.0.1",
@@ -57,7 +57,7 @@
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-eslint": "^8.72.1",
     "vitest": "^5.0.5",
-    "sirv-cli": "^3.0.1"
+    "sirv": "^3.0.2"
   },
   "overrides": {
     "minimatch": "^11.0.3"

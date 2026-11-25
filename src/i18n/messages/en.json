@@ -1,4 +1,26 @@
 {
+  "Orin": {
+    "title": "Meet Orin",
+    "subtitle": "The stellar lynx of Orionis.",
+    "intro": "Orin accompanies the Orionis community from the first route to the next big idea.",
+    "documentation": "Read the docs",
+    "community": "Contribute to Orionis",
+    "gallery": "Orin in action",
+    "waveCaption": "A wave from Orin",
+    "exploreCaption": "Exploring the constellation",
+    "alt": {
+      "star": "Orin, a blue lynx with stars on its ears, holding a bright star.",
+      "wave": "Orin waving a paw.",
+      "explore": "Orin tracing a constellation with a paw.",
+      "avatar": "Orin’s face and star-tipped ears."
+    }
+  },
+  "NotFound": {
+    "title": "This route wandered out of the constellation.",
+    "description": "We couldn’t find the page you’re looking for. Let’s go back home.",
+    "home": "Back to home",
+    "docs": "Open documentation"
+  },
   "Home": {
     "nav": {
       "ariaLabel": "Main navigation",
@@ -23,6 +45,8 @@
       "switchToDark": "Switch to dark theme"
     },
     "hero": {
+      "orinGreeting": "New to Orionis?",
+      "orinGuide": "Start here.",
       "eyebrow": "The complete async-first Python framework",
       "taglineFirst": "Stop assembling.",
       "taglineSecond": "Start building.",
@@ -158,12 +182,14 @@
       "description": "Authentication, mail, files, testing and operational tools. The capabilities a real application needs, integrated into the same architecture."
     },
     "start": {
+      "orin": "<link>Meet Orin</link>, your companion for building with Orionis.",
       "eyebrow": "Your next project starts here",
       "titleFirst": "Big ideas.",
       "titleSecond": "A framework to match.",
       "description": "Discover the guides, explore the source and build on a foundation that connects every part of your application."
     },
     "footer": {
+      "orin": "Meet Orin",
       "description": "Async-first Python. A Rust-powered engine. A complete, open foundation, made for building.",
       "learn": "Learn",
       "api": "API reference",

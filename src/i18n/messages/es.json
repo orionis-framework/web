@@ -1,4 +1,26 @@
 {
+  "Orin": {
+    "title": "Conoce a Orin",
+    "subtitle": "El lince estelar de Orionis.",
+    "intro": "Orin acompaña a la comunidad de Orionis desde la primera ruta hasta la próxima gran idea.",
+    "documentation": "Abrir documentación",
+    "community": "Contribuir a Orionis",
+    "gallery": "Orin en acción",
+    "waveCaption": "Un saludo de Orin",
+    "exploreCaption": "Explorando la constelación",
+    "alt": {
+      "star": "Orin, un lince azul con estrellas en las orejas, sostiene una estrella brillante.",
+      "wave": "Orin saluda con la pata.",
+      "explore": "Orin sigue una constelación con la pata.",
+      "avatar": "Rostro de Orin con estrellas en las puntas de las orejas."
+    }
+  },
+  "NotFound": {
+    "title": "Esta ruta se salió de la constelación.",
+    "description": "No encontramos la página que buscas. Volvamos al inicio.",
+    "home": "Volver al inicio",
+    "docs": "Abrir documentación"
+  },
   "Home": {
     "nav": {
       "ariaLabel": "Navegación principal",
@@ -23,6 +45,8 @@
       "switchToDark": "Cambiar al tema oscuro"
     },
     "hero": {
+      "orinGreeting": "¿Tu primera vez con Orionis?",
+      "orinGuide": "Empieza por aquí.",
       "eyebrow": "El framework Python async-first completo",
       "taglineFirst": "Deja de ensamblar.",
       "taglineSecond": "Empieza a crear.",
@@ -158,12 +182,14 @@
       "description": "Autenticación, correo, archivos, pruebas y herramientas de operación. Las capacidades que una aplicación real necesita, integradas en la misma arquitectura."
     },
     "start": {
+      "orin": "<link>Conoce a Orin</link>, tu compañero para construir con Orionis.",
       "eyebrow": "Tu próximo proyecto empieza aquí",
       "titleFirst": "Grandes ideas.",
       "titleSecond": "Un framework a su altura.",
       "description": "Descubre las guías, explora el código y construye sobre una base que conecta todas las partes de tu aplicación."
     },
     "footer": {
+      "orin": "Conoce a Orin",
       "description": "Python async-first. Un motor impulsado por Rust. Una arquitectura completa, abierta y hecha para construir.",
       "learn": "Aprende",
       "api": "Referencia de API",

@@ -1,0 +1,134 @@
+.banner,
+.error {
+  background: var(--canvas);
+}
+.banner {
+  border-bottom: 1px solid var(--line-color);
+}
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 0.85fr);
+  align-items: center;
+  gap: clamp(32px, 6vw, 100px);
+  padding-block: clamp(44px, 7vw, 96px);
+}
+.title {
+  color: var(--text);
+  font-size: clamp(48px, 6vw, 84px);
+  font-weight: 600;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+.subtitle {
+  color: var(--primary);
+  margin-top: 14px;
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height: 1.25;
+}
+.description {
+  max-width: 48ch;
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.6;
+}
+.art {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+}
+.art::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -4% 0;
+  background-image:
+    linear-gradient(var(--line-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-color) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse at center, black 10%, transparent 70%);
+}
+.portrait,
+.study,
+.tracker {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+.portrait {
+  height: clamp(260px, 26vw, 364px);
+}
+.gallery {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  align-items: center;
+  gap: 40px;
+  padding-block: clamp(40px, 5vw, 72px);
+}
+.gallery h2 {
+  text-wrap: balance;
+}
+.poses {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.poses figure {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 12px;
+  padding: 20px 12px 16px;
+  background: var(--canvas);
+  border: 1px solid var(--line-color);
+  border-radius: 8px;
+}
+.study {
+  height: 104px;
+}
+.poses figcaption {
+  text-align: center;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+}
+.error {
+  min-height: calc(100svh - 70px);
+  display: grid;
+  align-items: center;
+}
+.error .title {
+  max-width: 16ch;
+  font-size: clamp(38px, 4.5vw, 64px);
+}
+.tracker {
+  width: min(100%, 384px);
+  height: auto;
+}
+@media (max-width: 767px) {
+  .intro,
+  .gallery {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .portrait {
+    height: 202px;
+  }
+  .poses {
+    gap: 10px;
+  }
+  .poses figure {
+    padding: 14px 8px;
+  }
+  .study {
+    height: 74px;
+  }
+  .tracker {
+    width: min(80%, 294px);
+  }
+  .error {
+    align-items: start;
+  }
+}

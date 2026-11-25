@@ -6,13 +6,14 @@ Official bilingual landing page for Orionis Framework.
 
 Use Node.js 24 LTS (>=24.15.0). Node.js 22 (>=22.22.2) and Node.js >=26 are also supported.
 Install the locked dependencies with `npm ci` and start development with `npm run dev`.
+Run `npm run build` followed by `npm run preview` to browse the static export at `http://127.0.0.1:4173`. The preview serves the exported 404 page for missing browser routes. Override the address with `HOST` and `PORT` or with `npm run preview -- --host <host> --port <port>`.
 
 ## Dependency Compatibility
 
 TypeScript 7 provides `tsc`; the official TypeScript 6 compatibility package supplies the API required by Next.js and ESLint.
 ESLint 10 uses the official Next.js Core Web Vitals and React Hooks plugins directly, alongside TypeScript ESLint, ESLint React, import-x, and the maintained jsx-a11y-x accessibility plugin. This keeps the lint toolchain current without incompatible legacy plugin peers.
 Run `npm run format:check`, `npm run typecheck`, `npm run lint`, `npm test`, and `npm run build` to validate changes.
-Run `npm audit` to check the complete dependency tree for known vulnerabilities. `minimatch` is overridden to `^11.0.3` to address GHSA-g3hv-75wg-m249 while the lint dependencies still request v10. ESLint loads the CommonJS entry of `eslint-plugin-import-x` because its ESM entry imports the removed `makeRe` API; the affected `no-internal-modules` rule is not enabled. Remove this workaround when upstream supports minimatch v11. The local preview uses `sirv-cli` to avoid the legacy minimatch dependency in `serve-handler`.
+Run `npm audit` to check the complete dependency tree for known vulnerabilities. `minimatch` is overridden to `^11.0.3` to address GHSA-g3hv-75wg-m249 while the lint dependencies still request v10. ESLint loads the CommonJS entry of `eslint-plugin-import-x` because its ESM entry imports the removed `makeRe` API; the affected `no-internal-modules` rule is not enabled. Remove this workaround when upstream supports minimatch v11.
 The reviewed install scripts for `@parcel/watcher`, `@swc/core`, and `unrs-resolver` are explicitly denied. Supported platforms use their packaged native binaries; optional source-build/download fallbacks are unnecessary for this project.
 After building, run `npm run check:links` to verify exported pages, assets, and anchors. Run `npm run check:links:external` to also check external destinations over HTTP.
 Vitest covers code-tab navigation and copying, the ASGI/RSGI selector, project statistics (including partial API failures), and accessible lifecycle navigation without WebGL in both languages.

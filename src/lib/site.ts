@@ -63,12 +63,24 @@ const metadataContent: Record<Locale, { title: string; description: string }> = 
   },
 };
 
-export function localeUrl(locale: Locale): string {
-  return new URL(asset(`/${locale}/`), site.url).href;
+type PagePath = '' | 'orin/';
+
+export function localeUrl(locale: Locale, path: PagePath = ''): string {
+  return new URL(asset(`/${locale}/${path}`), site.url).href;
 }
 
-export function getPageMetadata(locale: Locale): Metadata {
-  const content = metadataContent[locale];
+export function languageAlternates(path: PagePath = '') {
+  return {
+    ...Object.fromEntries(locales.map((language) => [language, localeUrl(language, path)])),
+    'x-default': new URL(asset(`/${path}`), site.url).href,
+  };
+}
+
+export function getPageMetadata(
+  locale: Locale,
+  content: { title: string; description: string; path?: PagePath } = metadataContent[locale],
+): Metadata {
+  const url = localeUrl(locale, content.path);
   const image = {
     url: new URL(asset(site.socialImage), site.url).href,
     width: 1731,
@@ -98,15 +110,12 @@ export function getPageMetadata(locale: Locale): Metadata {
       'MCP',
     ],
     alternates: {
-      canonical: localeUrl(locale),
-      languages: {
-        ...Object.fromEntries(locales.map((language) => [language, localeUrl(language)])),
-        'x-default': new URL(asset('/'), site.url).href,
-      },
+      canonical: url,
+      languages: languageAlternates(content.path),
     },
     openGraph: {
       type: 'website',
-      url: localeUrl(locale),
+      url,
       siteName: site.fullName,
       title: content.title,
       description: content.description,

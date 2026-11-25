@@ -60,12 +60,24 @@ describe('official site metadata', () => {
   });
 
   it('lists only canonical locale pages in the sitemap', () => {
-    expect(sitemap().map((entry) => entry.url)).toEqual([`${site.url}/en/`, `${site.url}/es/`]);
+    expect(sitemap().map((entry) => entry.url)).toEqual([
+      `${site.url}/en/`,
+      `${site.url}/es/`,
+      `${site.url}/en/orin/`,
+      `${site.url}/es/orin/`,
+    ]);
     expect(sitemap()[0].alternates?.languages).toEqual({
       en: `${site.url}/en/`,
       es: `${site.url}/es/`,
       'x-default': `${site.url}/`,
     });
+    for (const entry of sitemap().filter(({ url }) => url.endsWith('/orin/'))) {
+      expect(entry.alternates?.languages).toEqual({
+        en: `${site.url}/en/orin/`,
+        es: `${site.url}/es/orin/`,
+        'x-default': `${site.url}/orin/`,
+      });
+    }
   });
 
   it('explicitly allows OpenAI crawlers and advertises the public sitemap', () => {
@@ -92,6 +104,12 @@ describe('official site metadata', () => {
     expect(getPrefixedMetadata('es')).toMatchObject({
       alternates: { canonical: `${site.url}/orionis-web/es/` },
       openGraph: { images: [{ url: `${site.url}/orionis-web/images/seo/seo.png` }] },
+    });
+    expect(
+      getPrefixedMetadata('es', { path: 'orin/', title: 'Conoce a Orin', description: 'Orin' }),
+    ).toMatchObject({
+      alternates: { canonical: `${site.url}/orionis-web/es/orin/` },
+      openGraph: { url: `${site.url}/orionis-web/es/orin/`, title: 'Conoce a Orin' },
     });
   });
 });

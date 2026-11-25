@@ -10,7 +10,13 @@ import type { Locale } from '@/i18n/routing';
 import { asset } from '@/lib/asset';
 import { documentationUrl, inspectorUrl, nav, site } from '@/lib/site';
 
-export function SiteHeader({ locale }: { locale: Locale }) {
+export function SiteHeader({
+  locale,
+  page = 'home',
+}: {
+  locale: Locale;
+  page?: 'home' | 'orin' | 'not-found';
+}) {
   const translate = useTranslations('Home');
   const [frameworkOpen, setFrameworkOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,6 +25,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const mobileButtonRef = useRef<HTMLButtonElement>(null);
   const alternateLocale = locale === 'en' ? 'es' : 'en';
   const docsUrl = documentationUrl(locale);
+  const sectionBase = page === 'home' ? '' : asset(`/${locale}/`);
+  const alternatePath = asset(`/${alternateLocale}/${page === 'orin' ? 'orin/' : ''}`);
 
   useEffect(() => {
     function closeOnOutsideClick(event: PointerEvent) {
@@ -82,7 +90,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             <ChevronDown size={14} aria-hidden="true" />
           </button>
           {nav.slice(1).map((item) => (
-            <a key={item.key} href={item.href}>
+            <a key={item.key} href={sectionBase + item.href}>
               {translate(`nav.${item.key}`)}
             </a>
           ))}
@@ -108,7 +116,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             switchToDarkLabel={translate('theme.switchToDark')}
           />
           <a
-            href={asset(`/${alternateLocale}/`)}
+            href={alternatePath}
             hrefLang={alternateLocale}
             className="locale-switch"
             aria-label={translate('nav.switchLocale')}
@@ -145,7 +153,11 @@ export function SiteHeader({ locale }: { locale: Locale }) {
       {frameworkOpen && (
         <div id="framework-menu" className="framework-menu">
           {nav.map((item) => (
-            <a key={item.key} href={item.href} onClick={() => setFrameworkOpen(false)}>
+            <a
+              key={item.key}
+              href={sectionBase + item.href}
+              onClick={() => setFrameworkOpen(false)}
+            >
               <span>
                 <strong>
                   {translate(item.key === 'features' ? 'nav.capabilities' : `nav.${item.key}`)}
@@ -165,7 +177,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         aria-label={translate('nav.ariaLabel')}
       >
         {nav.map((item) => (
-          <a key={item.key} href={item.href} onClick={() => setMenuOpen(false)}>
+          <a key={item.key} href={sectionBase + item.href} onClick={() => setMenuOpen(false)}>
             <span>
               {translate(item.key === 'features' ? 'nav.capabilities' : `nav.${item.key}`)}
             </span>

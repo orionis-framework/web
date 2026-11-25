@@ -1,0 +1,97 @@
+.welcome {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 100%;
+  margin-top: 18px;
+  padding: 3px 16px 3px 5px;
+  border: 1px solid var(--line-color);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.wave {
+  display: block;
+  width: 72px;
+  height: 72px;
+  flex: none;
+  object-fit: contain;
+}
+
+.welcome strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.welcomeLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 3px;
+  color: var(--primary);
+  font-size: 14px;
+}
+
+.welcome:hover .welcomeLink,
+.welcome:focus-visible .welcomeLink,
+.introduction a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.introduction a {
+  color: var(--primary);
+}
+
+.installArea {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.installArea > :global(.install-command) {
+  justify-self: stretch;
+}
+
+.star {
+  display: block;
+  width: clamp(220px, 21vw, 270px);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+@media (min-width: 760px) {
+  .hero:global(.hero-section) {
+    display: grid;
+    min-height: min(710px, calc(100svh - 150px));
+    height: auto;
+  }
+
+  .hero :global(.hero-inner) {
+    height: auto;
+  }
+}
+
+@media (max-width: 759px) {
+  .welcome {
+    margin-top: 14px;
+  }
+
+  .wave {
+    width: 64px;
+    height: 64px;
+  }
+
+  .installArea {
+    max-width: 480px;
+  }
+
+  .star {
+    width: clamp(140px, 38vw, 180px);
+  }
+}

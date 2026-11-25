@@ -1,6 +1,5 @@
 import { BenchmarkSection } from './benchmark-section';
 import { SiGithub } from '@icons-pack/react-simple-icons';
-import Image from 'next/image';
 import {
   ArrowLeftRight,
   ArrowRight,
@@ -35,15 +34,14 @@ import hljs from 'highlight.js/lib/core';
 import python from 'highlight.js/lib/languages/python';
 import { CodeSampleTabs, type CodeSampleTab } from './code-sample-tabs';
 import { ArchitectureScene } from './architecture-scene';
-import { CopyCodeButton } from './copy-code-button';
-import { ProjectStats } from './project-stats';
 import { ProtocolSwitch } from './protocol-switch';
 import { SiteHeader } from './site-header';
+import { SiteFooter } from './site-footer';
+import { Orin } from './orin';
+import styles from './home-orin.module.css';
 import { ecosystemFeatures, featureContent, getFeatures, type IconName } from '@/content/features';
 import { codeSamples } from '@/content/code-samples';
 import type { Locale } from '@/i18n/routing';
-import { asset } from '@/lib/asset';
-import { loadProjectStats } from '@/lib/project-stats';
 import { highlightedCodeNodes } from '@/lib/highlighted-code';
 import { documentationUrl, inspectorUrl, site } from '@/lib/site';
 import { NextIntlClientProvider } from 'next-intl';
@@ -211,11 +209,9 @@ const featureIcons: Record<IconName, LucideIcon> = {
 };
 
 export default async function HomePage({ locale }: { locale: Locale }) {
-  const [translate, messages, stats] = await Promise.all([
+  const [translate, messages] = await Promise.all([
     getTranslations({ locale, namespace: 'Home' }),
     getMessages({ locale }),
-    // Next's default fetch policy supports a build snapshot in a static export.
-    loadProjectStats({ cache: 'default' }),
   ]);
   const features = getFeatures();
   const codeTabs: CodeSampleTab[] = codeSamples.map((sample) => ({
@@ -228,7 +224,6 @@ export default async function HomePage({ locale }: { locale: Locale }) {
     ),
   }));
   const docsUrl = documentationUrl(locale);
-  const installCommand = site.installCommand;
   const examplePoints = [
     { key: 'types', icon: BadgeCheck },
     { key: 'async', icon: Workflow },
@@ -246,47 +241,6 @@ export default async function HomePage({ locale }: { locale: Locale }) {
     { key: 'compile', icon: Gauge },
     { key: 'contracts', icon: Puzzle },
   ];
-  const footerGroups = [
-    {
-      label: translate('footer.learn'),
-      links: [
-        { label: translate('nav.docs'), href: docsUrl },
-        { label: translate('footer.api'), href: site.apiReference },
-        { label: translate('nav.inspector'), href: inspectorUrl(locale) },
-        {
-          label: translate('footer.installation'),
-          href: documentationUrl(locale, 'getting-started/installation'),
-        },
-      ],
-    },
-    {
-      label: translate('footer.project'),
-      links: [
-        { label: 'GitHub', href: site.repo },
-        { label: 'PyPI', href: site.pypi },
-        { label: translate('footer.releases'), href: `${site.repo}/releases` },
-        {
-          label: translate('footer.thirdPartyNotices'),
-          href: asset(site.granian.license),
-        },
-      ],
-    },
-    {
-      label: translate('footer.community'),
-      links: [
-        {
-          label: translate('footer.contribute'),
-          href: documentationUrl(locale, 'contribute/guide'),
-        },
-        { label: translate('footer.issues'), href: `${site.repo}/issues` },
-        {
-          label: translate('footer.contributors'),
-          href: documentationUrl(locale, 'contribute/contributors'),
-        },
-      ],
-    },
-  ];
-
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <div lang={locale} className="site-shell">
@@ -294,8 +248,8 @@ export default async function HomePage({ locale }: { locale: Locale }) {
           {translate('nav.skip')}
         </a>
         <SiteHeader locale={locale} />
-        <main id="main-content">
-          <section className="hero-section" aria-labelledby="hero-title">
+        <main id="main-content" tabIndex={-1}>
+          <section className={`hero-section ${styles.hero}`} aria-labelledby="hero-title">
             <ArchitectureScene
               labels={{
                 description: translate('scene.description'),
@@ -353,6 +307,18 @@ export default async function HomePage({ locale }: { locale: Locale }) {
                     {translate('hero.githubCta')}
                   </a>
                 </div>
+                <a
+                  className={styles.welcome}
+                  href={documentationUrl(locale, 'getting-started/installation')}
+                >
+                  <Orin variant="wave" decorative className={styles.wave} />
+                  <span>
+                    <strong>{translate('hero.orinGreeting')}</strong>
+                    <span className={styles.welcomeLink}>
+                      {translate('hero.orinGuide')} <ArrowRight size={14} aria-hidden="true" />
+                    </span>
+                  </span>
+                </a>
                 <div className="hero-meta">
                   <span>
                     <BadgeCheck size={16} aria-hidden="true" />
@@ -599,93 +565,7 @@ export default async function HomePage({ locale }: { locale: Locale }) {
           <BenchmarkSection locale={locale} />
         </main>
 
-        <footer id="community" className="site-footer">
-          <div className="page-container">
-            <section id="getting-started" className="footer-cta" aria-labelledby="start-title">
-              <div>
-                <p className="eyebrow">{translate('start.eyebrow')}</p>
-                <h2 id="start-title">
-                  {translate('start.titleFirst')}
-                  <br />
-                  <span>{translate('start.titleSecond')}</span>
-                </h2>
-                <p>{translate('start.description')}</p>
-                <div className="hero-actions">
-                  <a href={docsUrl} className="button button-primary">
-                    {translate('hero.docsCta')}
-                    <ArrowRight size={17} aria-hidden="true" />
-                  </a>
-                  <a
-                    href={site.repo}
-                    className="button button-footer"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <SiGithub size={17} color="currentColor" aria-hidden="true" />
-                    GitHub
-                  </a>
-                </div>
-              </div>
-              <div className="install-command">
-                <Terminal size={19} aria-hidden="true" />
-                <code>{installCommand}</code>
-                <CopyCodeButton
-                  code={installCommand}
-                  label={translate('examples.copyCommand')}
-                  copiedLabel={translate('examples.copied')}
-                />
-              </div>
-            </section>
-            <div className="footer-main">
-              <div className="footer-brand">
-                <a href={asset(`/${locale}/`)}>
-                  <Image src={asset('/favicon.svg')} alt="" width={44} height={44} />
-                  <strong>Orionis Framework</strong>
-                </a>
-                <p>{translate('footer.description')}</p>
-                <ProjectStats
-                  initialStats={stats}
-                  locale={locale}
-                  starsLabel={translate('footer.stars')}
-                  versionLabel={translate('footer.version')}
-                  unavailableLabel={translate('footer.unavailable')}
-                />
-              </div>
-              <div className="footer-links">
-                {footerGroups.map((group) => (
-                  <div key={group.label}>
-                    <h3>{group.label}</h3>
-                    <ul>
-                      {group.links.map((link) => (
-                        <li key={link.href}>
-                          <a href={link.href} target="_blank" rel="noreferrer">
-                            {link.label}
-                            <ArrowUpRight size={13} aria-hidden="true" />
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="footer-wordmark" aria-hidden="true">
-              ORIONIS<span>.</span>
-            </div>
-            <div className="footer-bottom">
-              <p>
-                {translate('footer.copyright', {
-                  year: new Date().getFullYear(),
-                  name: site.author,
-                })}
-              </p>
-              <span>
-                <span className="status-mark" aria-hidden="true" />
-                {translate('footer.madeFor')}
-              </span>
-            </div>
-          </div>
-        </footer>
+        <SiteFooter locale={locale} showGettingStarted />
       </div>
     </NextIntlClientProvider>
   );
