@@ -1,18 +1,18 @@
 {
-  "Orin": {
-    "title": "Conoce a Orin",
+  "Cosmo": {
+    "title": "Conoce a Cosmo",
     "subtitle": "El lince estelar de Orionis.",
-    "intro": "Orin acompaña a la comunidad de Orionis desde la primera ruta hasta la próxima gran idea.",
+    "intro": "Cosmo acompaña a la comunidad de Orionis desde la primera ruta hasta la próxima gran idea.",
     "documentation": "Abrir documentación",
     "community": "Contribuir a Orionis",
-    "gallery": "Orin en acción",
-    "waveCaption": "Un saludo de Orin",
+    "gallery": "Cosmo en acción",
+    "waveCaption": "Un saludo de Cosmo",
     "exploreCaption": "Explorando la constelación",
     "alt": {
-      "star": "Orin, un lince azul con estrellas en las orejas, sostiene una estrella brillante.",
-      "wave": "Orin saluda con la pata.",
-      "explore": "Orin sigue una constelación con la pata.",
-      "avatar": "Rostro de Orin con estrellas en las puntas de las orejas."
+      "star": "Cosmo, un lince azul con estrellas en las orejas, sostiene una estrella brillante.",
+      "wave": "Cosmo saluda con la pata.",
+      "explore": "Cosmo sigue una constelación con la pata.",
+      "avatar": "Rostro de Cosmo con estrellas en las puntas de las orejas."
     }
   },
   "NotFound": {
@@ -45,8 +45,8 @@
       "switchToDark": "Cambiar al tema oscuro"
     },
     "hero": {
-      "orinGreeting": "¿Tu primera vez con Orionis?",
-      "orinGuide": "Empieza por aquí.",
+      "cosmoGreeting": "¿Tu primera vez con Orionis?",
+      "cosmoGuide": "Empieza por aquí.",
       "eyebrow": "El framework Python async-first completo",
       "taglineFirst": "Deja de ensamblar.",
       "taglineSecond": "Empieza a crear.",
@@ -184,14 +184,14 @@
       "description": "Autenticación, correo, archivos, pruebas y herramientas de operación. Las capacidades que una aplicación real necesita, integradas en la misma arquitectura."
     },
     "start": {
-      "orin": "<link>Conoce a Orin</link>, tu compañero para construir con Orionis.",
+      "cosmo": "<link>Conoce a Cosmo</link>, tu compañero para construir con Orionis.",
       "eyebrow": "Tu próximo proyecto empieza aquí",
       "titleFirst": "Grandes ideas.",
       "titleSecond": "Un framework a su altura.",
       "description": "Descubre las guías, explora el código y construye sobre una base que conecta todas las partes de tu aplicación."
     },
     "footer": {
-      "orin": "Conoce a Orin",
+      "cosmo": "Conoce a Cosmo",
       "description": "Python async-first. Un motor impulsado por Rust. Una arquitectura completa, abierta y hecha para construir.",
       "learn": "Aprende",
       "api": "Referencia de API",

@@ -5,7 +5,7 @@ import { languageAlternates, localeUrl } from '@/lib/site';
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const paths = ['', 'orin/'] as const;
+  const paths = ['', 'cosmo/'] as const;
   return paths.flatMap((path) =>
     locales.map((locale) => ({
       url: localeUrl(locale, path),

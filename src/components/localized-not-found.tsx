@@ -6,8 +6,8 @@ import { useSyncExternalStore } from 'react';
 import { defaultLocale, locales, type Locale } from '@/i18n/routing';
 import { asset, basePath } from '@/lib/asset';
 import { documentationUrl } from '@/lib/site';
-import { Orin } from './orin';
-import styles from './orin-page.module.css';
+import { Cosmo } from './cosmo';
+import styles from './cosmo-page.module.css';
 import { SiteHeader } from './site-header';
 
 function subscribe(onChange: () => void) {
@@ -45,7 +45,7 @@ function ErrorContent({ locale }: { locale: Locale }) {
             </div>
           </div>
           <div className={styles.art}>
-            <Orin variant="explore" className={styles.tracker} loading="eager" />
+            <Cosmo variant="explore" className={styles.tracker} loading="eager" />
           </div>
         </div>
       </main>

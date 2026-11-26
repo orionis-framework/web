@@ -3,13 +3,13 @@ import { ArrowRight, ArrowUpRight, Terminal } from 'lucide-react';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { CopyCodeButton } from './copy-code-button';
-import { Orin } from './orin';
+import { Cosmo } from './cosmo';
 import { ProjectStats } from './project-stats';
 import type { Locale } from '@/i18n/routing';
 import { asset } from '@/lib/asset';
 import { loadProjectStats } from '@/lib/project-stats';
 import { documentationUrl, inspectorUrl, site } from '@/lib/site';
-import styles from './home-orin.module.css';
+import styles from './home-cosmo.module.css';
 
 interface SiteFooterProps {
   locale: Locale;
@@ -22,7 +22,7 @@ export async function SiteFooter({ locale, showGettingStarted = false }: SiteFoo
     loadProjectStats({ cache: 'default' }),
   ]);
   const docsUrl = documentationUrl(locale);
-  const orinUrl = asset(`/${locale}/orin/`);
+  const cosmoUrl = asset(`/${locale}/cosmo/`);
   const installCommand = site.installCommand;
   const footerGroups: {
     label: string;
@@ -55,7 +55,7 @@ export async function SiteFooter({ locale, showGettingStarted = false }: SiteFoo
     {
       label: translate('footer.community'),
       links: [
-        { label: translate('footer.orin'), href: orinUrl, internal: true },
+        { label: translate('footer.cosmo'), href: cosmoUrl, internal: true },
         {
           label: translate('footer.contribute'),
           href: documentationUrl(locale, 'contribute/guide'),
@@ -98,13 +98,13 @@ export async function SiteFooter({ locale, showGettingStarted = false }: SiteFoo
                 </a>
               </div>
               <p className={styles.introduction}>
-                {translate.rich('start.orin', {
-                  link: (chunks) => <a href={orinUrl}>{chunks}</a>,
+                {translate.rich('start.cosmo', {
+                  link: (chunks) => <a href={cosmoUrl}>{chunks}</a>,
                 })}
               </p>
             </div>
             <div className={styles.installArea}>
-              <Orin variant="star" className={styles.star} decorative />
+              <Cosmo variant="star" className={styles.star} decorative />
               <div className="install-command">
                 <Terminal size={19} aria-hidden="true" />
                 <code>{installCommand}</code>

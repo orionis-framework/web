@@ -63,7 +63,7 @@ const metadataContent: Record<Locale, { title: string; description: string }> = 
   },
 };
 
-type PagePath = '' | 'orin/';
+type PagePath = '' | 'cosmo/';
 
 export function localeUrl(locale: Locale, path: PagePath = ''): string {
   return new URL(asset(`/${locale}/${path}`), site.url).href;

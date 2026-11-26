@@ -11,10 +11,10 @@ export const metadata = {
   twitter: null,
 };
 
-function errorMessages({ NotFound, Orin, Home }: typeof en) {
+function errorMessages({ NotFound, Cosmo, Home }: typeof en) {
   return {
     NotFound,
-    Orin: { alt: Orin.alt },
+    Cosmo: { alt: Cosmo.alt },
     Home: { nav: Home.nav, theme: Home.theme, hero: { githubCta: Home.hero.githubCta } },
   };
 }

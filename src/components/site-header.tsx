@@ -15,7 +15,7 @@ export function SiteHeader({
   page = 'home',
 }: {
   locale: Locale;
-  page?: 'home' | 'orin' | 'not-found';
+  page?: 'home' | 'cosmo' | 'not-found';
 }) {
   const translate = useTranslations('Home');
   const [frameworkOpen, setFrameworkOpen] = useState(false);
@@ -26,7 +26,7 @@ export function SiteHeader({
   const alternateLocale = locale === 'en' ? 'es' : 'en';
   const docsUrl = documentationUrl(locale);
   const sectionBase = page === 'home' ? '' : asset(`/${locale}/`);
-  const alternatePath = asset(`/${alternateLocale}/${page === 'orin' ? 'orin/' : ''}`);
+  const alternatePath = asset(`/${alternateLocale}/${page === 'cosmo' ? 'cosmo/' : ''}`);
 
   useEffect(() => {
     function closeOnOutsideClick(event: PointerEvent) {

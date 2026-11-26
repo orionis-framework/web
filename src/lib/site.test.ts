@@ -63,19 +63,19 @@ describe('official site metadata', () => {
     expect(sitemap().map((entry) => entry.url)).toEqual([
       `${site.url}/en/`,
       `${site.url}/es/`,
-      `${site.url}/en/orin/`,
-      `${site.url}/es/orin/`,
+      `${site.url}/en/cosmo/`,
+      `${site.url}/es/cosmo/`,
     ]);
     expect(sitemap()[0].alternates?.languages).toEqual({
       en: `${site.url}/en/`,
       es: `${site.url}/es/`,
       'x-default': `${site.url}/`,
     });
-    for (const entry of sitemap().filter(({ url }) => url.endsWith('/orin/'))) {
+    for (const entry of sitemap().filter(({ url }) => url.endsWith('/cosmo/'))) {
       expect(entry.alternates?.languages).toEqual({
-        en: `${site.url}/en/orin/`,
-        es: `${site.url}/es/orin/`,
-        'x-default': `${site.url}/orin/`,
+        en: `${site.url}/en/cosmo/`,
+        es: `${site.url}/es/cosmo/`,
+        'x-default': `${site.url}/cosmo/`,
       });
     }
   });
@@ -106,10 +106,10 @@ describe('official site metadata', () => {
       openGraph: { images: [{ url: `${site.url}/orionis-web/images/seo/seo.png` }] },
     });
     expect(
-      getPrefixedMetadata('es', { path: 'orin/', title: 'Conoce a Orin', description: 'Orin' }),
+      getPrefixedMetadata('es', { path: 'cosmo/', title: 'Conoce a Cosmo', description: 'Cosmo' }),
     ).toMatchObject({
-      alternates: { canonical: `${site.url}/orionis-web/es/orin/` },
-      openGraph: { url: `${site.url}/orionis-web/es/orin/`, title: 'Conoce a Orin' },
+      alternates: { canonical: `${site.url}/orionis-web/es/cosmo/` },
+      openGraph: { url: `${site.url}/orionis-web/es/cosmo/`, title: 'Conoce a Cosmo' },
     });
   });
 });

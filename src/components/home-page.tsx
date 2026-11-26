@@ -37,8 +37,8 @@ import { ArchitectureScene } from './architecture-scene';
 import { ProtocolSwitch } from './protocol-switch';
 import { SiteHeader } from './site-header';
 import { SiteFooter } from './site-footer';
-import { Orin } from './orin';
-import styles from './home-orin.module.css';
+import { Cosmo } from './cosmo';
+import styles from './home-cosmo.module.css';
 import { ecosystemFeatures, featureContent, getFeatures, type IconName } from '@/content/features';
 import { codeSamples } from '@/content/code-samples';
 import type { Locale } from '@/i18n/routing';
@@ -312,11 +312,11 @@ export default async function HomePage({ locale }: { locale: Locale }) {
                   className={styles.welcome}
                   href={documentationUrl(locale, 'getting-started/installation')}
                 >
-                  <Orin variant="wave" decorative className={styles.wave} />
+                  <Cosmo variant="wave" decorative className={styles.wave} />
                   <span>
-                    <strong>{translate('hero.orinGreeting')}</strong>
+                    <strong>{translate('hero.cosmoGreeting')}</strong>
                     <span className={styles.welcomeLink}>
-                      {translate('hero.orinGuide')} <ArrowRight size={14} aria-hidden="true" />
+                      {translate('hero.cosmoGuide')} <ArrowRight size={14} aria-hidden="true" />
                     </span>
                   </span>
                 </a>

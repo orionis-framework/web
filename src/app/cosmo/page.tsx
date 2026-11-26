@@ -1,12 +1,12 @@
 import { setRequestLocale } from 'next-intl/server';
-import { OrinPage, orinMetadata } from '@/components/orin-page';
+import { CosmoPage, cosmoMetadata } from '@/components/cosmo-page';
 import { defaultLocale } from '@/i18n/routing';
 
 export function generateMetadata() {
-  return orinMetadata(defaultLocale);
+  return cosmoMetadata(defaultLocale);
 }
 
 export default function Page() {
   setRequestLocale(defaultLocale);
-  return <OrinPage locale={defaultLocale} />;
+  return <CosmoPage locale={defaultLocale} />;
 }

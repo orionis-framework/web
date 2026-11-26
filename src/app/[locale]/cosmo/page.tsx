@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
-import { OrinPage, orinMetadata } from '@/components/orin-page';
+import { CosmoPage, cosmoMetadata } from '@/components/cosmo-page';
 import { locales } from '@/i18n/routing';
 
 export const dynamicParams = false;
@@ -19,11 +19,11 @@ async function supportedLocale(params: Props['params']) {
 }
 
 export async function generateMetadata({ params }: Props) {
-  return orinMetadata(await supportedLocale(params));
+  return cosmoMetadata(await supportedLocale(params));
 }
 
 export default async function Page({ params }: Props) {
   const locale = await supportedLocale(params);
   setRequestLocale(locale);
-  return <OrinPage locale={locale} />;
+  return <CosmoPage locale={locale} />;
 }

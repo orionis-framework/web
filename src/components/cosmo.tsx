@@ -9,19 +9,19 @@ const sizes = {
   avatar: [256, 256],
 } as const;
 
-interface OrinProps {
+interface CosmoProps {
   variant: keyof typeof sizes;
   decorative?: boolean;
   className?: string;
   loading?: 'lazy' | 'eager';
 }
 
-export function Orin({ variant, decorative = false, className, loading = 'lazy' }: OrinProps) {
-  const t = useTranslations('Orin.alt');
+export function Cosmo({ variant, decorative = false, className, loading = 'lazy' }: CosmoProps) {
+  const t = useTranslations('Cosmo.alt');
   const [width, height] = sizes[variant];
   return (
     <Image
-      src={asset(`/images/orin/orin-${variant}.webp`)}
+      src={asset(`/images/cosmo/cosmo-${variant}.webp`)}
       width={width}
       height={height}
       alt={decorative ? '' : t(variant)}
