@@ -1,8 +1,79 @@
 {
   "Cosmo": {
+    "eyebrow": "Official mascot",
+    "jumpGallery": "Explore the gallery",
+    "galleryEyebrow": "Illustration gallery",
+    "galleryTitle": "Cosmo’s adventures",
+    "galleryIntro": "Pick a favorite illustration to download, or get the whole collection.",
+    "download": "Download",
+    "preview": "View full image",
+    "closePreview": "Close preview",
+    "downloadAll": "Download collection (ZIP)",
+    "filterLabel": "Filter illustrations",
+    "filterAll": "All",
+    "filterSolo": "Just Cosmo",
+    "filterTogether": "With the Orionis logo",
+    "storyEyebrow": "The character",
+    "storyTitle": "Where does that constellation lead?",
+    "storyBody": "Cosmo welcomes you in the Orionis getting started guide. This little lynx loves to wave with eyes squeezed shut in a grin. When a star catches Cosmo’s eye, it’s time to crouch low, lean in, and reach out a paw to give it a curious tap.\n\nOn one outing, Cosmo finds a different kind of star on the face of a disc. It’s the Orionis emblem. Soon the lynx is carrying it on a flag and, back at the ship, peeking out through the hatch to wave hello.",
+    "designEyebrow": "Character design",
+    "designTitle": "How to recognize Cosmo",
+    "designIntro": "Look for little flashes of cyan from the tips of Cosmo’s ears to the pads of each paw.",
+    "earTitle": "Star-tipped ears",
+    "earBody": "A star sits at the tip of each ear. You can still see both in the tiny avatar portrait.",
+    "chestTitle": "A constellation on the chest",
+    "chestBody": "Three cyan marks form a line down the tuft of white fur on Cosmo’s chest.",
+    "pawTitle": "Cyan paw pads",
+    "pawBody": "When Cosmo raises a paw to wave, you can see the pads are the same bright cyan as the stars.",
+    "galleryItems": {
+      "star": {
+        "title": "A star to hold",
+        "alt": "Cosmo holds a cyan star in one paw and lifts the other to show its bright pads."
+      },
+      "wave": {
+        "title": "Hello, Cosmo!",
+        "alt": "Cosmo sits and waves one paw, eyes closed in a smile."
+      },
+      "explore": {
+        "title": "Following a constellation",
+        "alt": "Cosmo crouches and reaches a paw toward the first star in a cyan constellation."
+      },
+      "avatar": {
+        "title": "Cosmo’s portrait",
+        "alt": "Close-up of Cosmo’s blue and white face, with a star at the tip of each ear."
+      },
+      "stargazer": {
+        "title": "Stargazing",
+        "alt": "Cosmo sits with one paw raised toward three cyan stars that form a V."
+      },
+      "leap": {
+        "title": "Mid-leap",
+        "alt": "Cosmo leaps with both front paws stretched toward a cyan star."
+      },
+      "nap": {
+        "title": "Time for a nap",
+        "alt": "Cosmo sleeps curled up, muzzle resting on the front paws and tail tucked close."
+      },
+      "first-contact": {
+        "title": "First contact",
+        "alt": "Beneath a ringed planet, Cosmo reaches out and touches a disc bearing the Orionis logo."
+      },
+      "standard-bearer": {
+        "title": "The standard-bearer",
+        "alt": "Against a pink horizon, Cosmo waves one paw and holds a flag bearing the Orionis logo with the other."
+      },
+      "hello-orionis": {
+        "title": "Hello, Orionis!",
+        "alt": "Cosmo waves from a circular hatch. A plaque bearing the Orionis logo sits in the foreground."
+      },
+      "night-sky": {
+        "title": "A shooting star",
+        "alt": "From a rock above a blue, moonlit valley, Cosmo raises a paw toward a shooting star."
+      }
+    },
     "title": "Meet Cosmo",
     "subtitle": "The stellar lynx of Orionis.",
-    "intro": "Cosmo accompanies the Orionis community from the first route to the next big idea.",
+    "intro": "Cosmo has a soft spot for stars. Sometimes this little lynx chases them, sometimes one lands in a paw, and there’s always a pair perched on those ears.",
     "documentation": "Read the docs",
     "community": "Contribute to Orionis",
     "gallery": "Cosmo in action",

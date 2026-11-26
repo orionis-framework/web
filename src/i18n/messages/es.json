@@ -1,8 +1,79 @@
 {
   "Cosmo": {
+    "eyebrow": "Mascota oficial",
+    "jumpGallery": "Ver la galería",
+    "galleryEyebrow": "Galería de ilustraciones",
+    "galleryTitle": "Las aventuras de Cosmo",
+    "galleryIntro": "Elige tu ilustración favorita para descargarla o llévate la colección completa.",
+    "download": "Descargar",
+    "preview": "Ampliar imagen",
+    "closePreview": "Cerrar vista ampliada",
+    "downloadAll": "Descargar colección (ZIP)",
+    "filterLabel": "Filtrar ilustraciones",
+    "filterAll": "Todas",
+    "filterSolo": "Solo Cosmo",
+    "filterTogether": "Con el logo de Orionis",
+    "storyEyebrow": "El personaje",
+    "storyTitle": "¿Adónde lleva esa constelación?",
+    "storyBody": "Cosmo te da la bienvenida en la guía de inicio de Orionis. Le gusta saludar con una pata en alto y los ojos cerrados. Y cuando una estrella le despierta la curiosidad, se agacha, acerca el hocico y estira una pata para tocarla.\n\nEn una de sus excursiones encuentra una estrella distinta, grabada en un disco. Es el emblema de Orionis. Poco después lo lleva en su bandera y, al llegar a la nave, se asoma por la escotilla para saludarte.",
+    "designEyebrow": "Diseño del personaje",
+    "designTitle": "Cómo reconocer a Cosmo",
+    "designIntro": "Fíjate en los pequeños destellos cian que lleva de las orejas a las patas.",
+    "earTitle": "Orejas estrelladas",
+    "earBody": "Una estrella remata cada oreja. Las dos se distinguen incluso en el pequeño retrato del avatar.",
+    "chestTitle": "Una constelación en el pecho",
+    "chestBody": "Tres destellos forman una línea sobre el mechón de pelo blanco del pecho.",
+    "pawTitle": "Huellas cian",
+    "pawBody": "Al levantar la pata para saludar, Cosmo deja ver sus almohadillas del mismo cian que las estrellas.",
+    "galleryItems": {
+      "star": {
+        "title": "Una estrella en la pata",
+        "alt": "Cosmo sostiene una estrella cian en una pata y levanta la otra para mostrar las almohadillas."
+      },
+      "wave": {
+        "title": "¡Hola, Cosmo!",
+        "alt": "Cosmo saluda sentado, con una pata en alto, los ojos cerrados y una gran sonrisa."
+      },
+      "explore": {
+        "title": "Tras la constelación",
+        "alt": "Cosmo se agacha y estira una pata hacia la primera estrella de una constelación cian."
+      },
+      "avatar": {
+        "title": "Retrato de Cosmo",
+        "alt": "Primer plano del rostro azul y blanco de Cosmo, con una estrella en la punta de cada oreja."
+      },
+      "stargazer": {
+        "title": "Mirando las estrellas",
+        "alt": "Cosmo está sentado y levanta una pata hacia tres estrellas cian que forman una uve."
+      },
+      "leap": {
+        "title": "De un salto",
+        "alt": "Cosmo da un salto con las patas delanteras extendidas hacia una estrella cian."
+      },
+      "nap": {
+        "title": "Hora de la siesta",
+        "alt": "Cosmo duerme acurrucado con el hocico sobre las patas delanteras y la cola pegada al cuerpo."
+      },
+      "first-contact": {
+        "title": "Primer contacto",
+        "alt": "Bajo un planeta con anillos, Cosmo toca con la pata un disco que lleva el logo de Orionis."
+      },
+      "standard-bearer": {
+        "title": "El abanderado",
+        "alt": "Cosmo saluda con una pata y sostiene con la otra una bandera con el logo de Orionis sobre un horizonte rosado."
+      },
+      "hello-orionis": {
+        "title": "¡Hola, Orionis!",
+        "alt": "Cosmo saluda desde una escotilla circular. En primer plano hay una placa con el logo de Orionis."
+      },
+      "night-sky": {
+        "title": "Una estrella fugaz",
+        "alt": "Cosmo alza una pata desde una roca hacia una estrella fugaz. La luna ilumina el valle azul."
+      }
+    },
     "title": "Conoce a Cosmo",
     "subtitle": "El lince estelar de Orionis.",
-    "intro": "Cosmo acompaña a la comunidad de Orionis desde la primera ruta hasta la próxima gran idea.",
+    "intro": "A Cosmo le encantan las estrellas. A veces las persigue, a veces consigue atrapar una y siempre lleva un par en las puntas de las orejas.",
     "documentation": "Abrir documentación",
     "community": "Contribuir a Orionis",
     "gallery": "Cosmo en acción",

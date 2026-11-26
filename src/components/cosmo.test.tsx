@@ -1,14 +1,45 @@
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { NextIntlClientProvider } from 'next-intl';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { LocalizedNotFound } from './localized-not-found';
 import { Cosmo } from './cosmo';
+import { CosmoGallery } from './cosmo-gallery';
 import { SiteHeader } from './site-header';
 import en from '@/i18n/messages/en.json';
 import es from '@/i18n/messages/es.json';
 import { documentationUrl } from '@/lib/site';
 
 const messages = { en, es };
+
+it.each(['en', 'es'] as const)(
+  'keeps the %s gallery downloads available when filtering',
+  (locale) => {
+    const copy = messages[locale].Cosmo;
+    render(
+      <NextIntlClientProvider locale={locale} messages={messages[locale]} timeZone="UTC">
+        <CosmoGallery />
+      </NextIntlClientProvider>,
+    );
+    const grid = within(screen.getByRole('list'));
+    const all = grid.getAllByRole('listitem');
+    expect(all).toHaveLength(Object.keys(copy.galleryItems).length);
+    for (const card of all) {
+      const [preview, download] = within(card).getAllByRole('link');
+      expect(preview).toHaveAttribute('href', download.getAttribute('href'));
+      expect(download.getAttribute('download')).toMatch(/^cosmo-.*\.webp$/);
+    }
+    fireEvent.click(screen.getByRole('button', { name: new RegExp(copy.filterTogether) }));
+    expect(grid.getAllByRole('listitem')).toHaveLength(3);
+    fireEvent.click(screen.getByRole('button', { name: new RegExp(copy.filterSolo) }));
+    expect(grid.getAllByRole('listitem')).toHaveLength(all.length - 3);
+    fireEvent.click(screen.getByRole('button', { name: new RegExp(copy.filterAll) }));
+    expect(grid.getAllByRole('listitem')).toHaveLength(all.length);
+    expect(screen.getByRole('link', { name: copy.downloadAll })).toHaveAttribute(
+      'download',
+      'cosmo-gallery.zip',
+    );
+  },
+);
 
 beforeEach(() => {
   vi.stubGlobal('matchMedia', () => ({

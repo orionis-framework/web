@@ -1,7 +1,10 @@
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Sparkles } from 'lucide-react';
+import Image from 'next/image';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { Cosmo } from './cosmo';
+import { panoramaUrl } from './cosmo-artwork';
+import { CosmoGallery } from './cosmo-gallery';
 import styles from './cosmo-page.module.css';
 import { SiteFooter } from './site-footer';
 import { SiteHeader } from './site-header';
@@ -10,11 +13,22 @@ import { documentationUrl, getPageMetadata, site } from '@/lib/site';
 
 export async function cosmoMetadata(locale: Locale) {
   const t = await getTranslations({ locale, namespace: 'Cosmo' });
-  return getPageMetadata(locale, {
+  const meta = getPageMetadata(locale, {
     title: `${t('title')} | ${site.fullName}`,
-    description: t('intro'),
+    description: `${t('intro')} ${t('galleryIntro')}`,
     path: 'cosmo/',
   });
+  const image = {
+    url: new URL(panoramaUrl, site.url).href,
+    width: 2137,
+    height: 736,
+    alt: t('galleryItems.night-sky.alt'),
+  };
+  return {
+    ...meta,
+    openGraph: { ...meta.openGraph, images: [image] },
+    twitter: { ...meta.twitter, images: [image] },
+  };
 }
 
 export async function CosmoPage({ locale }: { locale: Locale }) {
@@ -31,41 +45,78 @@ export async function CosmoPage({ locale }: { locale: Locale }) {
         </a>
         <SiteHeader locale={locale} page="cosmo" />
         <main id="main-content" tabIndex={-1}>
-          <section className={styles.banner} aria-labelledby="cosmo-title">
-            <div className={`page-container ${styles.intro}`}>
-              <div>
-                <h1 id="cosmo-title" className={styles.title}>
-                  {t('title')}
-                </h1>
-                <p className={styles.subtitle}>{t('subtitle')}</p>
-                <p className={styles.description}>{t('intro')}</p>
-                <div className="hero-actions">
-                  <a className="button button-primary" href={documentationUrl(locale)}>
-                    {t('documentation')} <ArrowRight size={17} aria-hidden="true" />
-                  </a>
-                  <a
-                    className="button button-secondary"
-                    href={documentationUrl(locale, 'contribute/guide')}
-                  >
-                    {t('community')} <ArrowUpRight size={17} aria-hidden="true" />
-                  </a>
-                </div>
-              </div>
-              <div className={styles.art}>
-                <Cosmo variant="star" loading="eager" className={styles.portrait} />
+          <section className={styles.hero} aria-labelledby="cosmo-title">
+            <Image
+              className={styles.sky}
+              src={panoramaUrl}
+              width={2137}
+              height={736}
+              alt={t('galleryItems.night-sky.alt')}
+              loading="eager"
+              fetchPriority="high"
+              unoptimized
+            />
+            <div className={`page-container ${styles.heroInner}`}>
+              <div className={styles.heroCopy}>
+                <p className={styles.heroLabel}>
+                  <Sparkles size={17} aria-hidden="true" />
+                  {t('eyebrow')}
+                </p>
+                <h1 id="cosmo-title">Cosmo</h1>
+                <p className={styles.heroSub}>{t('subtitle')}</p>
+                <p className={styles.heroText}>{t('intro')}</p>
+                <a className={`button button-primary ${styles.exploreButton}`} href="#gallery">
+                  {t('jumpGallery')} <ArrowDown size={17} aria-hidden="true" />
+                </a>
               </div>
             </div>
           </section>
-          <section className={`page-container ${styles.gallery}`} aria-labelledby="cosmo-poses">
-            <h2 id="cosmo-poses">{t('gallery')}</h2>
-            <div className={styles.poses}>
-              {(['wave', 'explore'] as const).map((pose) => (
-                <figure key={pose}>
-                  <Cosmo variant={pose} className={styles.study} decorative />
-                  <figcaption>{t(`${pose}Caption`)}</figcaption>
-                </figure>
-              ))}
+          <CosmoGallery />
+          <section className={styles.story} aria-labelledby="story-title">
+            <div className={`page-container ${styles.storyInner}`}>
+              <div className={styles.storyArt}>
+                <Cosmo variant="explore" decorative />
+              </div>
+              <div className={styles.storyCopy}>
+                <p className={styles.sectionLabel}>{t('storyEyebrow')}</p>
+                <h2 id="story-title">{t('storyTitle')}</h2>
+                {t('storyBody')
+                  .split('\n\n')
+                  .map((paragraph) => (
+                    <p className={styles.lede} key={paragraph}>
+                      {paragraph}
+                    </p>
+                  ))}
+                <div className={styles.storyLinks}>
+                  <a href={documentationUrl(locale)}>
+                    {t('documentation')} <ArrowUpRight size={16} aria-hidden="true" />
+                  </a>
+                  <a href={documentationUrl(locale, 'contribute/guide')}>
+                    {t('community')} <ArrowUpRight size={16} aria-hidden="true" />
+                  </a>
+                </div>
+              </div>
             </div>
+          </section>
+          <section className={`page-container ${styles.design}`} aria-labelledby="design-title">
+            <div>
+              <p className={styles.sectionLabel}>{t('designEyebrow')}</p>
+              <h2 id="design-title">{t('designTitle')}</h2>
+              <p className={styles.lede}>{t('designIntro')}</p>
+            </div>
+            <dl className={styles.traits}>
+              {(['ear', 'chest', 'paw'] as const).map((part) => (
+                <div className={styles.trait} key={part}>
+                  <dt>
+                    <span className={styles.detail} data-part={part}>
+                      <Cosmo variant="star" decorative />
+                    </span>
+                    {t(`${part}Title`)}
+                  </dt>
+                  <dd>{t(`${part}Body`)}</dd>
+                </div>
+              ))}
+            </dl>
           </section>
         </main>
         <SiteFooter locale={locale} />
